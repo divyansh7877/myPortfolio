@@ -124,19 +124,19 @@
 							<p>Contact me if you are interested.</p>
 							<div class="split style1">
 								<section>
-									<form action="mailto: divyansh.agarwal2019@vitstudent.ac.in" method="POST" enctype="multipart/form-data">
+									<form onsubmit="sendemail(); reset(); return false;">
 										<div class="fields">
 											<div class="field half">
 												<label for="name">Name</label>
-												<input type="text" name="name"/>
+												<input type="text" name="name" id="name" placeholder="Dr. Awesome"/>
 											</div>
 											<div class="field half">
 												<label for="email">Email</label>
-												<input type="text" name="email"/>
+												<input type="text" name="email" id="email" placeholder="Awesome@gmail.com"/>
 											</div>
 											<div class="field">
 												<label for="Message">Message</label>
-												<textarea name="Message" rows="5"></textarea>
+												<textarea name="Message" rows="5" id="message" placeholder="...Your story"></textarea>
 											</div>
 										</div>
 										<ul class="actions">
@@ -181,7 +181,21 @@
 				</div>
 			</footer>
 
-		<!-- Scripts -->
+		<!-- Scripts -->	
+			<script src="https://smtpjs.com/v3/smtp.js"></script>
+			<script>
+				function sendemail(){
+					Email.send({
+								SecureToken:"e858aff9-5995-47ab-856b-13e4dcd721dd",
+								To : 'divyansh.agarwal2019@vitstudent.ac.in',
+								From : document.getElementById('email').value,
+								Subject : "Feedback",
+								Body : document.getElementById('message').value + " <br> By:" + document.getElementById('name').value   
+							}).then(
+							message => alert("Message sent succesfully")
+							);
+				}
+			</script>
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>
 			<script src="assets/js/jquery.scrolly.min.js"></script>
