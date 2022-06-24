@@ -124,7 +124,8 @@
 							<p>Contact me if you are interested.</p>
 							<div class="split style1">
 								<section>
-									<form onsubmit="sendemail(); reset(); return false;">
+									<!-- <form onsubmit="sendemail(); reset(); return false;"> -->
+									<form action="https://formsubmit.co/divyansh.agarwal2019@vitstudent.ac.in" method="POST" >
 										<div class="fields">
 											<div class="field half">
 												<label for="name">Name</label>
@@ -143,6 +144,8 @@
 											<li><input type="submit" value="Send" class="button submit"></li>
 										    <li><input type="reset" value="Reset" class="button reset"></li>
 										</ul>
+										<input type="hidden" name="_subject" value="Feeback">
+										<input type="hidden" name="_template" value="table">
 									</form>
 								</section>
 								<section>
