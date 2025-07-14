@@ -1,0 +1,174 @@
+/* Basic Styles */
+body {
+    background-color: #000;
+    color: #0F0;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.terminal {
+    border: 1px solid #0F0;
+    border-radius: 5px;
+    margin: 50px auto;
+    max-width: 800px;
+    box-shadow: 0 0 20px #0F0;
+}
+
+.terminal-header {
+    background-color: #333;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.terminal-buttons {
+    display: flex;
+}
+
+.terminal-button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.terminal-button.red {
+    background-color: #FF5F56;
+}
+
+.terminal-button.yellow {
+    background-color: #FFBD2E;
+}
+
+.terminal-button.green {
+    background-color: #27C93F;
+}
+
+.terminal-title {
+    color: #FFF;
+    margin: 0 auto;
+}
+
+.terminal-body {
+    padding: 20px;
+    height: 400px;
+    overflow-y: auto;
+}
+
+.terminal-line {
+    margin-bottom: 10px;
+}
+
+.terminal-prompt {
+    display: flex;
+    align-items: center;
+}
+
+.prompt-user {
+    color: #0F0;
+}
+
+.prompt-symbol {
+    color: #0F0;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#typed-output {
+    color: #0F0;
+}
+
+.cursor {
+    background-color: #0F0;
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    from, to {
+        background-color: transparent;
+    }
+    50% {
+        background-color: #0F0;
+    }
+}
+
+/* Sections */
+.section {
+    padding: 50px;
+    border-bottom: 1px solid #0F0;
+}
+
+h2 {
+    color: #0F0;
+    text-shadow: 0 0 10px #0F0;
+}
+
+/* About Section */
+.about h3 {
+    color: #0F0;
+}
+
+.about ul {
+    list-style: none;
+    padding: 0;
+}
+
+.about li {
+    margin-bottom: 20px;
+}
+
+/* Projects Section */
+.project {
+    margin-bottom: 30px;
+}
+
+.project h3 {
+    color: #0F0;
+}
+
+.project a {
+    color: #0F0;
+    text-decoration: none;
+    border: 1px solid #0F0;
+    padding: 5px 10px;
+    border-radius: 3px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.project a:hover {
+    background-color: #0F0;
+    color: #000;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 20px;
+}
+
+.social-icon {
+    color: #0F0;
+    font-size: 24px;
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+
+.social-icon:hover {
+    color: #FFF;
+}
+
+.resume-button {
+    color: #0F0;
+    text-decoration: none;
+    border: 1px solid #0F0;
+    padding: 10px 20px;
+    border-radius: 3px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.resume-button:hover {
+    background-color: #0F0;
+    color: #000;
+}
