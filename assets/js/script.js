@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const typedOutput = document.getElementById('typed-output');
 
     const commands = {
-        help: 'Available commands: about, projects, summary, contact, clear',
+        help: 'Available commands: about, projects, summary, contact, clear, personal',
         about: () => {
             const aboutSection = document.getElementById('about');
             aboutSection.scrollIntoView({ behavior: 'smooth' });
@@ -11,6 +11,10 @@ document.addEventListener('DOMContentLoaded', function() {
         projects: () => {
             const projectsSection = document.getElementById('projects');
             projectsSection.scrollIntoView({ behavior: 'smooth' });
+        },
+        personal: () => {
+            const personalSection = document.getElementById('personal');
+            personalSection.scrollIntoView({ behavior: 'smooth' });
         },
         summary: () => {
             const summarySection = document.getElementById('summary');
