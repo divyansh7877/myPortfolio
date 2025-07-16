@@ -107,23 +107,42 @@
 
     <div id="projects" class="section">
         <h2>Projects</h2>
+
         <div class="project">
             <h3>Expert-Call RAG Assistant</h3>
             <p>This project is a locally-run Retrieval-Augmented Generation (RAG) system that allows users to query a collection of expert-call transcripts. The system uses a large language model to generate answers based on the most relevant retrieved text chunks and provides citations to the original source document and page number. This ensures that the answers are grounded in the provided context, reducing hallucinations and improving trust in the output. The project is designed to be modular, allowing for easy replacement of components such as the language model or the retrieval system. The primary technologies used were <strong>Python</strong>, with libraries such as <strong>Gradio</strong> for the web interface, <strong>LanceDB</strong> for the vector store, and <strong>LlamaIndex</strong> for orchestrating the RAG pipeline. The system uses a quantized <strong>Llama-3.1-8B</strong> model for local inference, <strong>Sentence-Transformers</strong> for embedding and re-ranking, and <strong>PyMuPDF</strong> for PDF text extraction.</p>
             <a href="https://github.com/divyansh7877/RAG-LLM-TC2">View on GitHub</a>
         </div>
+
+        <div class="project">
+            <h3>Cloud-Native Social Media Automation System</h3>
+            <p>Developed a fully serverless pipeline on AWS to automate social media image posting using Google Photos, chatbot input, and AI-generated captions. The system fetches daily photos, analyzes them with AWS Rekognition, indexes them in OpenSearch, and overlays AI-generated captions using Claude 3 (via Bedrock). Leveraged services include Lambda, Cognito, Lex, SQS, S3, API Gateway, Secrets Manager, OpenSearch, and ElastiCache for scalable, secure, and personalized content creation and posting to platforms like Bluesky.</p>
+            <!-- <a href="#">View on GitHub</a> -->
+        </div>
+        
+        <div class="project">
+            <h3>Fine-Tuning Llama 3.1-8B for Math Answer Verification</h3>
+            <p>Participated in a Kaggle competition to fine-tune Llama 3.1-8B for verifying the correctness of answers to math questions. Achieved 0.85 accuracy using supervised fine-tuning with LoRA adapters, prompt engineering, and hyperparameter optimization. Created custom unbiased datasets, employed ensemble strategies, and experimented with advanced configurations (e.g., gradient accumulation, Flash Attention, and LoRA rank tuning). This project demonstrated efficient large-model adaptation for reasoning tasks.</p>
+            <a href="https://github.com/divyansh7877/DeepLearning_Midterm/tree/main" target="_blank">View on GitHub</a>
+        </div>
+        
         <div class="project">
             <h3>Scalable Vector Search for Music Recommendations</h3>
             <p>This project involved building a large-scale, embedding-based recommendation system for music using the Spotify Million Playlist Dataset. We generated vector embeddings for songs, playlists, and lyrics using Word2Vec, stored them in MongoDB and ChromaDB, and used cosine similarity and k-NN for similarity search. Apache Spark powered scalable data processing, and PCA-based visualization revealed meaningful song clusters, enhancing recommendation quality.</p>
-
         </div>
 
+        <div class="project">
+            <h3>ERC-721 NFT Smart Contract Deployment</h3>
+            <p>Designed, developed, and deployed an ERC-721 NFT smart contract on the Sepolia testnet using Solidity. The project integrated IPFS for decentralized image and metadata storage, and included minting limits and royalty enforcement (5%). The NFT, titled "Chill DIV", was successfully minted and is viewable on OpenSea testnet. Tools used: Solidity, IPFS, Etherscan, OpenSea.</p>
+            <a href="https://testnets.opensea.io/assets/sepolia/0xa8b6ff7ddb28b09cb79bb04848d98e5a11089a7c/1" target="_blank">View on OpenSea</a>
+        </div>        
 
         <div class="project">
             <h3>Information Visualization - Trade Statistics</h3>
             <p>This project aims to make understanding complex world economics and trade data easier through interactive visualizations. Using the OECD Quarterly International Trade Statistics dataset, this project provides multiple perspectives on international trade through network maps and geo-spatial data. The visualizations are interactive, allowing users to explore trade data for specific regions and filter by various parameters. [cite_start]The primary technologies used were <strong>Python</strong>, with libraries such as <strong>Streamlit</strong> for the web application, <strong>Pandas</strong> for data cleaning and manipulation, and <strong>NetworkX</strong>, <strong>Plotly</strong>, and <strong>Altair</strong> for creating the different data visualizations like radial network maps, geo-spatial maps, and matrix maps.</p>
             <a href="https://github.com/DivyanshAgarwal/OECD-Trade-Statistics">View on GitHub</a>
         </div>
+
         <div class="project">
             <h3>In-Context Learning with GPT-4 on Pokémon Showdown</h3>
             <p>Explored the strategic capabilities of GPT-4 within the competitive environment of Pokémon Showdown. 
