@@ -8,30 +8,56 @@
     <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
 </head>
 <body>
-    <div class="terminal">
-        <div class="terminal-header">
-            <div class="terminal-buttons">
-                <span class="terminal-button red"></span>
-                <span class="terminal-button yellow"></span>
-                <span class="terminal-button green"></span>
-            </div>
-            <div class="terminal-title">divyansh-portfolio</div>
-        </div>
-        <div class="terminal-body" id="terminal-body">
-            <div class="terminal-line">Welcome to my portfolio!( This is Work in Progress)</div>
-            <div class="terminal-line">Type 'help' to see available commands.</div>
-            <div class="terminal-prompt">
-                <span class="prompt-user">guest@div</span><span class="prompt-symbol">~$</span>
-                <span id="typed-output"></span>
-                <span class="cursor">&nbsp;</span>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loading-content">
+            <div class="loading-text">Initializing portfolio...</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
             </div>
         </div>
     </div>
 
+    <!-- Navigation Menu -->
+    <nav class="nav-menu" id="nav-menu">
+        <div class="nav-toggle" id="nav-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#summary" data-command="summary">Summary</a></li>
+            <li><a href="#about" data-command="about">About</a></li>
+            <li><a href="#projects" data-command="projects">Projects</a></li>
+            <li><a href="#personal" data-command="personal">Personal</a></li>
+            <li><a href="#contact" data-command="contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="terminal">
+            <div class="terminal-header">
+                <div class="terminal-buttons">
+                    <span class="terminal-button red"></span>
+                    <span class="terminal-button yellow"></span>
+                    <span class="terminal-button green"></span>
+                </div>
+                <div class="terminal-title">divyansh-portfolio</div>
+            </div>
+            <div class="terminal-body" id="terminal-body">
+                <div class="terminal-line" id="welcome-line"></div>
+                <div class="terminal-line" id="help-line"></div>
+                <div class="terminal-prompt">
+                    <span class="prompt-user">guest@div</span><span class="prompt-symbol">~$</span>
+                    <span id="typed-output"></span>
+                    <span class="cursor">&nbsp;</span>
+                </div>
+            </div>
+        </div>
+
     <div id="summary" class="section">
         <h2>Summary</h2>
-        <p> Hi, I’m Divyansh Agarwal(you can call me Div), a Computer Science graduate from NYU with a focus on AI, machine learning, and data systems.
-	I’ve built deep learning pipelines for neurological data, deployed LLM-based automation in industry, and developed efficient models for real-time systems. My work spans across research, startups, and cross-functional tech teams, blending algorithmic rigor with practical deployment. I care deeply about building scalable, production-ready tools that solve real problems—whether that’s detecting neural spikes, automating content workflows, or accelerating scientific computing.</p>
+        <p> Hi, I’m Divyansh Agarwal(you can call me Div), a Computer Science graduate from NYU with a focus on AI, machine learning, and data systems. I’ve built deep learning pipelines for neurological data, deployed LLM-based automation in industry, and developed efficient models for real-time systems. My work spans across research, startups, and cross-functional tech teams, blending algorithmic rigor with practical deployment. I care deeply about building scalable, production-ready tools that solve real problems—whether that’s detecting neural spikes, automating content workflows, or accelerating scientific computing.</p>
     </div>
 
     <div id="about" class="section">
@@ -44,17 +70,17 @@
                 <p> Currently, in this role, I focus on the challenging and iterative problem of defining and detecting events in voltage imaging data that reflect neural activity in the brain. We collaborate closely with neuroscientists and researchers at the Losonczy Lab at Columbia University to establish ground truth labels. Using a combination of machine learning and deep learning techniques, we work to identify distinct event types, uncover underlying patterns, and develop methods to accurately detect these events while distinguishing them from noise. </p>
 		        <ul>
                     <li>Model training to achieve a F1 score of 0.92 for event detection.</li>
-                    <li></li>
+                    <!-- <li></li> -->
                 </ul>
             </li>
             <li>
                 <h4>Data Analyst at Adeptmind</h4>
                 <p><em>Feb 2023 – Jul 2023 · Remote, Toronto, Canada</em></p>
                 <ul>
-                <li>Scaled landing pages from 10K to 80K, resulting in a 20% monthly increase in traffic.</li>
-                <li>Created page content using LLMs and prompt engineering, boosting average traffic per page.</li>
-                <li>Generated analytical reports for 19 clients and monitored SEO performance to improve rankings.</li>
-                <li>Built a dashboard with Streamlit for internal stakeholders to visualize KPIs and traffic metrics.</li>
+                    <li>Scaled landing pages from 10K to 80K, resulting in a 20% monthly increase in traffic.</li>
+                    <li>Created page content using LLMs and prompt engineering, boosting average traffic per page.</li>
+                    <li>Generated analytical reports for 19 clients and monitored SEO performance to improve rankings.</li>
+                    <li>Built a dashboard with Streamlit for internal stakeholders to visualize KPIs and traffic metrics.</li>
                 </ul>
             </li>
 
@@ -62,8 +88,8 @@
                 <h4>Computer Vision Intern at Enord</h4>
                 <p><em>Nov 2022 – Feb 2023 · New Delhi, India</em></p>
                 <ul>
-                <li>Developed lightweight depth estimation models using stereo cameras and PyTorch/CUDA.</li>
-                <li>Optimized models for real-time deployment on embedded systems such as drones.</li>
+                    <li>Developed lightweight depth estimation models using stereo cameras and PyTorch/CUDA.</li>
+                    <li>Optimized models for real-time deployment on embedded systems such as drones.</li>
                 </ul>
             </li>
 
@@ -71,20 +97,21 @@
                 <h4>Head of Autonomous Department at Team OJAS</h4>
                 <p><em>Sep 2020 – Feb 2022 · VIT Vellore, India</em></p>
                 <ul>
-                <li>Led the team to become the first Indian qualifiers for Formula Student Hungary.</li>
-                <li>Managed parallel projects in perception, planning, and control for autonomous systems.</li>
-                <li>Implemented YOLO-based object detection models, achieving 92% accuracy in real-world tests.</li>
+                    <li>Led the team to become the first Indian qualifiers for Formula Student Hungary.</li>
+                    <li>Managed parallel projects in perception, planning, and control for autonomous systems.</li>
+                    <li>Implemented YOLO-based object detection models, achieving 92% accuracy in real-world tests.</li>
                 </ul>
             </li>
             <li>
                 <h4>ROS Internship at Smartbridge</h4>
                 <p>Jun 2021 - Jul 2021</p>
                 <ul>
-		        <li> Using ROS, built robotic simulations for different vehicles and created testing environments.</li>
+		            <li> Using ROS, built robotic simulations for different vehicles and created testing environments.</li>
                 </ul>
             </li>
 
         </ul>
+
         <h3>Education</h3>
         <ul>
             <li>
@@ -159,10 +186,9 @@
 		<p>Music is a huge part of my life. I’ve been exploring classical music recently and absolutely love the experience of live orchestral performances. My current playlist features a mix of rock and progressive sounds, including <em>Money for Nothing</em> by Dire Straits, <em>Alive</em> by Pearl Jam, <em>Drive Home</em> by Steven Wilson, and <em>Pigs (Three Different Ones)</em> by Pink Floyd.</p>
 		<p>When I’m not listening to music, you’ll likely find me cooking something new or writing—though I tend to keep my writing to myself for now.</p>
 	</div>	
+    </main>
 
-
-
-    <div class="footer">
+    <div id="contact" class="footer">
         <a href="https://github.com/divyansh7877" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
         <a href="https://www.linkedin.com/in/div2201/" target="_blank" class="social-icon"><i class="fab fa-linkedin"></i></a>
         <a href="Divyansh_Agarwal_Resume.pdf" download class="resume-button">Download Resume</a>
