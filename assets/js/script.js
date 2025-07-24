@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Terminal functionality
     const terminalBody = document.getElementById('terminal-body');
     const typedOutput = document.getElementById('typed-output');
+    const terminalInput = document.getElementById('terminal-input');
     const welcomeLine = document.getElementById('welcome-line');
     const helpLine = document.getElementById('help-line');
 
@@ -99,14 +100,18 @@ document.addEventListener('DOMContentLoaded', function() {
         await typeText(helpLine, "Type 'help' to see available commands or use the navigation menu above.", 50);
     }
 
-    document.addEventListener('keydown', function(e) {
+    terminalInput.addEventListener('input', () => {
+        typedOutput.textContent = terminalInput.value;
+    });
+
+    terminalInput.addEventListener('keydown', function(e) {
         // Prevent default behavior for certain keys
         if (['ArrowUp', 'ArrowDown', 'Tab'].includes(e.key)) {
             e.preventDefault();
         }
 
         if (e.key === 'Enter') {
-            const command = typedOutput.textContent.trim();
+            const command = terminalInput.value.trim();
             if (command) {
                 commandHistory.push(command);
                 historyIndex = commandHistory.length;
@@ -133,39 +138,40 @@ document.addEventListener('DOMContentLoaded', function() {
                 terminalBody.insertBefore(errorLine, terminalBody.lastElementChild);
             }
 
+            terminalInput.value = '';
             typedOutput.textContent = '';
             terminalBody.scrollTop = terminalBody.scrollHeight;
-        } else if (e.key === 'Backspace') {
-            typedOutput.textContent = typedOutput.textContent.slice(0, -1);
-        } else if (e.key.length === 1 && !e.ctrlKey && !e.altKey && !e.metaKey) {
-            typedOutput.textContent += e.key;
         } else if (e.key === 'ArrowUp') {
             if (historyIndex > 0) {
                 historyIndex--;
-                typedOutput.textContent = commandHistory[historyIndex];
+                terminalInput.value = commandHistory[historyIndex];
+                typedOutput.textContent = terminalInput.value;
             }
         } else if (e.key === 'ArrowDown') {
             if (historyIndex < commandHistory.length - 1) {
                 historyIndex++;
-                typedOutput.textContent = commandHistory[historyIndex];
+                terminalInput.value = commandHistory[historyIndex];
+                typedOutput.textContent = terminalInput.value;
             } else {
                 historyIndex = commandHistory.length;
+                terminalInput.value = '';
                 typedOutput.textContent = '';
             }
         } else if (e.key === 'Tab') {
             // Auto-complete functionality
-            const currentInput = typedOutput.textContent;
+            const currentInput = terminalInput.value;
             const matchingCommands = Object.keys(commands).filter(cmd => 
                 cmd.startsWith(currentInput.toLowerCase())
             );
             if (matchingCommands.length === 1) {
-                typedOutput.textContent = matchingCommands[0];
+                terminalInput.value = matchingCommands[0];
+                typedOutput.textContent = terminalInput.value;
             }
         }
     });
 
     // Click to focus terminal
     terminalBody.addEventListener('click', () => {
-        typedOutput.focus();
+        terminalInput.focus();
     });
 });
