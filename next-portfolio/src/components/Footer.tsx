@@ -38,10 +38,10 @@ export default function Footer() {
 
                 <div className="flex flex-wrap justify-center gap-4 mb-12">
                     {[
-                        { name: "Resume", href: "/Divyansh_Agarwal_Resume.pdf" },
-                        { name: "Transcripts", href: "/Divyansh_Agarwal_Transcript_og.pdf" },
-                        { name: "PyMetrics", href: "/Divyansh_Agarwal_PyMetrics.pdf" },
-                        { name: "Diploma", href: "/Diploma Divyansh.pdf" },
+                        { name: "Resume", href: "/myPortfolio/Divyansh_Agarwal_Resume.pdf" },
+                        { name: "Transcripts", href: "/myPortfolio/Divyansh_Agarwal_Transcript_og.pdf" },
+                        { name: "PyMetrics", href: "/myPortfolio/Divyansh_Agarwal_PyMetrics.pdf" },
+                        { name: "Diploma", href: "/myPortfolio/Diploma Divyansh.pdf" },
                     ].map((doc) => (
                         <a
                             key={doc.name}
@@ -50,7 +50,7 @@ export default function Footer() {
                             className="group flex items-center gap-2 px-5 py-3 rounded-xl bg-zinc-900/80 border border-zinc-800 hover:border-indigo-500/50 hover:bg-zinc-900 hover:shadow-[0_0_20px_-5px_rgba(99,102,241,0.2)] transition-all duration-300"
                         >
                             <FileText className="w-5 h-5 text-zinc-400 group-hover:text-indigo-400 transition-colors" />
-                            <span className="text-base font-medium text-zinc-300 group-hover:text-indigo-300 transition-colors">
+                            <span className="text-lg font-medium text-zinc-300 group-hover:text-indigo-300 transition-colors">
                                 {doc.name}
                             </span>
                         </a>
