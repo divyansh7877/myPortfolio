@@ -8,12 +8,23 @@
     <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
 </head>
 <body>
-    <!-- Loading Screen -->
+    <!-- Star Wars Opening Crawl -->
     <div id="loading-screen">
-        <div class="loading-content">
-            <div class="loading-text">Initializing portfolio...</div>
-            <div class="loading-bar">
-                <div class="loading-progress"></div>
+        <div class="starfield" id="starfield"></div>
+        
+        <div class="crawl-selector">
+            <button data-section="summary">SUMMARY</button>
+            <button data-section="experience">EXPERIENCE</button>
+            <button data-section="education">EDUCATION</button>
+            <button data-section="projects">PROJECTS</button>
+            <button data-section="personal">PERSONAL</button>
+        </div>
+        
+        <button class="skip-button" id="skip-button">SKIP TO PORTFOLIO</button>
+        
+        <div class="crawl-container">
+            <div class="crawl" id="crawl-content">
+                <!-- Content will be injected by JavaScript -->
             </div>
         </div>
     </div>
