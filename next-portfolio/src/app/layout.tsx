@@ -13,8 +13,62 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Divyansh Agarwal | Portfolio",
-  description: "Computer Science Graduate from NYU. AI/ML Enthusiast.",
+  title: {
+    default: "Divyansh Agarwal | Portfolio",
+    template: "%s | Divyansh Agarwal",
+  },
+  description: "Computer Science Graduate from NYU. AI/ML Enthusiast. Specializing in Machine Learning, Deep Learning, and Full Stack Development.",
+  keywords: [
+    "Divyansh Agarwal",
+    "Portfolio",
+    "Computer Science",
+    "NYU",
+    "AI",
+    "Machine Learning",
+    "Deep Learning",
+    "Web Development",
+    "Software Engineer",
+    "Data Science",
+  ],
+  authors: [{ name: "Divyansh Agarwal" }],
+  creator: "Divyansh Agarwal",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://divyansh7877.github.io/myPortfolio",
+    title: "Divyansh Agarwal | Portfolio",
+    description: "Computer Science Graduate from NYU. AI/ML Enthusiast. Explore my projects and experience.",
+    siteName: "Divyansh Agarwal Portfolio",
+    images: [
+      {
+        url: "/myPortfolio/globe.svg", // Using an existing asset as a placeholder or we could generate one. 
+        width: 1200,
+        height: 630,
+        alt: "Divyansh Agarwal Portfolio",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Divyansh Agarwal | Portfolio",
+    description: "Computer Science Graduate from NYU. AI/ML Enthusiast. Explore my projects and experience.",
+    creator: "@divyansh7877", // Assuming this handle, or generic
+    images: ["/myPortfolio/globe.svg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: "https://divyansh7877.github.io/myPortfolio",
+  },
 };
 
 export default function RootLayout({
