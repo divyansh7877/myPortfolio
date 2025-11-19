@@ -49,6 +49,14 @@ const projects = [
         }
     },
     {
+        title: "Collections Strategy Management System",
+        description: "AI-powered debt collection management system with web interface. Features AI-generated collection strategies, timeline-based action blocks, contact management, and Excel/PDF data import capabilities.",
+        tags: ["Python", "FastAPI", "React", "OpenAI API", "SQLite"],
+        links: {
+            github: "https://github.com/divyansh7877/debt-collector"
+        }
+    },
+    {
         title: "GPT-4 Pokémon Showdown Agent",
         description: "Explored strategic capabilities of GPT-4 in competitive Pokémon battles. Implemented context-aware prompting for decision making.",
         tags: ["Python", "GPT-4", "Game AI"],
