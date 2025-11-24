@@ -61,6 +61,15 @@ const projects = [
         description: "Explored strategic capabilities of GPT-4 in competitive Pokémon battles. Implemented context-aware prompting for decision making.",
         tags: ["Python", "GPT-4", "Game AI"],
         links: {}
+    },
+    {
+        title: "Neuro Window Explorer",
+        description: "A fast, browser-based application for interactive exploration and visualization of neural calcium trace data. Developed for detecting neural activity patterns using machine learning and deep learning techniques.",
+        tags: ["TypeScript", "Next.js", "Python", "Machine Learning"],
+        links: {
+            github: "https://github.com/divyansh7877/neuro-window-explorer",
+            demo: "https://neuro-window-explorer.vercel.app/"
+        }
     }
 ];
 
