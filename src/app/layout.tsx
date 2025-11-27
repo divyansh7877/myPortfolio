@@ -79,7 +79,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark scroll-smooth">
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} antialiased bg-black text-zinc-100`}
+        className={`${inter.variable} ${jetbrainsMono.variable} antialiased bg-black text-zinc-100 text-xl leading-loose`}
       >
         {children}
       </body>

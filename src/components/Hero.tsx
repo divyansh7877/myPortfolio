@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Terminal, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export default function Hero() {
     return (
@@ -65,6 +66,9 @@ export default function Hero() {
                     <a href="#contact" className="px-6 py-3 border border-zinc-700 text-white rounded-full font-medium hover:bg-zinc-800 transition-colors">
                         Contact Me
                     </a>
+                    <Link href="/blog" className="px-6 py-3 border border-zinc-700 text-white rounded-full font-medium hover:bg-zinc-800 transition-colors">
+                        Read Blog
+                    </Link>
                 </motion.div>
             </div>
         </section>
