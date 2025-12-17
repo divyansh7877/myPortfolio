@@ -95,10 +95,10 @@ export default function Projects() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            className="group bg-white dark:bg-zinc-900 border-2 border-gray-200 dark:border-zinc-800 rounded-xl overflow-hidden hover:border-blue-500 dark:hover:border-cyan-500 transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 dark:hover:shadow-cyan-500/20"
+                            className="group bg-white dark:bg-zinc-900 border-2 border-gray-200 dark:border-zinc-800 rounded-xl overflow-hidden hover:border-blue-500 dark:hover:border-blue-500 transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 dark:hover:shadow-blue-500/20"
                         >
                             <div className="p-6 h-full flex flex-col">
-                                <h3 className="text-xl font-semibold text-gray-900 dark:text-zinc-100 mb-3 group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors">
+                                <h3 className="text-xl font-semibold text-gray-900 dark:text-zinc-100 mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                                     {project.title}
                                 </h3>
                                 <p className="text-gray-600 dark:text-zinc-400 text-sm mb-6 flex-grow leading-relaxed">
@@ -115,7 +115,7 @@ export default function Projects() {
 
                                 <div className="flex items-center gap-4 mt-auto pt-4 border-t border-gray-200 dark:border-zinc-800">
                                     {project.links.github && (
-                                        <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-gray-500 dark:text-zinc-400 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors">
+                                        <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-gray-500 dark:text-zinc-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                                             <Github className="w-4 h-4" />
                                             Code
                                         </a>

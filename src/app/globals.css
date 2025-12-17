@@ -8,37 +8,43 @@
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #0a0a0a;
-  --card-bg: #f9fafb;
+  --bg: #ffffff;
+  --surface: #f9fafb;
+  --text: #111827;
+  --text-secondary: #4b5563;
+  --accent: #2563eb;
+  --accent-alt: #ea580c;
   --border: #e5e7eb;
-  --accent-from: #f97316;
-  --accent-to: #ec4899;
-  --secondary-from: #3b82f6;
-  --secondary-to: #06b6d4;
-  --tertiary: #10b981;
-  --muted: #6b7280;
+
+  /* Legacy variable support */
+  --background: #ffffff;
+  --foreground: #111827;
+  --card-bg: #f9fafb;
   --code-bg: #f3f4f6;
-  --scrollbar-bg: #f3f4f6;
-  --scrollbar-thumb: #d1d5db;
-  --scrollbar-thumb-hover: #9ca3af;
+  --muted: #4b5563;
+  --scrollbar-bg: #f9fafb;
+  --scrollbar-thumb: #e5e7eb;
+  --scrollbar-thumb-hover: #cbd5e1;
 }
 
 .dark {
-  --background: #09090b;
-  --foreground: #fafafa;
-  --card-bg: #18181b;
-  --border: #27272a;
-  --accent-from: #f97316;
-  --accent-to: #ec4899;
-  --secondary-from: #3b82f6;
-  --secondary-to: #06b6d4;
-  --tertiary: #10b981;
-  --muted: #71717a;
-  --code-bg: #1c1c1c;
-  --scrollbar-bg: #09090b;
-  --scrollbar-thumb: #27272a;
-  --scrollbar-thumb-hover: #3f3f46;
+  --bg: #0f172a;
+  --surface: #1e293b;
+  --text: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --accent: #3b82f6;
+  --accent-alt: #f97316;
+  --border: #334155;
+
+  /* Legacy variable support */
+  --background: #0f172a;
+  --foreground: #f1f5f9;
+  --card-bg: #1e293b;
+  --code-bg: #1e293b;
+  --muted: #94a3b8;
+  --scrollbar-bg: #0f172a;
+  --scrollbar-thumb: #334155;
+  --scrollbar-thumb-hover: #475569;
 }
 
 body {
@@ -85,15 +91,19 @@ body {
   animation: gradient-shift 8s ease infinite;
 }
 
-/* Glow Effects */
-.glow-orange {
-  box-shadow: 0 0 20px rgba(249, 115, 22, 0.3);
+/* Glow Effects - Colorblind-safe blue/amber */
+.glow-accent {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+.glow-accent-alt {
+  box-shadow: 0 0 20px rgba(234, 88, 12, 0.3);
 }
 
 .glow-blue {
   box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
 }
 
-.glow-emerald {
-  box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+.glow-orange {
+  box-shadow: 0 0 20px rgba(234, 88, 12, 0.3);
 }

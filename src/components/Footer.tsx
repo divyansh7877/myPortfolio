@@ -31,7 +31,7 @@ export default function Footer() {
             href="https://github.com/divyansh7877"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900 border border-zinc-800 hover:border-indigo-500 hover:text-indigo-400 transition-all"
+            className="flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900 border border-zinc-800 hover:border-blue-500 hover:text-blue-400 transition-all"
           >
             <Github className="w-4 h-4" />
             GitHub
@@ -40,14 +40,14 @@ export default function Footer() {
             href="https://www.linkedin.com/in/div2201/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900 border border-zinc-800 hover:border-indigo-500 hover:text-indigo-400 transition-all"
+            className="flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900 border border-zinc-800 hover:border-blue-500 hover:text-blue-400 transition-all"
           >
             <Linkedin className="w-4 h-4" />
             LinkedIn
           </a>
           <a
             href="mailto:da3245@nyu.edu"
-            className="flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900 border border-zinc-800 hover:border-indigo-500 hover:text-indigo-400 transition-all"
+            className="flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900 border border-zinc-800 hover:border-blue-500 hover:text-blue-400 transition-all"
           >
             <Mail className="w-4 h-4" />
             Email
@@ -61,13 +61,13 @@ export default function Footer() {
               href={doc.href}
               download
               onClick={() => handleDownload(doc)}
-              className="group flex items-center gap-2 px-5 py-3 rounded-xl bg-zinc-900/80 border border-zinc-800 hover:border-indigo-500/50 hover:bg-zinc-900 hover:shadow-[0_0_20px_-5px_rgba(99,102,241,0.2)] transition-all duration-300"
+              className="group flex items-center gap-2 px-5 py-3 rounded-xl bg-zinc-900/80 border border-zinc-800 hover:border-blue-500/50 hover:bg-zinc-900 hover:shadow-[0_0_20px_-5px_rgba(59,130,246,0.2)] transition-all duration-300"
             >
-              <FileText className="w-5 h-5 text-zinc-400 group-hover:text-indigo-400 transition-colors" />
-              <span className="text-lg font-medium text-zinc-300 group-hover:text-indigo-300 transition-colors">
+              <FileText className="w-5 h-5 text-zinc-400 group-hover:text-blue-400 transition-colors" />
+              <span className="text-lg font-medium text-zinc-300 group-hover:text-blue-300 transition-colors">
                 {doc.name}
               </span>
-              <Download className="w-4 h-4 text-zinc-600 group-hover:text-indigo-400/70 transition-colors opacity-0 group-hover:opacity-100" />
+              <Download className="w-4 h-4 text-zinc-600 group-hover:text-blue-400/70 transition-colors opacity-0 group-hover:opacity-100" />
             </a>
           ))}
         </div>

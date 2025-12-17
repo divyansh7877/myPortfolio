@@ -62,26 +62,26 @@ export default function Contact() {
   };
 
   const inputClasses = (fieldName: string) => `
-    w-full bg-zinc-900/50 border rounded-xl px-4 py-3 pl-12 
-    text-zinc-100 placeholder:text-zinc-600 
+    w-full bg-zinc-900/50 border rounded-xl px-4 py-3 pl-12
+    text-zinc-100 placeholder:text-zinc-600
     transition-all duration-300 ease-out
     focus:outline-none focus:ring-0
     ${focusedField === fieldName
-      ? "border-indigo-500/70 shadow-[0_0_20px_-5px_rgba(99,102,241,0.3)]"
+      ? "border-blue-500/70 shadow-[0_0_20px_-5px_rgba(59,130,246,0.3)]"
       : "border-zinc-800 hover:border-zinc-700"
     }
   `;
 
   const iconClasses = (fieldName: string) => `
     absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 transition-colors duration-300
-    ${focusedField === fieldName ? "text-indigo-400" : "text-zinc-500"}
+    ${focusedField === fieldName ? "text-blue-400" : "text-zinc-500"}
   `;
 
   return (
     <section className="py-24 relative overflow-hidden">
       {/* Subtle background accent */}
       <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-500/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-2xl mx-auto px-4 relative z-10">
@@ -93,7 +93,7 @@ export default function Contact() {
           className="text-center mb-12"
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900/80 border border-zinc-800 mb-6">
-            <Sparkles className="w-4 h-4 text-indigo-400" />
+            <Sparkles className="w-4 h-4 text-blue-400" />
             <span className="text-sm text-zinc-400">Let&apos;s Connect</span>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -167,7 +167,7 @@ export default function Contact() {
 
           {/* Message Field */}
           <div className="relative">
-            <MessageSquare className={`absolute left-4 top-4 w-4 h-4 transition-colors duration-300 ${focusedField === "message" ? "text-indigo-400" : "text-zinc-500"}`} />
+            <MessageSquare className={`absolute left-4 top-4 w-4 h-4 transition-colors duration-300 ${focusedField === "message" ? "text-blue-400" : "text-zinc-500"}`} />
             <textarea
               name="message"
               placeholder="What's on your mind?"
@@ -183,7 +183,7 @@ export default function Contact() {
                 transition-all duration-300 ease-out
                 focus:outline-none focus:ring-0
                 ${focusedField === "message"
-                  ? "border-indigo-500/70 shadow-[0_0_20px_-5px_rgba(99,102,241,0.3)]"
+                  ? "border-blue-500/70 shadow-[0_0_20px_-5px_rgba(59,130,246,0.3)]"
                   : "border-zinc-800 hover:border-zinc-700"
                 }
               `}
@@ -201,10 +201,10 @@ export default function Contact() {
               flex items-center justify-center gap-3
               transition-all duration-300
               ${status === "success"
-                ? "bg-emerald-500/20 border border-emerald-500/50 text-emerald-400"
+                ? "bg-orange-500/20 border border-orange-500/50 text-orange-400"
                 : status === "error"
                 ? "bg-red-500/20 border border-red-500/50 text-red-400"
-                : "bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40"
+                : "bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40"
               }
               disabled:cursor-not-allowed
             `}

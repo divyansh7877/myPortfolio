@@ -13,7 +13,7 @@ export default function Personal() {
                     viewport={{ once: true }}
                     className="text-3xl font-bold mb-12 flex items-center gap-3"
                 >
-                    <User className="text-indigo-400" />
+                    <User className="text-blue-400" />
                     Personal
                 </motion.h2>
 
@@ -26,7 +26,7 @@ export default function Personal() {
                     >
                         <div className="bg-zinc-900 p-6 rounded-xl border border-zinc-800">
                             <div className="flex items-center gap-3 mb-4">
-                                <Coffee className="text-indigo-400" />
+                                <Coffee className="text-blue-400" />
                                 <h3 className="text-xl font-semibold">Interests</h3>
                             </div>
                             <p className="text-zinc-400 leading-relaxed">
@@ -36,7 +36,7 @@ export default function Personal() {
 
                         <div className="bg-zinc-900 p-6 rounded-xl border border-zinc-800">
                             <div className="flex items-center gap-3 mb-4">
-                                <Music className="text-indigo-400" />
+                                <Music className="text-blue-400" />
                                 <h3 className="text-xl font-semibold">Music</h3>
                             </div>
                             <p className="text-zinc-400 leading-relaxed mb-4">
@@ -60,7 +60,7 @@ export default function Personal() {
                         className="bg-zinc-900 p-6 rounded-xl border border-zinc-800 h-full"
                     >
                         <div className="flex items-center gap-3 mb-4">
-                            <BookOpen className="text-indigo-400" />
+                            <BookOpen className="text-blue-400" />
                             <h3 className="text-xl font-semibold">Reading</h3>
                         </div>
                         <p className="text-zinc-400 leading-relaxed mb-6">

@@ -77,7 +77,7 @@ export default function Experience() {
                     viewport={{ once: true }}
                     className="text-3xl font-bold mb-12 flex items-center gap-3"
                 >
-                    <Briefcase className="text-indigo-400" />
+                    <Briefcase className="text-blue-400" />
                     Experience
                 </motion.h2>
 
@@ -89,9 +89,9 @@ export default function Experience() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            className="relative pl-8 border-l border-zinc-800 hover:border-indigo-500/50 transition-colors"
+                            className="relative pl-8 border-l border-zinc-800 hover:border-blue-500/50 transition-colors"
                         >
-                            <div className="absolute -left-[5px] top-0 w-2.5 h-2.5 rounded-full bg-zinc-800 ring-4 ring-zinc-950 group-hover:bg-indigo-500 transition-colors" />
+                            <div className="absolute -left-[5px] top-0 w-2.5 h-2.5 rounded-full bg-zinc-800 ring-4 ring-zinc-950 group-hover:bg-blue-500 transition-colors" />
 
                             <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
                                 <h3 className="text-xl font-semibold text-zinc-100">{exp.title}</h3>
@@ -101,14 +101,14 @@ export default function Experience() {
                                 </div>
                             </div>
 
-                            <div className="text-indigo-400 font-medium mb-4">{exp.company}</div>
+                            <div className="text-blue-400 font-medium mb-4">{exp.company}</div>
 
                             <p className="text-zinc-400 mb-4 leading-relaxed">{exp.description}</p>
 
                             <ul className="space-y-2 mb-4">
                                 {exp.achievements.map((item, i) => (
                                     <li key={i} className="text-zinc-400 text-sm flex items-start gap-2">
-                                        <span className="text-indigo-500 mt-1.5">•</span>
+                                        <span className="text-blue-500 mt-1.5">•</span>
                                         <span>{item}</span>
                                     </li>
                                 ))}
@@ -117,7 +117,7 @@ export default function Experience() {
                             {exp.links && (
                                 <div className="flex gap-4 mt-4">
                                     {exp.links.map((link, i) => (
-                                        <a key={i} href={link.url} target="_blank" rel="noopener noreferrer" className="text-sm text-indigo-400 hover:text-indigo-300 underline underline-offset-4">
+                                        <a key={i} href={link.url} target="_blank" rel="noopener noreferrer" className="text-sm text-blue-400 hover:text-blue-300 underline underline-offset-4">
                                             {link.label}
                                         </a>
                                     ))}

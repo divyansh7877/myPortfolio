@@ -14,7 +14,7 @@ export default function Hero() {
                     transition={{ duration: 0.5 }}
                     className="space-y-4"
                 >
-                    <h1 className="text-5xl md:text-7xl font-bold tracking-tight bg-gradient-to-r from-orange-500 via-pink-600 to-blue-500 bg-clip-text text-transparent animate-gradient">
+                    <h1 className="text-5xl md:text-7xl font-bold tracking-tight bg-gradient-to-r from-blue-600 via-blue-500 to-orange-500 bg-clip-text text-transparent animate-gradient">
                         Divyansh Agarwal
                     </h1>
                     <p className="text-xl md:text-2xl text-gray-600 dark:text-zinc-400 max-w-2xl">
@@ -26,9 +26,9 @@ export default function Hero() {
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.2, duration: 0.5 }}
-                    className="bg-white dark:bg-zinc-900 border-2 border-gray-200 dark:border-zinc-800 rounded-lg overflow-hidden shadow-2xl relative group hover:shadow-orange-500/10 dark:hover:shadow-blue-500/20 transition-shadow duration-300"
+                    className="bg-white dark:bg-zinc-900 border-2 border-gray-200 dark:border-zinc-800 rounded-lg overflow-hidden shadow-2xl relative group hover:shadow-blue-500/10 dark:hover:shadow-blue-500/20 transition-shadow duration-300"
                 >
-                    <div className="absolute inset-0 bg-gradient-to-r from-orange-500/5 via-transparent to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-transparent to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     <div className="bg-gray-100 dark:bg-zinc-800/50 px-4 py-2 flex items-center gap-2 border-b-2 border-gray-200 dark:border-zinc-800 relative">
                         <Terminal className="w-4 h-4 text-gray-500 dark:text-zinc-400" />
                         <div className="flex gap-1.5">
@@ -40,7 +40,7 @@ export default function Hero() {
                     </div>
                     <div className="p-6 font-mono text-sm md:text-base text-gray-700 dark:text-zinc-300 space-y-4 relative">
                         <p>
-                            <span className="text-emerald-500">➜</span> <span className="text-blue-500">~</span> cat summary.txt
+                            <span className="text-orange-500">➜</span> <span className="text-blue-500">~</span> cat summary.txt
                         </p>
                         <p className="leading-relaxed">
                             Hi, I’m Divyansh Agarwal—most people call me Div. I&apos;m a Computer Science graduate from NYU with a deep interest in artificial intelligence, machine learning, and the systems that power modern computing. My experience spans academic research, startup innovation, and collaborative engineering environments.
@@ -60,14 +60,14 @@ export default function Hero() {
                     transition={{ delay: 0.5 }}
                     className="flex gap-4"
                 >
-                    <a href="#projects" className="group flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-orange-500 to-pink-600 text-white rounded-full font-medium hover:shadow-lg hover:shadow-orange-500/50 transition-all duration-300">
+                    <a href="#projects" className="group flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-full font-medium hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300">
                         View Projects
                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </a>
                     <a href="#contact" className="px-6 py-3 border-2 border-gray-300 dark:border-zinc-700 text-gray-900 dark:text-white rounded-full font-medium hover:bg-gray-100 dark:hover:bg-zinc-800 hover:border-blue-500 transition-all duration-300">
                         Contact Me
                     </a>
-                    <Link href="/blog" className="px-6 py-3 border-2 border-gray-300 dark:border-zinc-700 text-gray-900 dark:text-white rounded-full font-medium hover:bg-gray-100 dark:hover:bg-zinc-800 hover:border-emerald-500 transition-all duration-300">
+                    <Link href="/blog" className="px-6 py-3 border-2 border-gray-300 dark:border-zinc-700 text-gray-900 dark:text-white rounded-full font-medium hover:bg-gray-100 dark:hover:bg-zinc-800 hover:border-orange-500 transition-all duration-300">
                         Read Blog
                     </Link>
                 </motion.div>

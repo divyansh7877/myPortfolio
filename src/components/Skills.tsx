@@ -11,7 +11,7 @@ const skillsData = [
         name: "ML",
         level: 90,
         years: 4,
-        color: "#f97316",
+        color: "#ea580c",
         projects: ["Neural Activity Detection", "Depth Estimation", "YOLO Object Detection"],
         x: 50,
         y: 50,
@@ -21,7 +21,7 @@ const skillsData = [
         name: "GenAI",
         level: 85,
         years: 2,
-        color: "#ec4899",
+        color: "#3b82f6",
         projects: ["Fine-Tuning Llama 3.1", "GPT-4 Pokémon Agent", "Social Media Automation"],
         x: 75,
         y: 30,
@@ -31,7 +31,7 @@ const skillsData = [
         name: "RAG",
         level: 88,
         years: 1.5,
-        color: "#06b6d4",
+        color: "#2563eb",
         projects: ["Expert-Call RAG Assistant", "Collections Strategy System"],
         x: 70,
         y: 65,
@@ -51,7 +51,7 @@ const skillsData = [
         name: "Cloud",
         level: 80,
         years: 2,
-        color: "#0ea5e9",
+        color: "#2563eb",
         projects: ["Social Media Automation (AWS)", "Scalable Vector Search"],
         x: 25,
         y: 25,
@@ -61,7 +61,7 @@ const skillsData = [
         name: "Python",
         level: 95,
         years: 5,
-        color: "#10b981",
+        color: "#f97316",
         projects: ["All ML/AI Projects", "Data Analysis", "Backend APIs"],
         x: 35,
         y: 55,
@@ -71,7 +71,7 @@ const skillsData = [
         name: "React",
         level: 82,
         years: 2,
-        color: "#14b8a6",
+        color: "#3b82f6",
         projects: ["Neuro Window Explorer", "Collections Strategy System", "This Portfolio"],
         x: 20,
         y: 75,
@@ -81,7 +81,7 @@ const skillsData = [
         name: "Databases",
         level: 78,
         years: 3,
-        color: "#f59e0b",
+        color: "#ea580c",
         projects: ["LanceDB (RAG)", "ChromaDB", "MongoDB", "OpenSearch"],
         x: 55,
         y: 20,
@@ -218,7 +218,7 @@ function ConnectionLine({
             y1={`${startSkill.y}%`}
             x2={`${endSkill.x}%`}
             y2={`${endSkill.y}%`}
-            stroke={isHighlighted ? "#f97316" : "#d1d5db"}
+            stroke={isHighlighted ? "#ea580c" : "#d1d5db"}
             strokeWidth={isHighlighted ? 2 : 1}
             strokeLinecap="round"
         />
@@ -340,7 +340,7 @@ export default function Skills() {
                     viewport={{ once: true }}
                     className="text-3xl font-bold mb-4 flex items-center gap-3 text-gray-900 dark:text-white"
                 >
-                    <Sparkles className="text-emerald-500" />
+                    <Sparkles className="text-blue-500" />
                     Skills
                 </motion.h2>
                 <motion.p
