@@ -11,7 +11,7 @@ const skillsData = [
         name: "ML",
         level: 90,
         years: 4,
-        color: "#818cf8",
+        color: "#f97316",
         projects: ["Neural Activity Detection", "Depth Estimation", "YOLO Object Detection"],
         x: 50,
         y: 50,
@@ -21,7 +21,7 @@ const skillsData = [
         name: "GenAI",
         level: 85,
         years: 2,
-        color: "#a78bfa",
+        color: "#ec4899",
         projects: ["Fine-Tuning Llama 3.1", "GPT-4 Pokémon Agent", "Social Media Automation"],
         x: 75,
         y: 30,
@@ -31,7 +31,7 @@ const skillsData = [
         name: "RAG",
         level: 88,
         years: 1.5,
-        color: "#c084fc",
+        color: "#06b6d4",
         projects: ["Expert-Call RAG Assistant", "Collections Strategy System"],
         x: 70,
         y: 65,
@@ -41,7 +41,7 @@ const skillsData = [
         name: "LLMOps",
         level: 75,
         years: 1,
-        color: "#e879f9",
+        color: "#3b82f6",
         projects: ["Fine-Tuning Llama 3.1", "Expert-Call RAG Assistant"],
         x: 88,
         y: 48,
@@ -51,7 +51,7 @@ const skillsData = [
         name: "Cloud",
         level: 80,
         years: 2,
-        color: "#22d3ee",
+        color: "#0ea5e9",
         projects: ["Social Media Automation (AWS)", "Scalable Vector Search"],
         x: 25,
         y: 25,
@@ -61,7 +61,7 @@ const skillsData = [
         name: "Python",
         level: 95,
         years: 5,
-        color: "#4ade80",
+        color: "#10b981",
         projects: ["All ML/AI Projects", "Data Analysis", "Backend APIs"],
         x: 35,
         y: 55,
@@ -71,7 +71,7 @@ const skillsData = [
         name: "React",
         level: 82,
         years: 2,
-        color: "#60a5fa",
+        color: "#14b8a6",
         projects: ["Neuro Window Explorer", "Collections Strategy System", "This Portfolio"],
         x: 20,
         y: 75,
@@ -81,7 +81,7 @@ const skillsData = [
         name: "Databases",
         level: 78,
         years: 3,
-        color: "#f472b6",
+        color: "#f59e0b",
         projects: ["LanceDB (RAG)", "ChromaDB", "MongoDB", "OpenSearch"],
         x: 55,
         y: 20,
@@ -218,7 +218,7 @@ function ConnectionLine({
             y1={`${startSkill.y}%`}
             x2={`${endSkill.x}%`}
             y2={`${endSkill.y}%`}
-            stroke={isHighlighted ? "#818cf8" : "#3f3f46"}
+            stroke={isHighlighted ? "#f97316" : "#d1d5db"}
             strokeWidth={isHighlighted ? 2 : 1}
             strokeLinecap="round"
         />
@@ -254,23 +254,23 @@ function SkillTooltip({ skill, containerRef }: { skill: typeof skillsData[0]; co
             className="absolute z-50 pointer-events-none"
             style={{ left: position.left, top: position.top, transform: 'translateX(-50%)' }}
         >
-            <div className="bg-zinc-900/95 backdrop-blur-xl border border-zinc-700 rounded-xl p-5 shadow-2xl min-w-[280px]">
+            <div className="bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl border-2 border-gray-200 dark:border-zinc-700 rounded-xl p-5 shadow-2xl min-w-[280px]">
                 <div className="flex items-center gap-3 mb-4">
                     <div
                         className="w-4 h-4 rounded-full"
                         style={{ backgroundColor: skill.color, boxShadow: `0 0 20px ${skill.color}` }}
                     />
-                    <h3 className="text-xl font-bold text-white">{skill.name}</h3>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white">{skill.name}</h3>
                 </div>
 
                 <div className="space-y-3">
                     {/* Skill Level */}
                     <div>
                         <div className="flex justify-between text-sm mb-1">
-                            <span className="text-zinc-400">Proficiency</span>
-                            <span className="text-zinc-200 font-medium">{skill.level}%</span>
+                            <span className="text-gray-500 dark:text-zinc-400">Proficiency</span>
+                            <span className="text-gray-900 dark:text-zinc-200 font-medium">{skill.level}%</span>
                         </div>
-                        <div className="h-2 bg-zinc-800 rounded-full overflow-hidden">
+                        <div className="h-2 bg-gray-200 dark:bg-zinc-800 rounded-full overflow-hidden">
                             <motion.div
                                 initial={{ width: 0 }}
                                 animate={{ width: `${skill.level}%` }}
@@ -283,20 +283,20 @@ function SkillTooltip({ skill, containerRef }: { skill: typeof skillsData[0]; co
 
                     {/* Years */}
                     <div className="flex justify-between text-sm">
-                        <span className="text-zinc-400">Experience</span>
-                        <span className="text-zinc-200 font-medium">
+                        <span className="text-gray-500 dark:text-zinc-400">Experience</span>
+                        <span className="text-gray-900 dark:text-zinc-200 font-medium">
                             {skill.years} {skill.years === 1 ? "year" : "years"}
                         </span>
                     </div>
 
                     {/* Projects */}
                     <div>
-                        <span className="text-zinc-400 text-sm block mb-2">Related Projects</span>
+                        <span className="text-gray-500 dark:text-zinc-400 text-sm block mb-2">Related Projects</span>
                         <div className="flex flex-wrap gap-1.5">
                             {skill.projects.map((project, i) => (
                                 <span
                                     key={i}
-                                    className="text-xs px-2 py-1 rounded-md bg-zinc-800 text-zinc-300 border border-zinc-700"
+                                    className="text-xs px-2 py-1 rounded-md bg-gray-100 dark:bg-zinc-800 text-gray-700 dark:text-zinc-300 border border-gray-300 dark:border-zinc-700"
                                 >
                                     {project}
                                 </span>
@@ -338,9 +338,9 @@ export default function Skills() {
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    className="text-3xl font-bold mb-4 flex items-center gap-3"
+                    className="text-3xl font-bold mb-4 flex items-center gap-3 text-gray-900 dark:text-white"
                 >
-                    <Sparkles className="text-indigo-400" />
+                    <Sparkles className="text-emerald-500" />
                     Skills
                 </motion.h2>
                 <motion.p
@@ -348,7 +348,7 @@ export default function Skills() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.1 }}
-                    className="text-zinc-400 mb-8"
+                    className="text-gray-600 dark:text-zinc-400 mb-8"
                 >
                     Hover over nodes to explore skill details and relationships
                 </motion.p>
@@ -359,13 +359,13 @@ export default function Skills() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.2 }}
-                    className="relative h-[500px] md:h-[600px] bg-gradient-to-br from-zinc-900/80 via-zinc-900/50 to-zinc-900/80 rounded-2xl border border-zinc-800 overflow-hidden"
+                    className="relative h-[500px] md:h-[600px] bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-zinc-900/80 dark:via-zinc-900/50 dark:to-zinc-900/80 rounded-2xl border-2 border-gray-200 dark:border-zinc-800 overflow-hidden"
                 >
                     {/* Background pattern */}
-                    <div 
-                        className="absolute inset-0 opacity-10"
+                    <div
+                        className="absolute inset-0 opacity-5 dark:opacity-10"
                         style={{
-                            backgroundImage: `radial-gradient(circle at 2px 2px, #3f3f46 1px, transparent 0)`,
+                            backgroundImage: `radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)`,
                             backgroundSize: '40px 40px',
                         }}
                     />
@@ -433,7 +433,7 @@ export default function Skills() {
                                     className="w-2.5 h-2.5 rounded-full"
                                     style={{ backgroundColor: skill.color }}
                                 />
-                                <span className="text-zinc-400">{skill.name}</span>
+                                <span className="text-gray-600 dark:text-zinc-400">{skill.name}</span>
                             </div>
                         ))}
                     </div>

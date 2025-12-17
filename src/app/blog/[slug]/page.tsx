@@ -21,28 +21,28 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
     }
 
     return (
-        <article className="min-h-screen bg-black text-zinc-100 p-8 pt-24">
+        <article className="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-zinc-100 p-8 pt-24">
             <div className="max-w-3xl mx-auto space-y-8">
                 <Link
                     href="/blog"
-                    className="inline-flex items-center gap-2 text-zinc-400 hover:text-white transition-colors"
+                    className="inline-flex items-center gap-2 text-gray-600 dark:text-zinc-400 hover:text-gray-900 dark:hover:text-white transition-colors"
                 >
                     <ArrowLeft className="w-4 h-4" />
                     Back to Blog
                 </Link>
 
                 <header className="space-y-4">
-                    <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white">
+                    <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
                         {post.metadata.title}
                     </h1>
-                    <div className="flex items-center gap-4 text-zinc-500 font-mono text-sm">
+                    <div className="flex items-center gap-4 text-gray-500 dark:text-zinc-500 font-mono text-sm">
                         <time dateTime={post.metadata.publishedAt}>
                             {post.metadata.publishedAt}
                         </time>
                     </div>
                 </header>
 
-                <div className="prose prose-lg prose-invert prose-zinc max-w-none">
+                <div className="prose prose-lg dark:prose-invert prose-zinc max-w-none">
                     <MDXRemote source={post.content} />
                 </div>
             </div>
