@@ -30,7 +30,7 @@ export default function Personal() {
                                 <h3 className="text-xl font-semibold">Interests</h3>
                             </div>
                             <p className="text-[color:var(--muted)] leading-relaxed mb-4">
-                                I'm someone who finds joy in the little things—taking long walks in nature, discovering new experiences, and spending hours wandering through museums. When I'm not coding, you'll likely find me experimenting in the kitchen with new recipes or writing.
+                                I&apos;m someone who finds joy in the little things—taking long walks in nature, discovering new experiences, and spending hours wandering through museums. When I&apos;m not coding, you&apos;ll likely find me experimenting in the kitchen with new recipes or writing.
                             </p>
                             <div className="pt-4 border-t border-[color:var(--border)]">
                                 <a
@@ -75,7 +75,7 @@ export default function Personal() {
                             <h3 className="text-xl font-semibold">Reading</h3>
                         </div>
                         <p className="text-[color:var(--muted)] leading-relaxed mb-6">
-                            I've developed a deep appreciation for reading, particularly fiction, classic literature, and philosophy.
+                            I&apos;ve developed a deep appreciation for reading, particularly fiction, classic literature, and philosophy.
                         </p>
 
                         <div className="space-y-4">
