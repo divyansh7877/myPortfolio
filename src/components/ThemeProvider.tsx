@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 
-type Theme = "light" | "dark";
+type Theme = "light" | "dark" | "system";
 
 interface ThemeContextType {
   theme: Theme;
@@ -18,27 +18,49 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     setMounted(true);
     const savedTheme = localStorage.getItem("theme") as Theme;
+
     if (savedTheme) {
       setTheme(savedTheme);
-      if (savedTheme === "dark") {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
     } else {
-      document.documentElement.classList.add("dark");
+      setTheme("dark");
     }
   }, []);
 
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
-    if (newTheme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
+  useEffect(() => {
+    const root = document.documentElement;
+    root.classList.remove("light", "dark");
+
+    if (theme === "system") {
+      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+      root.classList.add(systemTheme);
+      return;
     }
+
+    root.classList.add(theme);
+  }, [theme]);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleChange = () => {
+      if (theme === "system") {
+        const root = document.documentElement;
+        root.classList.remove("light", "dark");
+        root.classList.add(mediaQuery.matches ? "dark" : "light");
+      }
+    };
+
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => {
+      const newTheme: Theme = prev === "dark" ? "system" : prev === "system" ? "light" : "dark";
+      localStorage.setItem("theme", newTheme);
+      return newTheme;
+    });
   };
 
   if (!mounted) {
