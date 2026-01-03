@@ -100,7 +100,7 @@ export default function Hackathons() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            className="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-xl overflow-hidden hover:border-yellow-500/50 transition-all hover:shadow-lg dark:hover:shadow-yellow-500/10"
+                            className="bg-white dark:bg-zinc-900 border border-gray-300 dark:border-zinc-800 rounded-xl overflow-hidden hover:border-yellow-500/50 transition-all shadow-md hover:shadow-xl hover:shadow-yellow-500/10 dark:hover:shadow-yellow-500/10"
                         >
                             <div className="p-6 md:p-8">
                                 <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4 gap-4">
@@ -128,7 +128,7 @@ export default function Hackathons() {
 
                                     <div className="flex gap-3">
                                         {hackathon.links?.github && (
-                                            <a href={hackathon.links.github} target="_blank" rel="noopener noreferrer" className="p-2 text-gray-500 hover:text-gray-900 dark:text-zinc-400 dark:hover:text-white transition-colors bg-gray-100 dark:bg-zinc-800 rounded-lg">
+                                            <a href={hackathon.links.github} target="_blank" rel="noopener noreferrer" className="p-2 text-gray-600 hover:text-gray-900 dark:text-zinc-400 dark:hover:text-white transition-colors bg-gray-100 dark:bg-zinc-800 rounded-lg border border-gray-200 dark:border-zinc-700">
                                                 <Github className="w-5 h-5" />
                                             </a>
                                         )}

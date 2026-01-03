@@ -24,7 +24,7 @@ export default function Personal() {
                         viewport={{ once: true }}
                         className="space-y-6"
                     >
-                        <div className="bg-white dark:bg-zinc-900 p-6 rounded-xl border border-gray-200 dark:border-zinc-800">
+                        <div className="bg-white dark:bg-zinc-900 p-6 rounded-xl border border-gray-300 dark:border-zinc-800 shadow-sm hover:shadow-md transition-shadow">
                             <div className="flex items-center gap-3 mb-4">
                                 <Coffee className="text-blue-400" />
                                 <h3 className="text-xl font-semibold">Interests</h3>
@@ -34,7 +34,7 @@ export default function Personal() {
                             </p>
                         </div>
 
-                        <div className="bg-white dark:bg-zinc-900 p-6 rounded-xl border border-gray-200 dark:border-zinc-800">
+                        <div className="bg-white dark:bg-zinc-900 p-6 rounded-xl border border-gray-300 dark:border-zinc-800 shadow-sm hover:shadow-md transition-shadow">
                             <div className="flex items-center gap-3 mb-4">
                                 <Music className="text-blue-400" />
                                 <h3 className="text-xl font-semibold">Music</h3>
@@ -44,7 +44,7 @@ export default function Personal() {
                             </p>
                             <div className="flex flex-wrap gap-2">
                                 {["Dire Straits", "Pearl Jam", "Steven Wilson", "Pink Floyd"].map((band, i) => (
-                                    <span key={i} className="text-xs px-2 py-1 rounded bg-gray-100 dark:bg-zinc-800 text-gray-700 dark:text-zinc-300 border border-gray-200 dark:border-zinc-700">
+                                    <span key={i} className="text-xs px-2 py-1 rounded bg-gray-100 dark:bg-zinc-800 text-gray-800 dark:text-zinc-300 border border-gray-300 dark:border-zinc-700">
                                         {band}
                                     </span>
                                 ))}
@@ -57,7 +57,7 @@ export default function Personal() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.2 }}
-                        className="bg-white dark:bg-zinc-900 p-6 rounded-xl border border-gray-200 dark:border-zinc-800 h-full"
+                        className="bg-white dark:bg-zinc-900 p-6 rounded-xl border border-gray-300 dark:border-zinc-800 h-full shadow-sm hover:shadow-md transition-shadow"
                     >
                         <div className="flex items-center gap-3 mb-4">
                             <BookOpen className="text-blue-400" />

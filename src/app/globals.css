@@ -10,21 +10,21 @@
 :root {
   --bg: #ffffff;
   --surface: #f9fafb;
-  --text: #111827;
-  --text-secondary: #4b5563;
+  --text: #030712; /* Darker than #111827 */
+  --text-secondary: #374151; /* Darker than #4b5563 */
   --accent: #2563eb;
   --accent-alt: #ea580c;
-  --border: #e5e7eb;
+  --border: #e2e8f0;
 
   /* Legacy variable support */
   --background: #ffffff;
-  --foreground: #111827;
+  --foreground: #030712;
   --card-bg: #f9fafb;
   --code-bg: #f3f4f6;
-  --muted: #4b5563;
+  --muted: #374151;
   --scrollbar-bg: #f9fafb;
-  --scrollbar-thumb: #e5e7eb;
-  --scrollbar-thumb-hover: #cbd5e1;
+  --scrollbar-thumb: #cbd5e1;
+  --scrollbar-thumb-hover: #94a3b8;
 }
 
 .dark {

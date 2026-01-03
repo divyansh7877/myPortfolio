@@ -48,7 +48,7 @@ export default function Education() {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            className="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 p-6 rounded-xl hover:border-blue-500/30 transition-colors"
+                            className="bg-white dark:bg-zinc-900 border border-gray-300 dark:border-zinc-800 p-6 rounded-xl hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/10 transition-all"
                         >
                             <div className="flex justify-between items-start mb-4">
                                 <div>

@@ -95,7 +95,7 @@ export default function Projects() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            className="group bg-white dark:bg-zinc-900 border-2 border-gray-200 dark:border-zinc-800 rounded-xl overflow-hidden hover:border-blue-500 dark:hover:border-blue-500 transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 dark:hover:shadow-blue-500/20"
+                            className="group bg-white dark:bg-zinc-900 border-2 border-gray-300 dark:border-zinc-800 rounded-xl overflow-hidden hover:border-blue-500 dark:hover:border-blue-500 transition-all hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/15 dark:hover:shadow-blue-500/20"
                         >
                             <div className="p-6 h-full flex flex-col">
                                 <h3 className="text-xl font-semibold text-gray-900 dark:text-zinc-100 mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
@@ -107,7 +107,7 @@ export default function Projects() {
 
                                 <div className="flex flex-wrap gap-2 mb-6">
                                     {project.tags.map((tag, i) => (
-                                        <span key={i} className="text-xs font-medium px-2.5 py-1 rounded-full bg-gray-100 dark:bg-zinc-800 text-gray-700 dark:text-zinc-300 border border-gray-300 dark:border-zinc-700">
+                                        <span key={i} className="text-xs font-medium px-2.5 py-1 rounded-full bg-gray-100 dark:bg-zinc-800 text-gray-800 dark:text-zinc-300 border border-gray-300 dark:border-zinc-700">
                                             {tag}
                                         </span>
                                     ))}
