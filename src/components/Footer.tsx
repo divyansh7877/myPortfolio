@@ -22,7 +22,7 @@ export default function Footer() {
   };
 
   return (
-    <footer id="contact" className="py-12 border-t border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-950">
+    <footer id="contact" className="py-12 border-t border-[color:var(--border)] bg-[var(--surface)]">
       <div className="max-w-4xl mx-auto px-4 text-center">
         <h2 className="text-2xl font-bold mb-8">Get In Touch</h2>
 
@@ -31,7 +31,7 @@ export default function Footer() {
             href="https://github.com/divyansh7877"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 rounded-full bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 hover:border-blue-500 hover:text-blue-400 transition-all"
+            className="flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--card-bg)] border border-[color:var(--border)] hover:border-[color:var(--accent)] hover:text-[color:var(--accent)] transition-all"
           >
             <Github className="w-4 h-4" />
             GitHub
@@ -40,14 +40,14 @@ export default function Footer() {
             href="https://www.linkedin.com/in/div2201/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 rounded-full bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 hover:border-blue-500 hover:text-blue-400 transition-all"
+            className="flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--card-bg)] border border-[color:var(--border)] hover:border-[color:var(--accent)] hover:text-[color:var(--accent)] transition-all"
           >
             <Linkedin className="w-4 h-4" />
             LinkedIn
           </a>
           <a
             href="mailto:da3245@nyu.edu"
-            className="flex items-center gap-2 px-4 py-2 rounded-full bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 hover:border-blue-500 hover:text-blue-400 transition-all"
+            className="flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--card-bg)] border border-[color:var(--border)] hover:border-[color:var(--accent)] hover:text-[color:var(--accent)] transition-all"
           >
             <Mail className="w-4 h-4" />
             Email
@@ -61,18 +61,18 @@ export default function Footer() {
               href={doc.href}
               download
               onClick={() => handleDownload(doc)}
-              className="group flex items-center gap-2 px-5 py-3 rounded-xl bg-white dark:bg-zinc-900/80 border border-gray-200 dark:border-zinc-800 hover:border-blue-500/50 hover:bg-gray-50 dark:hover:bg-zinc-900 hover:shadow-[0_0_20px_-5px_rgba(59,130,246,0.2)] transition-all duration-300"
+              className="group flex items-center gap-2 px-5 py-3 rounded-xl bg-[var(--card-bg)] border border-[color:var(--border)] hover:border-[color:var(--accent)] hover:bg-[var(--surface)] hover:shadow-lg transition-all duration-300"
             >
-              <FileText className="w-5 h-5 text-zinc-400 group-hover:text-blue-400 transition-colors" />
-              <span className="text-lg font-medium text-gray-700 dark:text-zinc-300 group-hover:text-blue-600 dark:group-hover:text-blue-300 transition-colors">
+              <FileText className="w-5 h-5 text-[color:var(--muted)] group-hover:text-[color:var(--accent)] transition-colors" />
+              <span className="text-lg font-medium text-[color:var(--muted)] group-hover:text-[color:var(--accent)] transition-colors">
                 {doc.name}
               </span>
-              <Download className="w-4 h-4 text-zinc-600 group-hover:text-blue-400/70 transition-colors opacity-0 group-hover:opacity-100" />
+              <Download className="w-4 h-4 text-[color:var(--muted)] group-hover:text-[color:var(--accent)] transition-colors opacity-0 group-hover:opacity-100" />
             </a>
           ))}
         </div>
 
-        <p className="text-zinc-600 text-sm">
+        <p className="text-[color:var(--muted)] text-sm">
           © {new Date().getFullYear()} Divyansh Agarwal. Built with Next.js & Tailwind CSS.
         </p>
       </div>

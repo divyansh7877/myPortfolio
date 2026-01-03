@@ -80,15 +80,15 @@ const hackathons = [
 
 export default function Hackathons() {
     return (
-        <section id="hackathons" className="py-20 px-4 bg-zinc-50 dark:bg-black/50">
+        <section id="hackathons" className="py-20 px-4 bg-[var(--surface)]">
             <div className="max-w-6xl mx-auto">
                 <motion.h2
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    className="text-3xl font-bold mb-12 flex items-center gap-3 text-gray-900 dark:text-white"
+                    className="text-3xl font-bold mb-12 flex items-center gap-3 text-[color:var(--foreground)]"
                 >
-                    <Trophy className="text-yellow-500" />
+                    <Trophy className="text-[color:var(--accent)]" />
                     Hackathons
                 </motion.h2>
 
@@ -100,27 +100,27 @@ export default function Hackathons() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            className="bg-white dark:bg-zinc-900 border border-gray-300 dark:border-zinc-800 rounded-xl overflow-hidden hover:border-yellow-500/50 transition-all shadow-md hover:shadow-xl hover:shadow-yellow-500/10 dark:hover:shadow-yellow-500/10"
+                            className="bg-[var(--card-bg)] border border-[color:var(--border)] rounded-xl overflow-hidden hover:border-[color:var(--accent)] transition-all shadow-md hover:shadow-xl"
                         >
                             <div className="p-6 md:p-8">
                                 <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4 gap-4">
                                     <div>
                                         <div className="flex items-center gap-3 mb-2">
-                                            <h3 className="text-2xl font-bold text-gray-900 dark:text-zinc-100">
+                                            <h3 className="text-2xl font-bold text-[color:var(--foreground)]">
                                                 {hackathon.name}
                                             </h3>
                                             {hackathon.achievement && (
-                                                <span className="px-3 py-1 text-xs font-semibold text-yellow-700 bg-yellow-100 dark:bg-yellow-900/30 dark:text-yellow-400 rounded-full border border-yellow-200 dark:border-yellow-700/50 flex items-center gap-1">
+                                                <span className="px-3 py-1 text-xs font-semibold text-[color:var(--accent)] bg-[var(--code-bg)] rounded-full border border-[color:var(--border)] flex items-center gap-1">
                                                     <Award className="w-3 h-3" />
                                                     {hackathon.achievement}
                                                 </span>
                                             )}
                                         </div>
-                                        <p className="text-lg text-gray-600 dark:text-zinc-300 font-medium mb-1">
+                                        <p className="text-lg text-[color:var(--muted)] font-medium mb-1">
                                             {hackathon.tagline}
                                         </p>
-                                        <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-zinc-400">
-                                            <span className="font-medium text-blue-600 dark:text-blue-400">{hackathon.event}</span>
+                                        <div className="flex items-center gap-2 text-sm text-[color:var(--muted)]">
+                                            <span className="font-medium text-[color:var(--accent)]">{hackathon.event}</span>
                                             <span>•</span>
                                             <span className="flex items-center gap-1"><Calendar className="w-3 h-3" /> {hackathon.location}</span>
                                         </div>
@@ -128,7 +128,7 @@ export default function Hackathons() {
 
                                     <div className="flex gap-3">
                                         {hackathon.links?.github && (
-                                            <a href={hackathon.links.github} target="_blank" rel="noopener noreferrer" className="p-2 text-gray-600 hover:text-gray-900 dark:text-zinc-400 dark:hover:text-white transition-colors bg-gray-100 dark:bg-zinc-800 rounded-lg border border-gray-200 dark:border-zinc-700">
+                                            <a href={hackathon.links.github} target="_blank" rel="noopener noreferrer" className="p-2 text-[color:var(--muted)] hover:text-[color:var(--foreground)] transition-colors bg-[var(--code-bg)] rounded-lg border border-[color:var(--border)]">
                                                 <Github className="w-5 h-5" />
                                             </a>
                                         )}
@@ -136,20 +136,20 @@ export default function Hackathons() {
                                     </div>
                                 </div>
 
-                                <p className="text-gray-600 dark:text-zinc-400 mb-6 leading-relaxed">
+                                <p className="text-[color:var(--muted)] mb-6 leading-relaxed">
                                     {hackathon.description}
                                 </p>
 
                                 <div className="grid md:grid-cols-2 gap-6 mb-6">
                                     <div>
-                                        <h4 className="text-sm font-semibold text-gray-900 dark:text-zinc-200 mb-3 flex items-center gap-2">
-                                            <Code className="w-4 h-4 text-blue-500" />
+                                        <h4 className="text-sm font-semibold text-[color:var(--foreground)] mb-3 flex items-center gap-2">
+                                            <Code className="w-4 h-4 text-[color:var(--accent)]" />
                                             Key Contributions
                                         </h4>
                                         <ul className="space-y-2">
                                             {hackathon.achievements.map((item, i) => (
-                                                <li key={i} className="text-sm text-gray-600 dark:text-zinc-400 flex items-start gap-2">
-                                                    <span className="text-blue-500 mt-1.5">•</span>
+                                                <li key={i} className="text-sm text-[color:var(--muted)] flex items-start gap-2">
+                                                    <span className="text-[color:var(--accent)] mt-1.5">•</span>
                                                     <span>{item}</span>
                                                 </li>
                                             ))}
@@ -157,13 +157,13 @@ export default function Hackathons() {
                                     </div>
 
                                     <div>
-                                        <h4 className="text-sm font-semibold text-gray-900 dark:text-zinc-200 mb-3 flex items-center gap-2">
-                                            <Code className="w-4 h-4 text-purple-500" />
+                                        <h4 className="text-sm font-semibold text-[color:var(--foreground)] mb-3 flex items-center gap-2">
+                                            <Code className="w-4 h-4 text-[color:var(--accent)]" />
                                             Tech Stack
                                         </h4>
                                         <div className="flex flex-wrap gap-2">
                                             {hackathon.techStack.map((tech, i) => (
-                                                <span key={i} className="text-xs font-medium px-2.5 py-1 rounded-md bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 border border-purple-100 dark:border-purple-800">
+                                                <span key={i} className="text-xs font-medium px-2.5 py-1 rounded-md bg-[var(--code-bg)] text-[color:var(--foreground)] border border-[color:var(--border)]">
                                                     {tech}
                                                 </span>
                                             ))}
@@ -171,7 +171,7 @@ export default function Hackathons() {
                                     </div>
                                 </div>
 
-                                <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-zinc-500 pt-4 border-t border-gray-100 dark:border-zinc-800">
+                                <div className="flex items-center gap-2 text-sm text-[color:var(--muted)] pt-4 border-t border-[color:var(--border)]">
                                     <Users className="w-4 h-4" />
                                     <span>Team: {hackathon.team.join(", ")}</span>
                                 </div>

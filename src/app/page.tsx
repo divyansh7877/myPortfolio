@@ -32,7 +32,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-50/50 via-white to-white dark:from-zinc-900/50 dark:via-black dark:to-black pointer-events-none z-0" />
+      <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[color:var(--accent-soft)] via-[color:var(--background)] to-[color:var(--background)] pointer-events-none z-0" />
       <BackgroundAnimation />
 
       <div className="relative z-10">

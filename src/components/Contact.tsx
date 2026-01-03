@@ -62,26 +62,26 @@ export default function Contact() {
   };
 
   const inputClasses = (fieldName: string) => `
-    w-full bg-white dark:bg-zinc-900/50 border rounded-xl px-4 py-3 pl-12
-    text-gray-900 dark:text-zinc-100 placeholder:text-gray-500 dark:placeholder:text-zinc-600
+    w-full bg-[var(--background)] border rounded-xl px-4 py-3 pl-12
+    text-[color:var(--foreground)] placeholder:text-[color:var(--muted)]
     transition-all duration-300 ease-out
     focus:outline-none focus:ring-0
     ${focusedField === fieldName
-      ? "border-blue-500/70 shadow-[0_0_20px_-5px_rgba(59,130,246,0.3)]"
-      : "border-gray-200 dark:border-zinc-800 hover:border-gray-300 dark:hover:border-zinc-700"
+      ? "border-[color:var(--accent)] shadow-[0_0_20px_-5px_var(--shadow-accent)]"
+      : "border-[color:var(--border)] hover:border-[color:color-mix(in_oklab,var(--border),var(--foreground)_10%)]"
     }
   `;
 
   const iconClasses = (fieldName: string) => `
     absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 transition-colors duration-300
-    ${focusedField === fieldName ? "text-blue-400" : "text-zinc-500"}
+    ${focusedField === fieldName ? "text-[color:var(--accent)]" : "text-[color:var(--muted)]"}
   `;
 
   return (
     <section className="py-24 relative overflow-hidden">
       {/* Subtle background accent */}
       <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[var(--accent-soft)] rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-2xl mx-auto px-4 relative z-10">
@@ -92,16 +92,16 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 dark:bg-zinc-900/80 border border-gray-200 dark:border-zinc-800 mb-6">
-            <Sparkles className="w-4 h-4 text-blue-400" />
-            <span className="text-sm text-gray-600 dark:text-zinc-400">Let&apos;s Connect</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--code-bg)] border border-[color:var(--border)] mb-6">
+            <Sparkles className="w-4 h-4 text-[color:var(--accent)]" />
+            <span className="text-sm text-[color:var(--muted)]">Let&apos;s Connect</span>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-gray-900 to-gray-600 dark:from-zinc-100 dark:to-zinc-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[color:var(--foreground)] to-[color:var(--muted)] bg-clip-text text-transparent">
               Have a question or want to work together?
             </span>
           </h2>
-          <p className="text-zinc-500 max-w-lg mx-auto">
+          <p className="text-[color:var(--muted)] max-w-lg mx-auto">
             Drop me a message and I&apos;ll get back to you as soon as I can. No pressure, just a friendly conversation.
           </p>
         </motion.div>
@@ -161,13 +161,13 @@ export default function Contact() {
           </div>
 
           {/* Helper text */}
-          <p className="text-xs text-zinc-600 px-1">
+          <p className="text-xs text-[color:var(--muted)] px-1">
             Please provide at least one way to reach you (email or phone)
           </p>
 
           {/* Message Field */}
           <div className="relative">
-            <MessageSquare className={`absolute left-4 top-4 w-4 h-4 transition-colors duration-300 ${focusedField === "message" ? "text-blue-400" : "text-zinc-500"}`} />
+            <MessageSquare className={`absolute left-4 top-4 w-4 h-4 transition-colors duration-300 ${focusedField === "message" ? "text-[color:var(--accent)]" : "text-[color:var(--muted)]"}`} />
             <textarea
               name="message"
               placeholder="What's on your mind?"
@@ -178,13 +178,13 @@ export default function Contact() {
               required
               rows={5}
               className={`
-                w-full bg-white dark:bg-zinc-900/50 border rounded-xl px-4 py-3 pl-12 
-                text-gray-900 dark:text-zinc-100 placeholder:text-gray-500 dark:placeholder:text-zinc-600 resize-none
+                w-full bg-[var(--background)] border rounded-xl px-4 py-3 pl-12 
+                text-[color:var(--foreground)] placeholder:text-[color:var(--muted)] resize-none
                 transition-all duration-300 ease-out
                 focus:outline-none focus:ring-0
                 ${focusedField === "message"
-                  ? "border-blue-500/70 shadow-[0_0_20px_-5px_rgba(59,130,246,0.3)]"
-                  : "border-gray-200 dark:border-zinc-800 hover:border-gray-300 dark:hover:border-zinc-700"
+                  ? "border-[color:var(--accent)] shadow-[0_0_20px_-5px_var(--shadow-accent)]"
+                  : "border-[color:var(--border)] hover:border-[color:color-mix(in_oklab,var(--border),var(--foreground)_10%)]"
                 }
               `}
             />
@@ -201,10 +201,10 @@ export default function Contact() {
               flex items-center justify-center gap-3
               transition-all duration-300
               ${status === "success"
-                ? "bg-orange-500/20 border border-orange-500/50 text-orange-400"
+                ? "bg-[var(--accent-soft)] border border-[color:var(--accent)] text-[color:var(--accent)]"
                 : status === "error"
                   ? "bg-red-500/20 border border-red-500/50 text-red-400"
-                  : "bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40"
+                  : "bg-[color:var(--accent)] hover:bg-[color:var(--accent-hover)] text-white shadow-lg hover:shadow-xl"
               }
               disabled:cursor-not-allowed
             `}
@@ -265,7 +265,7 @@ export default function Contact() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className="text-center text-xs text-zinc-600 mt-6"
+          className="text-center text-xs text-[color:var(--muted)] mt-6"
         >
           Your information is safe and will never be shared with third parties.
         </motion.p>

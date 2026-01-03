@@ -77,7 +77,7 @@ export default function Experience() {
                     viewport={{ once: true }}
                     className="text-3xl font-bold mb-12 flex items-center gap-3"
                 >
-                    <Briefcase className="text-blue-400" />
+                    <Briefcase className="text-[color:var(--accent)]" />
                     Experience
                 </motion.h2>
 
@@ -89,26 +89,26 @@ export default function Experience() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            className="relative pl-8 border-l border-gray-200 dark:border-zinc-800 hover:border-blue-500/50 transition-colors"
+                            className="group relative pl-8 border-l border-[color:var(--border)] hover:border-[color:var(--accent)] transition-colors"
                         >
-                            <div className="absolute -left-[5px] top-0 w-2.5 h-2.5 rounded-full bg-gray-400 dark:bg-zinc-800 ring-4 ring-white dark:ring-zinc-950 group-hover:bg-blue-500 transition-colors" />
+                            <div className="absolute -left-[5px] top-0 w-2.5 h-2.5 rounded-full bg-[color:var(--border)] ring-4 ring-[color:var(--background)] group-hover:bg-[color:var(--accent)] transition-colors" />
 
                             <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
-                                <h3 className="text-xl font-semibold text-gray-900 dark:text-zinc-100">{exp.title}</h3>
-                                <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-zinc-500">
+                                <h3 className="text-xl font-semibold text-[color:var(--foreground)]">{exp.title}</h3>
+                                <div className="flex items-center gap-4 text-sm text-[color:var(--muted)]">
                                     <span className="flex items-center gap-1"><Calendar className="w-3 h-3" /> {exp.period}</span>
                                     <span className="flex items-center gap-1"><MapPin className="w-3 h-3" /> {exp.location}</span>
                                 </div>
                             </div>
 
-                            <div className="text-blue-400 font-medium mb-4">{exp.company}</div>
+                            <div className="text-[color:var(--accent)] font-medium mb-4">{exp.company}</div>
 
-                            <p className="text-gray-700 dark:text-zinc-400 mb-4 leading-relaxed">{exp.description}</p>
+                            <p className="text-[color:var(--muted)] mb-4 leading-relaxed">{exp.description}</p>
 
                             <ul className="space-y-2 mb-4">
                                 {exp.achievements.map((item, i) => (
-                                    <li key={i} className="text-gray-700 dark:text-zinc-400 text-sm flex items-start gap-2">
-                                        <span className="text-blue-500 mt-1.5">•</span>
+                                    <li key={i} className="text-[color:var(--muted)] text-sm flex items-start gap-2">
+                                        <span className="text-[color:var(--accent)] mt-1.5">•</span>
                                         <span>{item}</span>
                                     </li>
                                 ))}
@@ -117,7 +117,7 @@ export default function Experience() {
                             {exp.links && (
                                 <div className="flex gap-4 mt-4">
                                     {exp.links.map((link, i) => (
-                                        <a key={i} href={link.url} target="_blank" rel="noopener noreferrer" className="text-sm text-blue-400 hover:text-blue-300 underline underline-offset-4">
+                                        <a key={i} href={link.url} target="_blank" rel="noopener noreferrer" className="text-sm text-[color:var(--accent)] hover:text-[color:var(--accent-hover)] underline underline-offset-4">
                                             {link.label}
                                         </a>
                                     ))}

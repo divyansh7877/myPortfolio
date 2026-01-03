@@ -8,23 +8,27 @@
 }
 
 :root {
-  --bg: #ffffff;
-  --surface: #f9fafb;
-  --text: #030712; /* Darker than #111827 */
-  --text-secondary: #374151; /* Darker than #4b5563 */
-  --accent: #2563eb;
-  --accent-alt: #ea580c;
-  --border: #e2e8f0;
+  /* Warm beige/greige light palette */
+  --bg: #faf7f2; /* warm paper */
+  --surface: #f4efe7; /* card/section surface */
+  --text: #1f1b16; /* warm charcoal */
+  --text-secondary: #5b5249; /* warm gray */
+  --accent: #2c5aa0; /* muted blue */
+  --accent-hover: #244c86;
+  --accent-soft: rgba(44, 90, 160, 0.12);
+  --accent-alt: #8b7a6a; /* warm taupe (secondary) */
+  --border: #e3dbd1; /* warm light border */
+  --shadow-accent: rgba(44, 90, 160, 0.28);
 
   /* Legacy variable support */
-  --background: #ffffff;
-  --foreground: #030712;
-  --card-bg: #f9fafb;
-  --code-bg: #f3f4f6;
-  --muted: #374151;
-  --scrollbar-bg: #f9fafb;
-  --scrollbar-thumb: #cbd5e1;
-  --scrollbar-thumb-hover: #94a3b8;
+  --background: var(--bg);
+  --foreground: var(--text);
+  --card-bg: var(--surface);
+  --code-bg: #f1ece4;
+  --muted: var(--text-secondary);
+  --scrollbar-bg: var(--bg);
+  --scrollbar-thumb: #cfc5bb;
+  --scrollbar-thumb-hover: #b8aea5;
 }
 
 .dark {
@@ -33,8 +37,11 @@
   --text: #f1f5f9;
   --text-secondary: #94a3b8;
   --accent: #3b82f6;
+  --accent-hover: #2563eb;
+  --accent-soft: rgba(59, 130, 246, 0.12);
   --accent-alt: #f97316;
   --border: #334155;
+  --shadow-accent: rgba(59, 130, 246, 0.28);
 
   /* Legacy variable support */
   --background: #0f172a;
@@ -56,6 +63,26 @@ body {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography (MDX) palette alignment */
+.prose {
+  --tw-prose-body: var(--foreground);
+  --tw-prose-headings: var(--foreground);
+  --tw-prose-lead: var(--muted);
+  --tw-prose-links: var(--accent);
+  --tw-prose-bold: var(--foreground);
+  --tw-prose-counters: var(--muted);
+  --tw-prose-bullets: var(--muted);
+  --tw-prose-hr: var(--border);
+  --tw-prose-quotes: var(--foreground);
+  --tw-prose-quote-borders: var(--border);
+  --tw-prose-captions: var(--muted);
+  --tw-prose-code: var(--foreground);
+  --tw-prose-pre-code: var(--foreground);
+  --tw-prose-pre-bg: var(--code-bg);
+  --tw-prose-th-borders: var(--border);
+  --tw-prose-td-borders: var(--border);
 }
 
 /* Custom Scrollbar */

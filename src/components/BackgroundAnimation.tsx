@@ -14,6 +14,24 @@ export default function BackgroundAnimation() {
 
         let particles: Particle[] = [];
         let animationFrameId: number;
+        let particleRgb = { r: 44, g: 90, b: 160 };
+
+        const parseHexColor = (hex: string) => {
+            const value = hex.trim();
+            const normalized = value.startsWith("#") ? value.slice(1) : value;
+            if (normalized.length !== 6) return null;
+            const r = Number.parseInt(normalized.slice(0, 2), 16);
+            const g = Number.parseInt(normalized.slice(2, 4), 16);
+            const b = Number.parseInt(normalized.slice(4, 6), 16);
+            if (Number.isNaN(r) || Number.isNaN(g) || Number.isNaN(b)) return null;
+            return { r, g, b };
+        };
+
+        const syncThemeColor = () => {
+            const accent = getComputedStyle(document.documentElement).getPropertyValue("--accent");
+            const rgb = parseHexColor(accent);
+            if (rgb) particleRgb = rgb;
+        };
 
         const resizeCanvas = () => {
             canvas.width = window.innerWidth;
@@ -22,6 +40,11 @@ export default function BackgroundAnimation() {
 
         window.addEventListener("resize", resizeCanvas);
         resizeCanvas();
+        syncThemeColor();
+
+        // Update when theme toggles (class changes on <html>)
+        const observer = new MutationObserver(() => syncThemeColor());
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
 
         class Particle {
             x: number;
@@ -52,7 +75,7 @@ export default function BackgroundAnimation() {
 
             draw() {
                 if (!ctx) return;
-                ctx.fillStyle = `rgba(129, 140, 248, ${this.opacity})`; // Indigo-400-ish
+                ctx.fillStyle = `rgba(${particleRgb.r}, ${particleRgb.g}, ${particleRgb.b}, ${this.opacity})`;
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
@@ -86,7 +109,7 @@ export default function BackgroundAnimation() {
 
                     if (distance < 100) {
                         ctx.beginPath();
-                        ctx.strokeStyle = `rgba(129, 140, 248, ${0.1 * (1 - distance / 100)})`;
+                        ctx.strokeStyle = `rgba(${particleRgb.r}, ${particleRgb.g}, ${particleRgb.b}, ${0.1 * (1 - distance / 100)})`;
                         ctx.lineWidth = 0.5;
                         ctx.moveTo(a.x, a.y);
                         ctx.lineTo(b.x, b.y);
@@ -104,6 +127,7 @@ export default function BackgroundAnimation() {
         return () => {
             window.removeEventListener("resize", resizeCanvas);
             cancelAnimationFrame(animationFrameId);
+            observer.disconnect();
         };
     }, []);
 

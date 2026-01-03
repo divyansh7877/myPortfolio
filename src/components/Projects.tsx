@@ -81,9 +81,9 @@ export default function Projects() {
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    className="text-3xl font-bold mb-12 flex items-center gap-3 text-gray-900 dark:text-white"
+                    className="text-3xl font-bold mb-12 flex items-center gap-3 text-[color:var(--foreground)]"
                 >
-                    <Code2 className="text-orange-500" />
+                    <Code2 className="text-[color:var(--accent)]" />
                     Projects
                 </motion.h2>
 
@@ -95,33 +95,33 @@ export default function Projects() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            className="group bg-white dark:bg-zinc-900 border-2 border-gray-300 dark:border-zinc-800 rounded-xl overflow-hidden hover:border-blue-500 dark:hover:border-blue-500 transition-all hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/15 dark:hover:shadow-blue-500/20"
+                            className="group bg-[var(--card-bg)] border-2 border-[color:var(--border)] rounded-xl overflow-hidden hover:border-[color:var(--accent)] transition-all hover:-translate-y-1 hover:shadow-2xl"
                         >
                             <div className="p-6 h-full flex flex-col">
-                                <h3 className="text-xl font-semibold text-gray-900 dark:text-zinc-100 mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                                <h3 className="text-xl font-semibold text-[color:var(--foreground)] mb-3 group-hover:text-[color:var(--accent)] transition-colors">
                                     {project.title}
                                 </h3>
-                                <p className="text-gray-600 dark:text-zinc-400 text-sm mb-6 flex-grow leading-relaxed">
+                                <p className="text-[color:var(--muted)] text-sm mb-6 flex-grow leading-relaxed">
                                     {project.description}
                                 </p>
 
                                 <div className="flex flex-wrap gap-2 mb-6">
                                     {project.tags.map((tag, i) => (
-                                        <span key={i} className="text-xs font-medium px-2.5 py-1 rounded-full bg-gray-100 dark:bg-zinc-800 text-gray-800 dark:text-zinc-300 border border-gray-300 dark:border-zinc-700">
+                                        <span key={i} className="text-xs font-medium px-2.5 py-1 rounded-full bg-[var(--code-bg)] text-[color:var(--foreground)] border border-[color:var(--border)]">
                                             {tag}
                                         </span>
                                     ))}
                                 </div>
 
-                                <div className="flex items-center gap-4 mt-auto pt-4 border-t border-gray-200 dark:border-zinc-800">
+                                <div className="flex items-center gap-4 mt-auto pt-4 border-t border-[color:var(--border)]">
                                     {project.links.github && (
-                                        <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-gray-500 dark:text-zinc-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                                        <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-[color:var(--muted)] hover:text-[color:var(--accent)] transition-colors">
                                             <Github className="w-4 h-4" />
                                             Code
                                         </a>
                                     )}
                                     {project.links.demo && (
-                                        <a href={project.links.demo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-gray-500 dark:text-zinc-400 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors">
+                                        <a href={project.links.demo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-[color:var(--muted)] hover:text-[color:var(--accent)] transition-colors">
                                             <ExternalLink className="w-4 h-4" />
                                             Demo
                                         </a>

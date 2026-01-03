@@ -28,7 +28,7 @@ const education = [
 
 export default function Education() {
     return (
-        <section id="education" className="py-20 px-4 bg-gray-50/50 dark:bg-zinc-900/30">
+        <section id="education" className="py-20 px-4 bg-[var(--surface)]">
             <div className="max-w-4xl mx-auto">
                 <motion.h2
                     initial={{ opacity: 0, x: -20 }}
@@ -36,7 +36,7 @@ export default function Education() {
                     viewport={{ once: true }}
                     className="text-3xl font-bold mb-12 flex items-center gap-3"
                 >
-                    <GraduationCap className="text-blue-400" />
+                    <GraduationCap className="text-[color:var(--accent)]" />
                     Education
                 </motion.h2>
 
@@ -48,21 +48,21 @@ export default function Education() {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            className="bg-white dark:bg-zinc-900 border border-gray-300 dark:border-zinc-800 p-6 rounded-xl hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/10 transition-all"
+                            className="bg-[var(--card-bg)] border border-[color:var(--border)] p-6 rounded-xl hover:border-[color:var(--accent)] hover:shadow-lg transition-all"
                         >
                             <div className="flex justify-between items-start mb-4">
                                 <div>
-                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-zinc-100">{edu.school}</h3>
-                                    <p className="text-blue-600 dark:text-blue-400 text-sm">{edu.degree}</p>
+                                    <h3 className="text-lg font-semibold text-[color:var(--foreground)]">{edu.school}</h3>
+                                    <p className="text-[color:var(--accent)] text-sm">{edu.degree}</p>
                                 </div>
-                                <span className="text-xs font-mono text-gray-600 dark:text-zinc-500 bg-gray-100 dark:bg-zinc-800 px-2 py-1 rounded">{edu.period}</span>
+                                <span className="text-xs font-mono text-[color:var(--muted)] bg-[var(--code-bg)] px-2 py-1 rounded border border-[color:var(--border)]">{edu.period}</span>
                             </div>
 
                             <div className="space-y-2">
-                                <p className="text-sm text-gray-700 dark:text-zinc-400"><span className="text-gray-500 dark:text-zinc-500">GPA:</span> {edu.gpa}</p>
+                                <p className="text-sm text-[color:var(--muted)]"><span className="text-[color:var(--muted)]">GPA:</span> {edu.gpa}</p>
                                 {edu.coursework && (
-                                    <p className="text-sm text-gray-700 dark:text-zinc-400 leading-relaxed">
-                                        <span className="text-gray-500 dark:text-zinc-500">Relevant Coursework:</span> {edu.coursework}
+                                    <p className="text-sm text-[color:var(--muted)] leading-relaxed">
+                                        <span className="text-[color:var(--muted)]">Relevant Coursework:</span> {edu.coursework}
                                     </p>
                                 )}
                             </div>
