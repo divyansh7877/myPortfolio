@@ -73,7 +73,7 @@ export default function Footer() {
         </div>
 
         <p className="text-[color:var(--muted)] text-sm">
-          © {new Date().getFullYear()} Divyansh Agarwal. Built with Next.js & Tailwind CSS.
+          © {new Date().getFullYear()} Div Agarwal. Built with Next.js & Tailwind CSS.
         </p>
       </div>
     </footer>

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { User, Music, BookOpen, Coffee } from "lucide-react";
+import { User, Music, BookOpen, Coffee, Twitter } from "lucide-react";
 
 export default function Personal() {
     return (
@@ -29,9 +29,20 @@ export default function Personal() {
                                 <Coffee className="text-[color:var(--accent)]" />
                                 <h3 className="text-xl font-semibold">Interests</h3>
                             </div>
-                            <p className="text-[color:var(--muted)] leading-relaxed">
-                                I’m someone who finds joy in the little things—taking long walks in nature, discovering new experiences, and spending hours wandering through museums. When I’m not coding, you’ll likely find me experimenting in the kitchen with new recipes or writing.
+                            <p className="text-[color:var(--muted)] leading-relaxed mb-4">
+                                I'm someone who finds joy in the little things—taking long walks in nature, discovering new experiences, and spending hours wandering through museums. When I'm not coding, you'll likely find me experimenting in the kitchen with new recipes or writing.
                             </p>
+                            <div className="pt-4 border-t border-[color:var(--border)]">
+                                <a
+                                    href="https://x.com/div__vi"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-2 text-sm text-[color:var(--muted)] hover:text-[color:var(--accent)] transition-colors"
+                                >
+                                    <Twitter className="w-4 h-4" />
+                                    <span>@div__vi</span>
+                                </a>
+                            </div>
                         </div>
 
                         <div className="bg-[var(--card-bg)] p-6 rounded-xl border border-[color:var(--border)] shadow-sm hover:shadow-md transition-shadow">
@@ -64,32 +75,29 @@ export default function Personal() {
                             <h3 className="text-xl font-semibold">Reading</h3>
                         </div>
                         <p className="text-[color:var(--muted)] leading-relaxed mb-6">
-                            I’ve developed a deep appreciation for reading, particularly fiction, classic literature, and philosophy.
+                            I've developed a deep appreciation for reading, particularly fiction, classic literature, and philosophy.
                         </p>
 
                         <div className="space-y-4">
                             <div>
                                 <h4 className="text-sm font-medium text-gray-900 dark:text-zinc-300 mb-2">Currently Reading</h4>
-                                <div className="flex items-center gap-2 text-gray-600 dark:text-zinc-400 text-sm">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-[color:var(--accent)]"></span>
-                                    Crime and Punishment (Dostoevsky)
-                                </div>
-                            </div>
-
-                            <div>
-                                <h4 className="text-sm font-medium text-gray-900 dark:text-zinc-300 mb-2">On Deck</h4>
-                                <ul className="space-y-1 text-gray-600 dark:text-zinc-500 text-sm">
-                                    <li>The Brothers Karamazov</li>
-                                    <li>White Nights</li>
-                                    <li>Siddhartha</li>
+                                <ul className="space-y-1 text-gray-600 dark:text-zinc-400 text-sm">
+                                    <li className="flex items-center gap-2">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-[color:var(--accent)]"></span>
+                                        Wuthering Heights
+                                    </li>
+                                    <li className="flex items-center gap-2">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-[color:var(--accent)]"></span>
+                                        The Stranger
+                                    </li>
                                 </ul>
                             </div>
 
                             <div>
                                 <h4 className="text-sm font-medium text-gray-900 dark:text-zinc-300 mb-2">Recently Finished</h4>
                                 <ul className="space-y-1 text-gray-600 dark:text-zinc-500 text-sm">
-                                    <li>The Death of Ivan Ilyich</li>
-                                    <li>The Metamorphosis</li>
+                                    <li>Crime and Punishment</li>
+                                    <li>The Siddhartha</li>
                                 </ul>
                             </div>
                         </div>

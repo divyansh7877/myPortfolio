@@ -32,19 +32,7 @@ const hackathons = [
         techStack: ["React", "TypeScript", "Vite", "Tailwind CSS", "shadcn-ui", "Lovable"],
         team: ["Devin", "Aarthi", "Boris", "Jan"],
         links: {
-            // Repo link inferred from context or likely exists, but not explicitly in text snippet for this one specifically in the same format. 
-            // Actually, the text says "Project: Creator Studio... 3rd place". No direct github link in the snippet provided for Creator Studio in the SHORT summary, 
-            // but I should check if I missed it. Rescanning hackathons.txt...
-            // "Footer with GitHub and project links" is mentioned as a feature. 
-            // Wait, looking closer at hackathons.txt... 
-            // "3rd place among innovative AI-powered builder teams"
-            // I don't see a direct link for Creator Studio in the provided text file content for the second item (which is actually Cibo in the text file order, wait).
-            // Let's re-read the file content carefully.
-            // Item 1: Mitate.
-            // Item 2: Cibo (ElevenLabs Worldwide Hackathon).
-            // Item 3: Creator Studio (Columbia x Lovable).
-            // Ok, I need to make sure I get the order and details right. I will follow the file content.
-            // Cibo is strictly 2nd in the file. Creator Studio is 3rd.
+            github: "https://github.com/radilek/creator-studio-demo",
         },
         achievement: "3rd Place Winner",
         achievements: [
@@ -62,7 +50,7 @@ const hackathons = [
         techStack: ["React", "TypeScript", "Convex", "Python", "ElevenLabs SDK", "Twilio"],
         team: ["Chris", "Syed", "Shubham"],
         links: {
-            // No specific link in text, but implies repo structure exists.
+            github: "https://github.com/divyansh7877/cibo",
         },
         achievements: [
             "Full-stack app with reactive data syncing via Convex",
@@ -80,7 +68,7 @@ const hackathons = [
 
 export default function Hackathons() {
     return (
-        <section id="hackathons" className="py-20 px-4 bg-[var(--surface)]">
+        <section id="hackathons" className="py-20 px-4">
             <div className="max-w-6xl mx-auto">
                 <motion.h2
                     initial={{ opacity: 0, x: -20 }}

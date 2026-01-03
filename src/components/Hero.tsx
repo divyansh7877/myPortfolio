@@ -15,7 +15,7 @@ export default function Hero() {
                     className="space-y-4"
                 >
                     <h1 className="text-5xl md:text-7xl font-bold tracking-tight bg-gradient-to-r from-[color:var(--foreground)] via-[color:var(--foreground)] to-[color:var(--accent)] bg-clip-text text-transparent">
-                        Divyansh Agarwal
+                        Div Agarwal
                     </h1>
                     <p className="text-xl md:text-2xl text-[color:var(--muted)] max-w-2xl">
                         Computer Science Graduate from NYU. AI/ML Enthusiast. System Builder.
@@ -36,14 +36,14 @@ export default function Hero() {
                             <div className="w-3 h-3 rounded-full bg-yellow-500 shadow-sm shadow-yellow-500/50" />
                             <div className="w-3 h-3 rounded-full bg-green-500 shadow-sm shadow-green-500/50" />
                         </div>
-                        <span className="text-xs text-[color:var(--muted)] font-mono ml-2">guest@divyansh:~/summary</span>
+                        <span className="text-xs text-[color:var(--muted)] font-mono ml-2">guest@div:~/summary</span>
                     </div>
                     <div className="p-6 font-mono text-sm md:text-base text-[color:var(--muted)] space-y-4 relative">
                         <p>
                             <span className="text-[color:var(--accent)]">➜</span> <span className="text-[color:var(--muted)]">~</span> cat summary.txt
                         </p>
                         <p className="leading-relaxed">
-                            Hi, I’m Divyansh Agarwal—most people call me Div. I&apos;m a Computer Science graduate from NYU with a deep interest in artificial intelligence, machine learning, and the systems that power modern computing. My experience spans academic research, startup innovation, and collaborative engineering environments.
+                            Hi, I’m Div Agarwal—most people call me Div. I&apos;m a Computer Science graduate from NYU with a deep interest in artificial intelligence, machine learning, and the systems that power modern computing. My experience spans academic research, startup innovation, and collaborative engineering environments.
                         </p>
                         <p className="leading-relaxed">
                             My work sits at the intersection of theory and implementation—whether it&apos;s designing models to interpret neurological signals, optimizing systems for real-time performance, or exploring how large language models can reshape automation.

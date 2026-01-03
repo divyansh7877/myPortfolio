@@ -13,7 +13,7 @@ export default function Home() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Person',
-    name: 'Divyansh Agarwal',
+    name: 'Div Agarwal',
     url: 'https://divyansh7877.github.io/myPortfolio',
     sameAs: [
       'https://www.linkedin.com/in/div2201/',

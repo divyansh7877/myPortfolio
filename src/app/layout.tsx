@@ -27,12 +27,12 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Divyansh Agarwal | Portfolio",
-    template: "%s | Divyansh Agarwal",
+    default: "Div Agarwal | Portfolio",
+    template: "%s | Div Agarwal",
   },
   description: "Computer Science Graduate from NYU. AI/ML Enthusiast. Specializing in Machine Learning, Deep Learning, and Full Stack Development.",
   keywords: [
-    "Divyansh Agarwal",
+    "Div Agarwal",
     "Portfolio",
     "Computer Science",
     "NYU",
@@ -43,27 +43,27 @@ export const metadata: Metadata = {
     "Software Engineer",
     "Data Science",
   ],
-  authors: [{ name: "Divyansh Agarwal" }],
-  creator: "Divyansh Agarwal",
+  authors: [{ name: "Div Agarwal" }],
+  creator: "Div Agarwal",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://divyansh7877.github.io/myPortfolio",
-    title: "Divyansh Agarwal | Portfolio",
+    title: "Div Agarwal | Portfolio",
     description: "Computer Science Graduate from NYU. AI/ML Enthusiast. Explore my projects and experience.",
-    siteName: "Divyansh Agarwal Portfolio",
+    siteName: "Div Agarwal Portfolio",
     images: [
       {
         url: "/myPortfolio/globe.svg", // Using an existing asset as a placeholder or we could generate one. 
         width: 1200,
         height: 630,
-        alt: "Divyansh Agarwal Portfolio",
+        alt: "Div Agarwal Portfolio",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Divyansh Agarwal | Portfolio",
+    title: "Div Agarwal | Portfolio",
     description: "Computer Science Graduate from NYU. AI/ML Enthusiast. Explore my projects and experience.",
     creator: "@divyansh7877", // Assuming this handle, or generic
     images: ["/myPortfolio/globe.svg"],
