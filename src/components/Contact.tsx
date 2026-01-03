@@ -62,13 +62,13 @@ export default function Contact() {
   };
 
   const inputClasses = (fieldName: string) => `
-    w-full bg-zinc-900/50 border rounded-xl px-4 py-3 pl-12
-    text-zinc-100 placeholder:text-zinc-600
+    w-full bg-white dark:bg-zinc-900/50 border rounded-xl px-4 py-3 pl-12
+    text-gray-900 dark:text-zinc-100 placeholder:text-gray-500 dark:placeholder:text-zinc-600
     transition-all duration-300 ease-out
     focus:outline-none focus:ring-0
     ${focusedField === fieldName
       ? "border-blue-500/70 shadow-[0_0_20px_-5px_rgba(59,130,246,0.3)]"
-      : "border-zinc-800 hover:border-zinc-700"
+      : "border-gray-200 dark:border-zinc-800 hover:border-gray-300 dark:hover:border-zinc-700"
     }
   `;
 
@@ -92,12 +92,12 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900/80 border border-zinc-800 mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 dark:bg-zinc-900/80 border border-gray-200 dark:border-zinc-800 mb-6">
             <Sparkles className="w-4 h-4 text-blue-400" />
-            <span className="text-sm text-zinc-400">Let&apos;s Connect</span>
+            <span className="text-sm text-gray-600 dark:text-zinc-400">Let&apos;s Connect</span>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-zinc-100 to-zinc-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-gray-900 to-gray-600 dark:from-zinc-100 dark:to-zinc-400 bg-clip-text text-transparent">
               Have a question or want to work together?
             </span>
           </h2>
@@ -178,13 +178,13 @@ export default function Contact() {
               required
               rows={5}
               className={`
-                w-full bg-zinc-900/50 border rounded-xl px-4 py-3 pl-12 
-                text-zinc-100 placeholder:text-zinc-600 resize-none
+                w-full bg-white dark:bg-zinc-900/50 border rounded-xl px-4 py-3 pl-12 
+                text-gray-900 dark:text-zinc-100 placeholder:text-gray-500 dark:placeholder:text-zinc-600 resize-none
                 transition-all duration-300 ease-out
                 focus:outline-none focus:ring-0
                 ${focusedField === "message"
                   ? "border-blue-500/70 shadow-[0_0_20px_-5px_rgba(59,130,246,0.3)]"
-                  : "border-zinc-800 hover:border-zinc-700"
+                  : "border-gray-200 dark:border-zinc-800 hover:border-gray-300 dark:hover:border-zinc-700"
                 }
               `}
             />
@@ -203,8 +203,8 @@ export default function Contact() {
               ${status === "success"
                 ? "bg-orange-500/20 border border-orange-500/50 text-orange-400"
                 : status === "error"
-                ? "bg-red-500/20 border border-red-500/50 text-red-400"
-                : "bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40"
+                  ? "bg-red-500/20 border border-red-500/50 text-red-400"
+                  : "bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40"
               }
               disabled:cursor-not-allowed
             `}

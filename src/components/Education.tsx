@@ -28,7 +28,7 @@ const education = [
 
 export default function Education() {
     return (
-        <section id="education" className="py-20 px-4 bg-zinc-900/30">
+        <section id="education" className="py-20 px-4 bg-gray-50/50 dark:bg-zinc-900/30">
             <div className="max-w-4xl mx-auto">
                 <motion.h2
                     initial={{ opacity: 0, x: -20 }}
@@ -48,21 +48,21 @@ export default function Education() {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            className="bg-zinc-900 border border-zinc-800 p-6 rounded-xl hover:border-blue-500/30 transition-colors"
+                            className="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 p-6 rounded-xl hover:border-blue-500/30 transition-colors"
                         >
                             <div className="flex justify-between items-start mb-4">
                                 <div>
-                                    <h3 className="text-lg font-semibold text-zinc-100">{edu.school}</h3>
-                                    <p className="text-blue-400 text-sm">{edu.degree}</p>
+                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-zinc-100">{edu.school}</h3>
+                                    <p className="text-blue-600 dark:text-blue-400 text-sm">{edu.degree}</p>
                                 </div>
-                                <span className="text-xs font-mono text-zinc-500 bg-zinc-800 px-2 py-1 rounded">{edu.period}</span>
+                                <span className="text-xs font-mono text-gray-600 dark:text-zinc-500 bg-gray-100 dark:bg-zinc-800 px-2 py-1 rounded">{edu.period}</span>
                             </div>
 
                             <div className="space-y-2">
-                                <p className="text-sm text-zinc-400"><span className="text-zinc-500">GPA:</span> {edu.gpa}</p>
+                                <p className="text-sm text-gray-700 dark:text-zinc-400"><span className="text-gray-500 dark:text-zinc-500">GPA:</span> {edu.gpa}</p>
                                 {edu.coursework && (
-                                    <p className="text-sm text-zinc-400 leading-relaxed">
-                                        <span className="text-zinc-500">Relevant Coursework:</span> {edu.coursework}
+                                    <p className="text-sm text-gray-700 dark:text-zinc-400 leading-relaxed">
+                                        <span className="text-gray-500 dark:text-zinc-500">Relevant Coursework:</span> {edu.coursework}
                                     </p>
                                 )}
                             </div>

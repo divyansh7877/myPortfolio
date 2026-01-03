@@ -27,12 +27,12 @@ export default function Home() {
   }
 
   return (
-    <main className="bg-black min-h-screen">
+    <main className="min-h-screen bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-900/50 via-black to-black pointer-events-none z-0" />
+      <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-50/50 via-white to-white dark:from-zinc-900/50 dark:via-black dark:to-black pointer-events-none z-0" />
       <BackgroundAnimation />
 
       <div className="relative z-10">
