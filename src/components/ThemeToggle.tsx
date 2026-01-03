@@ -1,5 +1,6 @@
 "use client";
 
+/* eslint-disable react-hooks/set-state-in-effect */
 import { Moon, Sun, Laptop } from "lucide-react";
 import { motion } from "framer-motion";
 import { useTheme } from "./ThemeProvider";

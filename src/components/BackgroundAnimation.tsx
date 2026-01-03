@@ -2,6 +2,44 @@
 
 import { useEffect, useRef } from "react";
 
+type Rgb = { r: number; g: number; b: number };
+type Particle = {
+    x: number;
+    y: number;
+    size: number;
+    speedX: number;
+    speedY: number;
+    opacity: number;
+};
+
+function createParticle(canvas: HTMLCanvasElement): Particle {
+    return {
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 2,
+        speedX: Math.random() * 0.5 - 0.25,
+        speedY: Math.random() * 0.5 - 0.25,
+        opacity: Math.random() * 0.5 + 0.1,
+    };
+}
+
+function updateParticle(p: Particle, canvas: HTMLCanvasElement) {
+    p.x += p.speedX;
+    p.y += p.speedY;
+
+    if (p.x > canvas.width) p.x = 0;
+    if (p.x < 0) p.x = canvas.width;
+    if (p.y > canvas.height) p.y = 0;
+    if (p.y < 0) p.y = canvas.height;
+}
+
+function drawParticle(ctx: CanvasRenderingContext2D, p: Particle, rgb: Rgb) {
+    ctx.fillStyle = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${p.opacity})`;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+    ctx.fill();
+}
+
 export default function BackgroundAnimation() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -46,47 +84,11 @@ export default function BackgroundAnimation() {
         const observer = new MutationObserver(() => syncThemeColor());
         observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
 
-        class Particle {
-            x: number;
-            y: number;
-            size: number;
-            speedX: number;
-            speedY: number;
-            opacity: number;
-
-            constructor() {
-                this.x = Math.random() * canvas!.width;
-                this.y = Math.random() * canvas!.height;
-                this.size = Math.random() * 2;
-                this.speedX = Math.random() * 0.5 - 0.25;
-                this.speedY = Math.random() * 0.5 - 0.25;
-                this.opacity = Math.random() * 0.5 + 0.1;
-            }
-
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-
-                if (this.x > canvas!.width) this.x = 0;
-                if (this.x < 0) this.x = canvas!.width;
-                if (this.y > canvas!.height) this.y = 0;
-                if (this.y < 0) this.y = canvas!.height;
-            }
-
-            draw() {
-                if (!ctx) return;
-                ctx.fillStyle = `rgba(${particleRgb.r}, ${particleRgb.g}, ${particleRgb.b}, ${this.opacity})`;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
         const init = () => {
             particles = [];
             const numberOfParticles = Math.floor((canvas.width * canvas.height) / 15000);
             for (let i = 0; i < numberOfParticles; i++) {
-                particles.push(new Particle());
+                particles.push(createParticle(canvas));
             }
         };
 
@@ -95,8 +97,8 @@ export default function BackgroundAnimation() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             particles.forEach((particle) => {
-                particle.update();
-                particle.draw();
+                updateParticle(particle, canvas);
+                drawParticle(ctx, particle, particleRgb);
             });
 
             // Draw connections

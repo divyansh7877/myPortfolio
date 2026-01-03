@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useRef, useEffect } from "react";
+import { useState, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles } from "lucide-react";
 
@@ -225,27 +225,13 @@ function ConnectionLine({
     );
 }
 
-function SkillTooltip({ skill, containerRef }: { skill: typeof skillsData[0]; containerRef: React.RefObject<HTMLDivElement | null> }) {
-    const [position, setPosition] = useState({ left: 0, top: 0 });
-    
-    useEffect(() => {
-        if (containerRef.current) {
-            const rect = containerRef.current.getBoundingClientRect();
-            const skillX = (skill.x / 100) * rect.width;
-            const skillY = (skill.y / 100) * rect.height;
-            
-            // Position tooltip to avoid going off-screen
-            let left = skillX;
-            let top = skillY - 120;
-            
-            if (top < 10) top = skillY + 60;
-            if (left < 150) left = 150;
-            if (left > rect.width - 150) left = rect.width - 150;
-            
-            setPosition({ left, top });
-        }
-    }, [skill, containerRef]);
-    
+function SkillTooltip({
+    skill,
+    position,
+}: {
+    skill: typeof skillsData[0];
+    position: { left: number; top: number };
+}) {
     return (
         <motion.div
             initial={{ opacity: 0, y: 10, scale: 0.95 }}
@@ -311,9 +297,30 @@ function SkillTooltip({ skill, containerRef }: { skill: typeof skillsData[0]; co
 
 export default function Skills() {
     const [hoveredSkill, setHoveredSkill] = useState<typeof skillsData[0] | null>(null);
+    const [tooltipPosition, setTooltipPosition] = useState({ left: 0, top: 0 });
     const containerRef = useRef<HTMLDivElement>(null);
 
     const handleHover = useCallback((skill: typeof skillsData[0] | null) => {
+        if (!skill) {
+            setHoveredSkill(null);
+            return;
+        }
+
+        const rect = containerRef.current?.getBoundingClientRect();
+        if (rect) {
+            const skillX = (skill.x / 100) * rect.width;
+            const skillY = (skill.y / 100) * rect.height;
+
+            let left = skillX;
+            let top = skillY - 120;
+
+            if (top < 10) top = skillY + 60;
+            if (left < 150) left = 150;
+            if (left > rect.width - 150) left = rect.width - 150;
+
+            setTooltipPosition({ left, top });
+        }
+
         setHoveredSkill(skill);
     }, []);
 
@@ -415,7 +422,7 @@ export default function Skills() {
 
                     {/* Tooltip */}
                     <AnimatePresence>
-                        {hoveredSkill && <SkillTooltip skill={hoveredSkill} containerRef={containerRef} />}
+                        {hoveredSkill && <SkillTooltip skill={hoveredSkill} position={tooltipPosition} />}
                     </AnimatePresence>
 
                     {/* Legend */}

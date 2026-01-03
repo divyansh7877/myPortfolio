@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Award, Calendar, Code, ExternalLink, Github, Trophy, Users } from "lucide-react";
+import { Award, Calendar, Code, Github, Trophy, Users } from "lucide-react";
 
 // Data derived from hackathons.txt
 const hackathons = [
