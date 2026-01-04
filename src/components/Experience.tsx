@@ -108,7 +108,7 @@ export default function Experience() {
                             <ul className="space-y-2 mb-4">
                                 {exp.achievements.map((item, i) => (
                                     <li key={i} className="text-[color:var(--muted)] text-sm flex items-start gap-2">
-                                        <span className="text-[color:var(--accent)] mt-1.5">•</span>
+                                        <span className="text-[color:var(--accent)] mt-0.5">•</span>
                                         <span>{item}</span>
                                     </li>
                                 ))}

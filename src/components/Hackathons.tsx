@@ -10,7 +10,7 @@ const hackathons = [
         tagline: "AI-Powered Research Paper Visual Explainer",
         event: "DigitalOcean x MLH Hackathon",
         location: "Brooklyn, NY",
-        description: "A web application that transforms complex arXiv research papers into beautiful, educational visualizations tailored to the user's knowledge level.",
+        description: "A web application that transforms complex arXiv research papers into beautiful, educational visualizations tailored to the user's knowledge level. The idea is to make understanding of complex knowledge into a infographic based on the user's background. So say a paper like Attention is all you need can be explained to a 5 year old as well as a 80 year old.",
         techStack: ["React", "Appwrite", "DigitalOcean Gradient AI", "FIBO/Bria AI", "Tailwind CSS"],
         team: ["Chris", "Asra"],
         links: {
@@ -24,7 +24,7 @@ const hackathons = [
         ]
     },
     {
-        name: "Creator Studio",
+        name: "Connie",
         tagline: "Streamlined platform for creators",
         event: "Columbia × Lovable Hackathon",
         location: "New York, NY",
@@ -137,7 +137,7 @@ export default function Hackathons() {
                                         <ul className="space-y-2">
                                             {hackathon.achievements.map((item, i) => (
                                                 <li key={i} className="text-sm text-[color:var(--muted)] flex items-start gap-2">
-                                                    <span className="text-[color:var(--accent)] mt-1.5">•</span>
+                                                    <span className="text-[color:var(--accent)] mt-0.5">•</span>
                                                     <span>{item}</span>
                                                 </li>
                                             ))}
