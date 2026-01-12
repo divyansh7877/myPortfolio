@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, User, Mail, Phone, MessageSquare, Check, AlertCircle, Sparkles } from "lucide-react";
-import { submitContactForm } from "@/lib/supabase";
+
+const BASIN_FORM_ENDPOINT = "https://usebasin.com/f/142559bbead8";
 
 interface FormData {
   name: string;
@@ -43,12 +44,32 @@ export default function Contact() {
     setStatus("submitting");
 
     try {
-      await submitContactForm({
-        name: formData.name,
-        email: formData.email || undefined,
-        phone: formData.phone || undefined,
-        message: formData.message,
+      const body = new window.FormData();
+      body.append("name", formData.name);
+      body.append("email", formData.email);
+      body.append("phone", formData.phone);
+      body.append("message", formData.message);
+
+      const res = await fetch(BASIN_FORM_ENDPOINT, {
+        method: "POST",
+        body,
+        headers: {
+          // Basin returns JSON when this header is set (otherwise it may redirect).
+          Accept: "application/json",
+        },
       });
+
+      if (!res.ok) {
+        // Try to surface Basin's JSON error payload (if any).
+        try {
+          const errorPayload = await res.json();
+          // eslint-disable-next-line no-console
+          console.error("Basin error:", errorPayload);
+        } catch {
+          // ignore parse errors
+        }
+        throw new Error(`Basin submission failed (${res.status})`);
+      }
 
       setStatus("success");
       setFormData({ name: "", email: "", phone: "", message: "" });
