@@ -1,6 +1,6 @@
 "use client";
 
-import { Github, Linkedin, FileText, Mail, Download, Twitter } from "lucide-react";
+import { Github, Linkedin, FileText, Mail, Download, X } from "lucide-react";
 import { trackFileDownload } from "@/lib/supabase";
 
 interface DocumentLink {
@@ -58,8 +58,8 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--card-bg)] border border-[color:var(--border)] hover:border-[color:var(--accent)] hover:text-[color:var(--accent)] transition-all"
           >
-            <Twitter className="w-4 h-4" />
-            X (Twitter)
+            <X className="w-4 h-4" />
+            X
           </a>
         </div>
 
