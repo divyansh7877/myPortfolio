@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import ThemeToggle from "@/components/ThemeToggle";
+import Navigation from "@/components/Navigation";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -95,6 +96,7 @@ export default function RootLayout({
         className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased`}
       >
         <ThemeProvider>
+          <Navigation />
           <ThemeToggle />
           {children}
         </ThemeProvider>

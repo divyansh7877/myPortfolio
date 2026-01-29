@@ -1,0 +1,122 @@
+{
+  "slug": "project-name-kebab-case",
+  "title": "Project Display Name",
+  "tagline": "One-line compelling description of what this project does",
+  "metadata": {
+    "startDate": "2024-01",
+    "endDate": "2024-06",
+    "status": "completed",
+    "role": "Lead Developer / Researcher",
+    "teamSize": 3,
+    "links": {
+      "github": "https://github.com/username/repo",
+      "demo": "https://demo-link.com",
+      "documentation": "https://docs-link.com",
+      "paper": "https://arxiv.org/abs/...",
+      "video": "https://youtube.com/..."
+    }
+  },
+  "hero": {
+    "coverImage": "/myPortfolio/projects/project-name/cover.webp",
+    "demoVideo": "/myPortfolio/projects/project-name/demo.mp4",
+    "techStack": ["Python", "PyTorch", "React", "TypeScript"]
+  },
+  "overview": {
+    "problem": "What specific problem were you trying to solve? Why does it matter?",
+    "solution": "High-level description of your approach and solution.",
+    "impact": "Quantifiable results: accuracy improvements, performance gains, user adoption, etc."
+  },
+  "sections": [
+    {
+      "type": "text",
+      "title": "Background & Motivation",
+      "content": "Deep dive into the context. Why did you start this? What were the existing limitations?"
+    },
+    {
+      "type": "challenge",
+      "title": "Key Challenges",
+      "items": [
+        {
+          "challenge": "Specific technical or product challenge faced",
+          "solution": "How you overcame it",
+          "lessons": "What you learned from this challenge"
+        }
+      ]
+    },
+    {
+      "type": "architecture",
+      "title": "System Architecture",
+      "description": "Overview of the technical architecture",
+      "diagram": "/myPortfolio/projects/project-name/architecture.svg",
+      "components": [
+        {
+          "name": "Component Name",
+          "tech": "Technology used",
+          "purpose": "What this component does",
+          "responsibilities": ["Responsibility 1", "Responsibility 2"]
+        }
+      ]
+    },
+    {
+      "type": "tech-deep-dive",
+      "title": "Technical Deep Dive",
+      "subsections": [
+        {
+          "title": "Specific Technical Aspect",
+          "content": "Detailed explanation with code snippets if relevant",
+          "codeSnippet": {
+            "language": "python",
+            "file": "/myPortfolio/projects/project-name/code/example.py",
+            "highlightLines": [5, 6, 7]
+          }
+        }
+      ]
+    },
+    {
+      "type": "results",
+      "title": "Results & Impact",
+      "metrics": [
+        {
+          "label": "Metric Name",
+          "value": "95%",
+          "description": "What this metric represents",
+          "comparison": "vs 75% baseline"
+        }
+      ],
+      "testimonials": [
+        {
+          "quote": "Feedback from users, mentors, or teammates",
+          "author": "Name",
+          "role": "Their role"
+        }
+      ]
+    },
+    {
+      "type": "gallery",
+      "title": "Screenshots & Demos",
+      "images": [
+        {
+          "src": "/myPortfolio/projects/project-name/screenshot1.webp",
+          "caption": "Description of what this shows",
+          "alt": "Accessible description"
+        }
+      ]
+    },
+    {
+      "type": "lessons",
+      "title": "What I Learned",
+      "technical": ["Technical skill 1", "Technical skill 2"],
+      "nonTechnical": ["Communication", "Project management", "etc."],
+      "futureWork": "What you'd do differently or add next"
+    }
+  ],
+  "relatedProjects": [
+    {
+      "slug": "related-project-1",
+      "title": "Related Project",
+      "relation": "Built on top of / Extended from / Similar approach"
+    }
+  ],
+  "tags": ["Machine Learning", "Web Development", "Computer Vision"],
+  "readingTime": 8
+}

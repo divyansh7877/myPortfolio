@@ -68,7 +68,7 @@ const hackathons = [
 
 export default function Hackathons() {
     return (
-        <section id="hackathons" className="py-20 px-4">
+        <section id="hackathons" className="py-16 md:py-20 px-4 sm:px-6 lg:px-8">
             <div className="max-w-6xl mx-auto">
                 <motion.h2
                     initial={{ opacity: 0, x: -20 }}

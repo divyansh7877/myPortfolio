@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { getBlogPosts } from '@/lib/mdx';
@@ -21,15 +20,15 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
     }
 
     return (
-        <article className="min-h-screen bg-[var(--background)] text-[var(--foreground)] p-8 pt-24">
+        <article className="min-h-screen bg-[var(--background)] text-[var(--foreground)] px-4 sm:px-6 lg:px-8 py-16 pt-24 md:pt-28">
             <div className="max-w-3xl mx-auto space-y-8">
-                <Link
-                    href="/blog"
+                <a
+                    href="/myPortfolio/blog"
                     className="inline-flex items-center gap-2 text-[color:var(--muted)] hover:text-[color:var(--foreground)] transition-colors"
                 >
                     <ArrowLeft className="w-4 h-4" />
                     Back to Blog
-                </Link>
+                </a>
 
                 <header className="space-y-4">
                     <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-[color:var(--foreground)]">

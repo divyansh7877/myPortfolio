@@ -75,7 +75,7 @@ const projects = [
 
 export default function Projects() {
     return (
-        <section id="projects" className="py-20 px-4 bg-[var(--surface)]">
+        <section id="projects" className="py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-[var(--surface)]">
             <div className="max-w-6xl mx-auto">
                 <motion.h2
                     initial={{ opacity: 0, x: -20 }}

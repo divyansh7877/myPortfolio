@@ -5,7 +5,7 @@ import { User, Music, BookOpen, Coffee } from "lucide-react";
 
 export default function Personal() {
     return (
-        <section id="personal" className="py-20 px-4 bg-[var(--surface)]">
+        <section id="personal" className="py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-[var(--surface)]">
             <div className="max-w-4xl mx-auto">
                 <motion.h2
                     initial={{ opacity: 0, x: -20 }}

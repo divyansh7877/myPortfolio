@@ -2,139 +2,227 @@
 
 /* eslint-disable react-hooks/set-state-in-effect */
 
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Float } from "@react-three/drei";
 import * as THREE from "three";
 
-function NeuralNetwork({ color }: { color: string }) {
-    const groupRef = useRef<THREE.Group>(null);
+// Detect mobile/touch devices
+function isMobileDevice() {
+  if (typeof window === "undefined") return false;
+  return (
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    ) || window.matchMedia("(pointer: coarse)").matches
+  );
+}
 
-    // Generate static random points for nodes
-    const particleCount = 200;
-    const r = 20; // radius of the cloud
+// Detect if user prefers reduced motion
+function prefersReducedMotion() {
+  if (typeof window === "undefined") return false;
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
 
-    // Create stable random points
-    const { positions, linePositions } = useMemo(() => {
-        const tempPositions = new Float32Array(particleCount * 3);
-        const tempLinePositions = [];
+interface NeuralNetworkProps {
+  color: string;
+  particleCount: number;
+}
 
-        for (let i = 0; i < particleCount; i++) {
-            const theta = THREE.MathUtils.randFloatSpread(360);
-            const phi = THREE.MathUtils.randFloatSpread(360);
+function NeuralNetwork({ color, particleCount }: NeuralNetworkProps) {
+  const groupRef = useRef<THREE.Group>(null);
+  const frameCount = useRef(0);
+  const r = 20; // radius of the cloud
 
-            // Random point in sphere
-            const x = r * Math.sin(theta) * Math.cos(phi);
-            const y = r * Math.sin(theta) * Math.sin(phi);
-            const z = r * Math.cos(theta);
+  // Create stable random points - only once
+  const { positions, linePositions } = useMemo(() => {
+    const tempPositions = new Float32Array(particleCount * 3);
+    const tempLinePositions: number[] = [];
 
-            tempPositions[i * 3] = x;
-            tempPositions[i * 3 + 1] = y;
-            tempPositions[i * 3 + 2] = z;
+    for (let i = 0; i < particleCount; i++) {
+      const theta = THREE.MathUtils.randFloatSpread(360);
+      const phi = THREE.MathUtils.randFloatSpread(360);
 
-            // Connect to close neighbors (simple logic for visual effect)
-            if (i > 0 && i % 3 === 0) {
-                const prevX = tempPositions[(i - 1) * 3];
-                const prevY = tempPositions[(i - 1) * 3 + 1];
-                const prevZ = tempPositions[(i - 1) * 3 + 2];
-                tempLinePositions.push(x, y, z, prevX, prevY, prevZ);
-            }
-        }
+      // Random point in sphere
+      const x = r * Math.sin(theta) * Math.cos(phi);
+      const y = r * Math.sin(theta) * Math.sin(phi);
+      const z = r * Math.cos(theta);
 
-        return {
-            positions: tempPositions,
-            linePositions: new Float32Array(tempLinePositions)
-        };
-    }, []);
+      tempPositions[i * 3] = x;
+      tempPositions[i * 3 + 1] = y;
+      tempPositions[i * 3 + 2] = z;
 
-    useFrame((state) => {
-        if (!groupRef.current) return;
+      // Connect to close neighbors (simple logic for visual effect)
+      // Limit connections on mobile for performance
+      const connectionFrequency = particleCount > 50 ? 5 : 3;
+      if (i > 0 && i % connectionFrequency === 0) {
+        const prevX = tempPositions[(i - 1) * 3];
+        const prevY = tempPositions[(i - 1) * 3 + 1];
+        const prevZ = tempPositions[(i - 1) * 3 + 2];
+        tempLinePositions.push(x, y, z, prevX, prevY, prevZ);
+      }
+    }
 
-        // Basic rotation
-        groupRef.current.rotation.y += 0.001;
-        groupRef.current.rotation.x += 0.0005;
+    return {
+      positions: tempPositions,
+      linePositions: new Float32Array(tempLinePositions),
+    };
+  }, [particleCount]);
 
-        // Scroll interaction
-        const scrollY = typeof window !== 'undefined' ? window.scrollY : 0;
-        groupRef.current.rotation.y += 0.0001 * scrollY * 0.05;
+  // Throttled scroll handler
+  const scrollRef = useRef(0);
+  useEffect(() => {
+    const handleScroll = () => {
+      scrollRef.current = window.scrollY;
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-        // Gentle breathing animation
-        const s = 1 + Math.sin(state.clock.elapsedTime * 0.5) * 0.05;
-        groupRef.current.scale.set(s, s, s);
-    });
+  useFrame((state) => {
+    if (!groupRef.current) return;
 
-    return (
-        <group ref={groupRef}>
-            <points>
-                <bufferGeometry>
-                    <bufferAttribute
-                        attach="attributes-position"
-                        count={particleCount}
-                        array={positions}
-                        itemSize={3}
-                        args={[positions, 3]}
-                    />
-                </bufferGeometry>
-                <pointsMaterial
-                    size={0.15}
-                    color={color}
-                    transparent
-                    opacity={0.8}
-                    sizeAttenuation={true}
-                />
-            </points>
-            <lineSegments>
-                <bufferGeometry>
-                    <bufferAttribute
-                        attach="attributes-position"
-                        count={linePositions.length / 3}
-                        array={linePositions}
-                        itemSize={3}
-                        args={[linePositions, 3]}
-                    />
-                </bufferGeometry>
-                <lineBasicMaterial color={color} transparent opacity={0.15} />
-            </lineSegments>
-        </group>
-    );
+    // Skip frames on mobile for performance
+    frameCount.current += 1;
+    const skipFrames = particleCount < 50 ? 2 : 1;
+    if (frameCount.current % skipFrames !== 0) return;
+
+    // Basic rotation - slower on mobile
+    const rotationSpeed = particleCount < 50 ? 0.0005 : 0.001;
+    groupRef.current.rotation.y += rotationSpeed;
+    groupRef.current.rotation.x += rotationSpeed * 0.5;
+
+    // Scroll interaction - use ref instead of reading window directly
+    groupRef.current.rotation.y += 0.00005 * scrollRef.current;
+
+    // Gentle breathing animation - only on desktop
+    if (particleCount > 50) {
+      const s = 1 + Math.sin(state.clock.elapsedTime * 0.3) * 0.03;
+      groupRef.current.scale.set(s, s, s);
+    }
+  });
+
+  return (
+    <group ref={groupRef}>
+      <points>
+        <bufferGeometry>
+          <bufferAttribute
+            attach="attributes-position"
+            count={particleCount}
+            array={positions}
+            itemSize={3}
+            args={[positions, 3]}
+          />
+        </bufferGeometry>
+        <pointsMaterial
+          size={0.15}
+          color={color}
+          transparent
+          opacity={0.6}
+          sizeAttenuation={true}
+        />
+      </points>
+      {linePositions.length > 0 && (
+        <lineSegments>
+          <bufferGeometry>
+            <bufferAttribute
+              attach="attributes-position"
+              count={linePositions.length / 3}
+              array={linePositions}
+              itemSize={3}
+              args={[linePositions, 3]}
+            />
+          </bufferGeometry>
+          <lineBasicMaterial color={color} transparent opacity={0.1} />
+        </lineSegments>
+      )}
+    </group>
+  );
+}
+
+// CSS fallback for mobile/reduced motion
+function CSSBackground({ color }: { color: string }) {
+  return (
+    <div
+      className="absolute inset-0 opacity-20"
+      style={{
+        background: `
+          radial-gradient(circle at 20% 80%, ${color}30 0%, transparent 50%),
+          radial-gradient(circle at 80% 20%, ${color}20 0%, transparent 50%),
+          radial-gradient(circle at 50% 50%, ${color}10 0%, transparent 70%)
+        `,
+      }}
+    />
+  );
 }
 
 export default function BackgroundAnimation() {
-    const [mounted, setMounted] = useState(false);
-    const [isDark, setIsDark] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const [isDark, setIsDark] = useState(false);
+  const [useCanvas, setUseCanvas] = useState(true);
+  const [particleCount, setParticleCount] = useState(80);
 
-    useEffect(() => {
-        setMounted(true);
+  useEffect(() => {
+    setMounted(true);
 
-        const checkTheme = () => {
-            // Check if 'dark' class is present on html element
-            const isDarkMode = document.documentElement.classList.contains("dark");
-            setIsDark(isDarkMode);
-        };
+    // Check device capabilities
+    const mobile = isMobileDevice();
+    const reducedMotion = prefersReducedMotion();
+    const lowPowerMode = 
+      typeof navigator !== "undefined" && 
+      "getBattery" in navigator;
 
-        checkTheme();
+    // Use CSS fallback for mobile or reduced motion preference
+    const shouldUseCanvas = !mobile && !reducedMotion;
+    setUseCanvas(shouldUseCanvas);
 
-        const observer = new MutationObserver(checkTheme);
-        observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    // Reduce particles on lower-end devices
+    setParticleCount(mobile || reducedMotion ? 0 : mobile ? 30 : 80);
 
-        return () => observer.disconnect();
-    }, []);
+    const checkTheme = () => {
+      const isDarkMode = document.documentElement.classList.contains("dark");
+      setIsDark(isDarkMode);
+    };
 
-    // Match colors from globals.css: Light: #2c5aa0, Dark: #3b82f6
-    const particleColor = mounted && isDark ? "#3b82f6" : "#2c5aa0";
+    checkTheme();
 
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Match colors from globals.css: Light: #2c5aa0, Dark: #3b82f6
+  const particleColor = mounted && isDark ? "#3b82f6" : "#2c5aa0";
+
+  // Render CSS fallback for mobile or reduced motion
+  if (!useCanvas) {
     return (
-        <div className="fixed inset-0 pointer-events-none z-[-1]">
-            <Canvas
-                camera={{ position: [0, 0, 30], fov: 60 }}
-                gl={{ alpha: true, antialias: true }}
-                dpr={[1, 2]}
-            >
-                <ambientLight intensity={0.5} />
-                <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
-                    <NeuralNetwork color={particleColor} />
-                </Float>
-            </Canvas>
-        </div>
+      <div className="fixed inset-0 pointer-events-none z-[-1]">
+        <CSSBackground color={particleColor} />
+      </div>
     );
+  }
+
+  return (
+    <div className="fixed inset-0 pointer-events-none z-[-1]">
+      <Canvas
+        camera={{ position: [0, 0, 30], fov: 60 }}
+        gl={{
+          alpha: true,
+          antialias: false, // Disable antialias for performance
+          powerPreference: "low-power", // Hint for battery saving
+        }}
+        dpr={[1, 1.5]} // Cap DPR for performance
+        frameloop="always"
+      >
+        <ambientLight intensity={0.5} />
+        <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.3}>
+          <NeuralNetwork color={particleColor} particleCount={particleCount} />
+        </Float>
+      </Canvas>
+    </div>
+  );
 }

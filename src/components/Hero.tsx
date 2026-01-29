@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function Hero() {
     return (
-        <section className="min-h-screen flex items-center justify-center p-4 pt-20">
+        <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20 md:py-24 pt-24 md:pt-28">
             <div className="max-w-4xl w-full space-y-8">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -73,12 +73,12 @@ export default function Hero() {
                     >
                         Contact Me
                     </a>
-                    <Link
-                        href="/blog"
+                    <a
+                        href="/myPortfolio/blog"
                         className="px-6 py-3 border-2 border-[color:var(--border)] text-[color:var(--foreground)] rounded-full font-medium hover:bg-[var(--code-bg)] hover:border-[color:var(--accent)] transition-all duration-300"
                     >
                         Read Blog
-                    </Link>
+                    </a>
                 </motion.div>
             </div>
         </section>

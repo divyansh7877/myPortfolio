@@ -22,8 +22,8 @@ export default function Footer() {
   };
 
   return (
-    <footer id="contact" className="py-12 border-t border-[color:var(--border)] bg-[var(--surface)]">
-      <div className="max-w-4xl mx-auto px-4 text-center">
+    <footer id="contact" className="py-10 md:py-12 px-4 sm:px-6 border-t border-[color:var(--border)] bg-[var(--surface)]">
+      <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-2xl font-bold mb-8">Get In Touch</h2>
 
         <div className="flex flex-wrap justify-center gap-6 mb-12">
