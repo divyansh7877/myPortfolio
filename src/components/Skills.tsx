@@ -105,6 +105,21 @@ const connections: [string, string][] = [
     ["genai", "python"],
 ];
 
+const quickSignals = [
+    {
+        label: "Primary depth",
+        value: "Python (5 years), ML (4 years), and databases across research and product work.",
+    },
+    {
+        label: "Current lanes",
+        value: "GenAI, RAG, and LLMOps paired with interfaces people can actually use.",
+    },
+    {
+        label: "Typical build shape",
+        value: "Models, retrieval, dashboards, and full-stack web layers working together.",
+    },
+];
+
 function SkillNode({ 
     skill, 
     onHover, 
@@ -341,6 +356,12 @@ export default function Skills() {
     return (
         <section id="skills" className="py-16 md:py-20 px-4 sm:px-6 lg:px-8">
             <div className="max-w-6xl mx-auto">
+                <div className="mb-10 max-w-3xl space-y-4">
+                    <div className="data-pill">
+                        <span className="status-dot" />
+                        Technical range across machine learning, LLM systems, and product-facing engineering
+                    </div>
+                </div>
                 <motion.h2
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -355,10 +376,30 @@ export default function Skills() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.1 }}
-                    className="text-[color:var(--muted)] mb-8"
+                    className="max-w-3xl text-[color:var(--muted)] mb-8 leading-8"
                 >
-                    Hover over nodes to explore skill details and relationships
+                    I tend to work at the intersection of applied AI, data systems, and interfaces that make technical work easier to evaluate. The map below shows how those capabilities connect.
                 </motion.p>
+
+                <div className="mb-8 grid gap-4 md:grid-cols-3">
+                    {quickSignals.map((signal, index) => (
+                        <motion.div
+                            key={signal.label}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.08 * index }}
+                            className="shell-panel surface-grid rounded-[1.5rem] p-1"
+                        >
+                            <div className="h-full rounded-[1.2rem] border border-[color:var(--border)] bg-[var(--background)] p-5">
+                                <p className="font-mono text-[0.68rem] uppercase tracking-[0.22em] text-[color:var(--muted)]">
+                                    {signal.label}
+                                </p>
+                                <p className="mt-3 leading-7 text-[color:var(--foreground)]">{signal.value}</p>
+                            </div>
+                        </motion.div>
+                    ))}
+                </div>
 
                 <motion.div
                     ref={containerRef}

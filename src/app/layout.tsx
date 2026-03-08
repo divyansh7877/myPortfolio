@@ -26,7 +26,11 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ["400", "500", "600"],
 });
 
+const siteUrl = "https://divyansh7877.github.io/myPortfolio";
+const siteImagePath = "/myPortfolio/globe.svg";
+
 export const metadata: Metadata = {
+  metadataBase: new URL("https://divyansh7877.github.io"),
   title: {
     default: "Div Agarwal | Portfolio",
     template: "%s | Div Agarwal",
@@ -49,13 +53,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://divyansh7877.github.io/myPortfolio",
+    url: siteUrl,
     title: "Div Agarwal | Portfolio",
     description: "Computer Science Graduate from NYU. AI/ML Enthusiast. Explore my projects and experience.",
     siteName: "Div Agarwal Portfolio",
     images: [
       {
-        url: "/myPortfolio/globe.svg", // Using an existing asset as a placeholder or we could generate one. 
+        url: siteImagePath,
         width: 1200,
         height: 630,
         alt: "Div Agarwal Portfolio",
@@ -66,8 +70,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Div Agarwal | Portfolio",
     description: "Computer Science Graduate from NYU. AI/ML Enthusiast. Explore my projects and experience.",
-    creator: "@divyansh7877", // Assuming this handle, or generic
-    images: ["/myPortfolio/globe.svg"],
+    creator: "@divyansh7877",
+    images: [siteImagePath],
   },
   robots: {
     index: true,
@@ -81,7 +85,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://divyansh7877.github.io/myPortfolio",
+    canonical: siteUrl,
   },
 };
 
@@ -93,12 +97,14 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark scroll-smooth">
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased`}
+        className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} bg-[var(--background)] antialiased`}
       >
         <ThemeProvider>
-          <Navigation />
-          <ThemeToggle />
-          {children}
+          <div className="site-shell">
+            <Navigation />
+            <ThemeToggle />
+            {children}
+          </div>
         </ThemeProvider>
       </body>
     </html>

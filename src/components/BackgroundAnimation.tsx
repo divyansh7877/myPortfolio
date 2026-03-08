@@ -2,7 +2,7 @@
 
 /* eslint-disable react-hooks/set-state-in-effect */
 
-import { useState, useEffect, useRef, useMemo, useCallback } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Float } from "@react-three/drei";
 import * as THREE from "three";
@@ -167,10 +167,6 @@ export default function BackgroundAnimation() {
     // Check device capabilities
     const mobile = isMobileDevice();
     const reducedMotion = prefersReducedMotion();
-    const lowPowerMode = 
-      typeof navigator !== "undefined" && 
-      "getBattery" in navigator;
-
     // Use CSS fallback for mobile or reduced motion preference
     const shouldUseCanvas = !mobile && !reducedMotion;
     setUseCanvas(shouldUseCanvas);
