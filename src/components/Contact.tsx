@@ -63,7 +63,6 @@ export default function Contact() {
         // Try to surface Basin's JSON error payload (if any).
         try {
           const errorPayload = await res.json();
-          // eslint-disable-next-line no-console
           console.error("Basin error:", errorPayload);
         } catch {
           // ignore parse errors
@@ -99,7 +98,7 @@ export default function Contact() {
   `;
 
   return (
-    <section className="py-16 md:py-24 relative overflow-hidden px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-16 md:py-24 relative overflow-hidden px-4 sm:px-6 lg:px-8">
       {/* Subtle background accent */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[var(--accent-soft)] rounded-full blur-3xl" />

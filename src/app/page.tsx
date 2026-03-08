@@ -111,13 +111,14 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300">
+    <main className="page-shell min-h-screen bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[color:var(--accent-soft)] via-[color:var(--background)] to-[color:var(--background)] pointer-events-none z-0" />
       <BackgroundAnimation />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[30rem] bg-[radial-gradient(circle_at_top,_var(--hero-glow),_transparent_72%)]" />
+      <div className="pointer-events-none absolute inset-x-4 top-[5.5rem] h-px bg-gradient-to-r from-transparent via-[color:var(--border)] to-transparent lg:inset-x-12" />
 
       <div className="relative z-10">
         <Suspense fallback={<HeroSkeleton />}>

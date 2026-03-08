@@ -22,30 +22,34 @@ export default function ThemeToggle() {
 
 function ThemeToggleClient() {
   const { theme, toggleTheme } = useTheme();
+  const themeLabel = theme === "dark" ? "Dark" : theme === "light" ? "Light" : "Auto";
 
   return (
     <motion.button
       onClick={toggleTheme}
-      className="fixed top-6 right-6 z-50 p-3 rounded-full bg-[color:var(--accent)] hover:bg-[color:var(--accent-hover)] shadow-lg hover:shadow-xl transition-all md:top-6 md:right-6 max-md:top-20 max-md:right-4"
-      whileHover={{ scale: 1.1 }}
+      className="shell-panel fixed right-4 top-20 z-50 flex items-center gap-2 rounded-2xl px-3 py-2.5 text-[color:var(--foreground)] transition-all hover:-translate-y-0.5 hover:border-[color:var(--accent)] md:right-5 md:top-5"
+      whileHover={{ scale: 1.03 }}
       whileTap={{ scale: 0.95 }}
       aria-label="Toggle theme"
     >
+      <span className="hidden font-mono text-[0.7rem] uppercase tracking-[0.22em] text-[color:var(--muted)] md:block">
+        {themeLabel}
+      </span>
       <motion.div
         initial={false}
         animate={{
           rotate: theme === "dark" ? 0 : theme === "light" ? 180 : 90,
-          scale: 1
+          scale: 1,
         }}
         key={theme}
         transition={{ duration: 0.3 }}
       >
         {theme === "dark" ? (
-          <Moon className="w-5 h-5 text-white" />
+          <Moon className="h-5 w-5 text-[color:var(--accent)]" />
         ) : theme === "light" ? (
-          <Sun className="w-5 h-5 text-white" />
+          <Sun className="h-5 w-5 text-[color:var(--accent)]" />
         ) : (
-          <Laptop className="w-5 h-5 text-white" />
+          <Laptop className="h-5 w-5 text-[color:var(--accent)]" />
         )}
       </motion.div>
     </motion.button>

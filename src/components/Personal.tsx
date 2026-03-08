@@ -1,96 +1,87 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { User, Music, BookOpen, Coffee } from "lucide-react";
+import { BookOpen, Coffee, Music, User } from "lucide-react";
+
+const personalSections = [
+    {
+        icon: Coffee,
+        title: "Offline reset",
+        body: "Long walks, museums, cooking, and writing are the routines that help me reset and stay curious during long build cycles.",
+        highlights: ["Nature walks", "Museums", "Cooking", "Writing"],
+    },
+    {
+        icon: Music,
+        title: "Music",
+        body: "I gravitate toward the immersive feel of live orchestral performances and the energy of rock.",
+        highlights: ["Dire Straits", "Pearl Jam", "Steven Wilson", "Pink Floyd"],
+    },
+    {
+        icon: BookOpen,
+        title: "Reading",
+        body: "Reading fiction, classics, and philosophy is one of the ways I keep perspective outside technical work.",
+        highlights: ["Wuthering Heights", "The Stranger", "Crime and Punishment", "The Siddhartha"],
+    },
+];
 
 export default function Personal() {
     return (
-        <section id="personal" className="py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-[var(--surface)]">
-            <div className="max-w-4xl mx-auto">
-                <motion.h2
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    className="text-3xl font-bold mb-12 flex items-center gap-3"
-                >
-                    <User className="text-[color:var(--accent)]" />
-                    Personal
-                </motion.h2>
-
-                <div className="grid md:grid-cols-2 gap-8">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
+        <section id="personal" className="bg-[var(--surface)] px-4 py-16 sm:px-6 lg:px-8 md:py-20">
+            <div className="mx-auto max-w-5xl">
+                <div className="mb-12 max-w-3xl space-y-4">
+                    <div className="data-pill">
+                        <span className="status-dot" />
+                        Personal context that complements the way I work: curiosity, patience, and sustained focus
+                    </div>
+                    <motion.h2
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        className="space-y-6"
+                        className="flex items-center gap-3 text-3xl font-bold text-[color:var(--foreground)]"
                     >
-                        <div className="bg-[var(--card-bg)] p-6 rounded-xl border border-[color:var(--border)] shadow-sm hover:shadow-md transition-shadow">
-                            <div className="flex items-center gap-3 mb-4">
-                                <Coffee className="text-[color:var(--accent)]" />
-                                <h3 className="text-xl font-semibold">Interests</h3>
-                            </div>
-                            <p className="text-[color:var(--muted)] leading-relaxed mb-4">
-                                I&apos;m someone who finds joy in the little things—taking long walks in nature, discovering new experiences, and spending hours wandering through museums. When I&apos;m not coding, you&apos;ll likely find me experimenting in the kitchen with new recipes or writing.
-                            </p>
-                        </div>
+                        <User className="text-[color:var(--accent)]" />
+                        Personal
+                    </motion.h2>
+                    <p className="text-base leading-8 text-[color:var(--muted)] md:text-lg">
+                        A few non-work signals that add personality without pulling the portfolio away from its technical center of gravity.
+                    </p>
+                </div>
 
-                        <div className="bg-[var(--card-bg)] p-6 rounded-xl border border-[color:var(--border)] shadow-sm hover:shadow-md transition-shadow">
-                            <div className="flex items-center gap-3 mb-4">
-                                <Music className="text-[color:var(--accent)]" />
-                                <h3 className="text-xl font-semibold">Music</h3>
-                            </div>
-                            <p className="text-[color:var(--muted)] leading-relaxed mb-4">
-                                Music is a huge part of my life. I love the immersive experience of live orchestral performances and the energy of rock.
-                            </p>
-                            <div className="flex flex-wrap gap-2">
-                                {["Dire Straits", "Pearl Jam", "Steven Wilson", "Pink Floyd"].map((band, i) => (
-                                    <span key={i} className="text-xs px-2 py-1 rounded bg-[var(--code-bg)] text-[color:var(--foreground)] border border-[color:var(--border)]">
-                                        {band}
-                                    </span>
-                                ))}
-                            </div>
-                        </div>
-                    </motion.div>
+                <div className="grid gap-6 md:grid-cols-3">
+                    {personalSections.map((section, index) => {
+                        const Icon = section.icon;
 
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
-                        className="bg-[var(--card-bg)] p-6 rounded-xl border border-[color:var(--border)] h-full shadow-sm hover:shadow-md transition-shadow"
-                    >
-                        <div className="flex items-center gap-3 mb-4">
-                            <BookOpen className="text-[color:var(--accent)]" />
-                            <h3 className="text-xl font-semibold">Reading</h3>
-                        </div>
-                        <p className="text-[color:var(--muted)] leading-relaxed mb-6">
-                            I&apos;ve developed a deep appreciation for reading, particularly fiction, classic literature, and philosophy.
-                        </p>
+                        return (
+                            <motion.article
+                                key={section.title}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.08 }}
+                                className="shell-panel surface-grid rounded-[1.75rem] p-1"
+                            >
+                                <div className="h-full rounded-[1.45rem] border border-[color:var(--border)] bg-[var(--background)] p-6">
+                                    <div className="flex items-center gap-3">
+                                        <Icon className="text-[color:var(--accent)]" />
+                                        <h3 className="text-xl font-semibold text-[color:var(--foreground)]">{section.title}</h3>
+                                    </div>
 
-                        <div className="space-y-4">
-                            <div>
-                                <h4 className="text-sm font-medium text-gray-900 dark:text-zinc-300 mb-2">Currently Reading</h4>
-                                <ul className="space-y-1 text-gray-600 dark:text-zinc-400 text-sm">
-                                    <li className="flex items-center gap-2">
-                                        <span className="w-1.5 h-1.5 rounded-full bg-[color:var(--accent)]"></span>
-                                        Wuthering Heights
-                                    </li>
-                                    <li className="flex items-center gap-2">
-                                        <span className="w-1.5 h-1.5 rounded-full bg-[color:var(--accent)]"></span>
-                                        The Stranger
-                                    </li>
-                                </ul>
-                            </div>
+                                    <p className="mt-4 leading-7 text-[color:var(--muted)]">{section.body}</p>
 
-                            <div>
-                                <h4 className="text-sm font-medium text-gray-900 dark:text-zinc-300 mb-2">Recently Finished</h4>
-                                <ul className="space-y-1 text-gray-600 dark:text-zinc-500 text-sm">
-                                    <li>Crime and Punishment</li>
-                                    <li>The Siddhartha</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </motion.div>
+                                    <div className="mt-5 flex flex-wrap gap-2">
+                                        {section.highlights.map((item) => (
+                                            <span
+                                                key={item}
+                                                className="rounded-full border border-[color:var(--border)] bg-[var(--card-bg)] px-3 py-1.5 text-xs font-medium text-[color:var(--foreground)]"
+                                            >
+                                                {item}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                            </motion.article>
+                        );
+                    })}
                 </div>
             </div>
         </section>
