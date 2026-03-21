@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import ThemeToggle from "@/components/ThemeToggle";
 import Navigation from "@/components/Navigation";
+import { BASE_PATH } from "@/lib/constants";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -26,16 +27,13 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ["400", "500", "600"],
 });
 
-const siteUrl = "https://divyansh7877.github.io/myPortfolio";
-const siteImagePath = "/myPortfolio/globe.svg";
-
 export const metadata: Metadata = {
   metadataBase: new URL("https://divyansh7877.github.io"),
   title: {
     default: "Div Agarwal | Portfolio",
     template: "%s | Div Agarwal",
   },
-  description: "Computer Science Graduate from NYU. AI/ML Enthusiast. Specializing in Machine Learning, Deep Learning, and Full Stack Development.",
+  description: "AI/ML Engineer building intelligent systems across research and product. Full-stack execution, RAG systems, applied ML, and data products.",
   keywords: [
     "Div Agarwal",
     "Portfolio",
@@ -53,13 +51,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: siteUrl,
+    url: "https://divyansh7877.github.io/myPortfolio",
     title: "Div Agarwal | Portfolio",
-    description: "Computer Science Graduate from NYU. AI/ML Enthusiast. Explore my projects and experience.",
+    description: "AI/ML Engineer building intelligent systems across research and product. Explore projects, experience, and writing.",
     siteName: "Div Agarwal Portfolio",
     images: [
       {
-        url: siteImagePath,
+        url: `${BASE_PATH}/globe.svg`,
         width: 1200,
         height: 630,
         alt: "Div Agarwal Portfolio",
@@ -69,9 +67,9 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Div Agarwal | Portfolio",
-    description: "Computer Science Graduate from NYU. AI/ML Enthusiast. Explore my projects and experience.",
+    description: "AI/ML Engineer building intelligent systems across research and product. Explore projects, experience, and writing.",
     creator: "@divyansh7877",
-    images: [siteImagePath],
+    images: [`${BASE_PATH}/globe.svg`],
   },
   robots: {
     index: true,
@@ -85,7 +83,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: siteUrl,
+    canonical: "https://divyansh7877.github.io/myPortfolio",
   },
 };
 
@@ -97,14 +95,12 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark scroll-smooth">
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} bg-[var(--background)] antialiased`}
+        className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased`}
       >
         <ThemeProvider>
-          <div className="site-shell">
-            <Navigation />
-            <ThemeToggle />
-            {children}
-          </div>
+          <Navigation />
+          <ThemeToggle />
+          {children}
         </ThemeProvider>
       </body>
     </html>

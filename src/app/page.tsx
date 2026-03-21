@@ -8,7 +8,6 @@ import {
   ProjectCardSkeleton,
 } from "@/components/Skeleton";
 
-// Dynamic imports with loading skeletons
 const Hero = dynamic(() => import("@/components/Hero"), {
   loading: () => <HeroSkeleton />,
 });
@@ -103,10 +102,10 @@ export default function Home() {
       "https://www.linkedin.com/in/div2201/",
       "https://github.com/divyansh7877",
     ],
-    jobTitle: "Computer Science Graduate",
+    jobTitle: "Full Stack Engineer",
     worksFor: {
       "@type": "Organization",
-      name: "NYU",
+      name: "AdsGency AI",
     },
   };
 
