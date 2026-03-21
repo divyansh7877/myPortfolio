@@ -4,7 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import ThemeToggle from "@/components/ThemeToggle";
 import Navigation from "@/components/Navigation";
-import { BASE_PATH } from "@/lib/constants";
+import { BASE_PATH, SITE_URL } from "@/lib/constants";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -28,7 +28,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://divyansh7877.github.io"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Div Agarwal | Portfolio",
     template: "%s | Div Agarwal",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://divyansh7877.github.io/myPortfolio",
+    url: SITE_URL,
     title: "Div Agarwal | Portfolio",
     description: "AI/ML Engineer building intelligent systems across research and product. Explore projects, experience, and writing.",
     siteName: "Div Agarwal Portfolio",
@@ -83,7 +83,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://divyansh7877.github.io/myPortfolio",
+    canonical: SITE_URL,
   },
 };
 

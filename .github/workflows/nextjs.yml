@@ -1,9 +1,8 @@
-name: Deploy Next.js site to Pages
+name: Redirect legacy GitHub Pages site
 
 on:
   push:
     branches: ["main"]
-
   workflow_dispatch:
 
 permissions:
@@ -19,37 +18,53 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: npm
-          cache-dependency-path: package-lock.json
       - name: Setup Pages
         uses: actions/configure-pages@v5
-      - name: Restore cache
-        uses: actions/cache@v4
-        with:
-          path: |
-            ./.next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
-          restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('package-lock.json') }}-
-      - name: Install dependencies
-        run: npm ci
-      - name: Lint
-        run: npm run lint
-      - name: Build with Next.js
-        env:
-          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
-          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
-        run: npm run build
+
+      - name: Create redirect site
+        run: |
+          mkdir -p redirect-site
+          cat > redirect-site/index.html <<'EOF'
+          <!doctype html>
+          <html lang="en">
+            <head>
+              <meta charset="utf-8" />
+              <meta name="viewport" content="width=device-width, initial-scale=1" />
+              <title>Redirecting…</title>
+              <meta http-equiv="refresh" content="0; url=https://www.div--vi.com/" />
+              <script>
+                (function () {
+                  var targetOrigin = "https://www.div--vi.com";
+                  var current = window.location;
+                  var path = current.pathname.replace(/^\/myPortfolio/, "") || "/";
+                  var target = targetOrigin + path + current.search + current.hash;
+                  window.location.replace(target);
+                })();
+              </script>
+              <style>
+                body {
+                  margin: 0;
+                  min-height: 100vh;
+                  display: grid;
+                  place-items: center;
+                  font-family: system-ui, sans-serif;
+                  background: #faf7f2;
+                  color: #1f1b16;
+                }
+                a { color: #2c5aa0; }
+              </style>
+            </head>
+            <body>
+              <p>Redirecting to <a href="https://www.div--vi.com/">www.div--vi.com</a>…</p>
+            </body>
+          </html>
+          EOF
+          cp redirect-site/index.html redirect-site/404.html
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./out
+          path: ./redirect-site
 
   deploy:
     environment:

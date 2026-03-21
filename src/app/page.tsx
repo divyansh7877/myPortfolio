@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import dynamic from "next/dynamic";
 import BackgroundAnimation from "@/components/BackgroundAnimation";
+import { SITE_URL } from "@/lib/constants";
 import {
   HeroSkeleton,
   SectionSkeleton,
@@ -97,7 +98,7 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Div Agarwal",
-    url: "https://divyansh7877.github.io/myPortfolio",
+    url: SITE_URL,
     sameAs: [
       "https://www.linkedin.com/in/div2201/",
       "https://github.com/divyansh7877",
