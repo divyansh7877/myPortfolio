@@ -116,10 +116,6 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <BackgroundAnimation />
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[30rem] bg-[radial-gradient(circle_at_top,_var(--hero-glow),_transparent_72%)]" />
-      <div className="pointer-events-none absolute inset-x-4 top-[5.5rem] h-px bg-gradient-to-r from-transparent via-[color:var(--border)] to-transparent lg:inset-x-12" />
-
       <div className="relative z-10">
         <Suspense fallback={<HeroSkeleton />}>
           <Hero />
