@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import ThemeToggle from "@/components/ThemeToggle";
 import Navigation from "@/components/Navigation";
 import { BASE_PATH, SITE_URL } from "@/lib/constants";
 
@@ -99,7 +98,6 @@ export default function RootLayout({
       >
         <ThemeProvider>
           <Navigation />
-          <ThemeToggle />
           {children}
         </ThemeProvider>
       </body>

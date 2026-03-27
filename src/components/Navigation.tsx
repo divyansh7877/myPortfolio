@@ -1,13 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
-import { Menu, X, Home, FileText } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { Menu, X, FileText, Moon, Sun } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTheme } from "./ThemeProvider";
 
 const navItems = [
-  { label: "Home", href: "#" },
   { label: "Experience", href: "#experience" },
   { label: "Skills", href: "#skills" },
   { label: "Education", href: "#education" },
@@ -16,287 +15,229 @@ const navItems = [
   { label: "Contact", href: "#contact" },
 ];
 
-export default function Navigation() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const pathname = usePathname();
-  const isBlogPage = pathname?.startsWith("/blog") || pathname?.startsWith("/myPortfolio/blog");
-  const { scrollYProgress } = useScroll();
-  const progressScaleX = useSpring(scrollYProgress, {
-    stiffness: 140,
-    damping: 28,
-    mass: 0.2,
-  });
+function ThemeButton() {
+  const { theme, toggleTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
-
-      const sections = navItems
-        .filter((item) => item.href !== "#")
-        .map((item) => item.href.replace("#", ""));
-
-      let currentSection = "";
-
-      for (const section of sections.reverse()) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 150) {
-            currentSection = section;
-            break;
-          }
-        }
-      }
-
-      setActiveSection(window.scrollY < 100 ? "" : currentSection);
-    };
-
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    setMounted(true);
   }, []);
 
-  const handleNavClick = (href: string) => {
-    setIsMobileMenuOpen(false);
+  if (!mounted) return <div className="h-8 w-8" />;
 
+  return (
+    <button
+      onClick={toggleTheme}
+      className="flex h-8 w-8 items-center justify-center rounded-md text-[color:var(--text-secondary)] transition-colors hover:text-[color:var(--text)]"
+      aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+    >
+      {theme === "dark" ? (
+        <Sun className="h-4 w-4" />
+      ) : (
+        <Moon className="h-4 w-4" />
+      )}
+    </button>
+  );
+}
+
+export default function Navigation() {
+  const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const pathname = usePathname();
+  const isBlogPage =
+    pathname?.startsWith("/blog") ||
+    pathname?.startsWith("/myPortfolio/blog");
+
+  useEffect(() => {
+    const onScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+      setScrolled(scrollTop > 40);
+      setScrollProgress(docHeight > 0 ? scrollTop / docHeight : 0);
+
+      const sections = navItems.map((i) => i.href.replace("#", ""));
+      let current = "";
+      for (const id of [...sections].reverse()) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= 120) {
+          current = id;
+          break;
+        }
+      }
+      setActiveSection(current);
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const scrollTo = (href: string) => {
+    setMobileOpen(false);
     if (href === "#") {
       window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
-
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
   };
 
   if (isBlogPage) {
     return (
-      <>
-        <motion.nav
-          initial={{ y: -100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          className="fixed left-0 right-0 top-0 z-40 px-4 py-4"
-        >
-          <div className="mx-auto max-w-6xl">
-            <div className="shell-panel surface-grid rounded-[1.75rem] px-3 py-3">
-              <div className="flex items-center justify-between gap-3 px-2 sm:px-3">
-                <Link
-                  href="/"
-                  className="flex items-center gap-3 rounded-2xl px-3 py-2 text-sm font-medium text-[color:var(--foreground)] transition-colors hover:text-[color:var(--accent)]"
-                >
-                  <Home className="h-4 w-4" />
-                  <span>Back to Portfolio</span>
-                </Link>
-
-                <div className="hidden items-center gap-2 md:flex">
-                  <span className="section-kicker text-[color:var(--muted)]">Journal</span>
-                  <span className="status-dot" />
-                </div>
-
-                <Link
-                  href="/blog"
-                  className="data-pill border-[color:var(--accent-soft)] text-[color:var(--accent)]"
-                >
-                  <FileText className="h-3.5 w-3.5" />
-                  Blog
-                </Link>
-              </div>
-            </div>
+      <header className="fixed inset-x-0 top-0 z-40 border-b border-[color:var(--border)] bg-[color:var(--bg)]/95 backdrop-blur-sm">
+        <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
+          <Link
+            href="/"
+            className="text-sm font-medium text-[color:var(--text-secondary)] transition-colors hover:text-[color:var(--text)]"
+          >
+            &larr; Portfolio
+          </Link>
+          <span className="font-mono text-xs uppercase tracking-widest text-[color:var(--text-secondary)]">
+            Journal
+          </span>
+          <div className="flex items-center gap-3">
+            <Link
+              href="/blog"
+              className="flex items-center gap-1.5 text-sm text-[color:var(--accent)] hover:text-[color:var(--accent-hover)] transition-colors"
+            >
+              <FileText className="h-3.5 w-3.5" />
+              Blog
+            </Link>
+            <ThemeButton />
           </div>
-        </motion.nav>
-
-        <motion.div className="fixed left-0 right-0 top-0 z-50 h-px bg-transparent">
-          <motion.div
-            className="h-full origin-left bg-gradient-to-r from-[color:var(--accent)] via-[color:var(--accent-alt)] to-[color:var(--accent)]"
-            style={{ scaleX: progressScaleX }}
-          />
-        </motion.div>
-      </>
+        </div>
+        <div
+          className="h-px origin-left bg-[color:var(--accent)] transition-transform duration-100"
+          style={{ transform: `scaleX(${scrollProgress})` }}
+          aria-hidden="true"
+        />
+      </header>
     );
   }
 
   return (
-    <>
-      <motion.nav
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.3 }}
-        className="fixed left-0 right-0 top-0 z-40 px-4 py-4"
-      >
-        <div className="mx-auto max-w-6xl">
-          <div
-            className={`shell-panel surface-grid rounded-[1.75rem] px-3 py-3 transition-all duration-300 ${
-              isScrolled ? "border-[color:var(--accent-soft)] shadow-[0_28px_90px_-48px_var(--shadow-accent)]" : ""
-            }`}
+    <header
+      className={`fixed inset-x-0 top-0 z-40 border-b transition-colors duration-200 ${
+        scrolled
+          ? "border-[color:var(--border)] bg-[color:var(--bg)]/95 backdrop-blur-sm"
+          : "border-transparent bg-transparent"
+      }`}
+    >
+      {/* Desktop nav */}
+      <div className="mx-auto hidden h-14 max-w-5xl items-center justify-between px-6 md:flex">
+        {/* Logo / name */}
+        <button
+          onClick={() => scrollTo("#")}
+          className="font-display text-sm font-semibold tracking-tight text-[color:var(--text)] transition-colors hover:text-[color:var(--accent)]"
+        >
+          Div Agarwal
+        </button>
+
+        {/* Links */}
+        <nav aria-label="Main navigation">
+          <ul className="flex items-center gap-1">
+            {navItems.map((item) => {
+              const isActive = activeSection === item.href.replace("#", "");
+              return (
+                <li key={item.label}>
+                  <button
+                    onClick={() => scrollTo(item.href)}
+                    className={`rounded px-3 py-1.5 text-sm transition-colors ${
+                      isActive
+                        ? "text-[color:var(--text)] font-medium"
+                        : "text-[color:var(--text-secondary)] hover:text-[color:var(--text)]"
+                    }`}
+                  >
+                    {item.label}
+                    {isActive && (
+                      <span className="sr-only">(current section)</span>
+                    )}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+
+        {/* Right actions */}
+        <div className="flex items-center gap-2">
+          <Link
+            href="/blog"
+            className="flex items-center gap-1.5 rounded px-3 py-1.5 text-sm text-[color:var(--text-secondary)] transition-colors hover:text-[color:var(--accent)]"
           >
-            <div className="hidden items-center gap-3 md:flex">
-              <button
-                onClick={() => handleNavClick("#")}
-                className="group flex items-center gap-3 rounded-2xl px-4 py-2.5 text-left transition-colors hover:text-[color:var(--accent)]"
-              >
-                <span className="status-dot" />
-                <div className="leading-tight">
-                  <p className="font-mono text-[0.62rem] uppercase tracking-[0.24em] text-[color:var(--muted)]">
-                    Portfolio
-                  </p>
-                  <p className="text-sm font-semibold text-[color:var(--foreground)]">Div Agarwal</p>
-                </div>
-              </button>
+            <FileText className="h-3.5 w-3.5" />
+            Blog
+          </Link>
+          <ThemeButton />
+        </div>
+      </div>
 
-              <div className="h-10 w-px bg-[color:var(--border)]" />
+      {/* Mobile nav */}
+      <div className="flex h-14 items-center justify-between px-4 md:hidden">
+        <button
+          onClick={() => scrollTo("#")}
+          className="font-display text-sm font-semibold text-[color:var(--text)]"
+        >
+          Div Agarwal
+        </button>
+        <div className="flex items-center gap-1">
+          <ThemeButton />
+          <button
+            onClick={() => setMobileOpen((o) => !o)}
+            className="flex h-8 w-8 items-center justify-center rounded-md text-[color:var(--text-secondary)] transition-colors hover:text-[color:var(--text)]"
+            aria-label="Toggle navigation menu"
+            aria-expanded={mobileOpen}
+          >
+            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
+      </div>
 
-              <div className="flex flex-1 items-center justify-center gap-1">
-                {navItems.map((item) => {
-                  const isActive =
-                    item.href === "#"
-                      ? activeSection === "" && isScrolled
-                      : activeSection === item.href.replace("#", "");
-
-                  return (
+      {/* Mobile dropdown */}
+      {mobileOpen && (
+        <div className="border-t border-[color:var(--border)] bg-[color:var(--bg)] px-4 pb-4 md:hidden">
+          <nav aria-label="Mobile navigation">
+            <ul className="space-y-1 pt-2">
+              {navItems.map((item) => {
+                const isActive = activeSection === item.href.replace("#", "");
+                return (
+                  <li key={item.label}>
                     <button
-                      key={item.label}
-                      onClick={() => handleNavClick(item.href)}
-                      className={`relative rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
+                      onClick={() => scrollTo(item.href)}
+                      className={`w-full rounded px-3 py-2.5 text-left text-sm transition-colors ${
                         isActive
-                          ? "text-[color:var(--foreground)]"
-                          : "text-[color:var(--muted)] hover:text-[color:var(--foreground)]"
+                          ? "bg-[color:var(--surface)] font-medium text-[color:var(--text)]"
+                          : "text-[color:var(--text-secondary)] hover:text-[color:var(--text)]"
                       }`}
                     >
-                      {isActive && (
-                        <motion.div
-                          layoutId="activeNav"
-                          className="absolute inset-0 rounded-full border border-[color:var(--accent-soft)] bg-[color:var(--accent-soft)]"
-                          transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                        />
-                      )}
-                      <span className="relative z-10">{item.label}</span>
+                      {item.label}
                     </button>
-                  );
-                })}
-              </div>
-
-              <Link
-                href="/blog"
-                className="data-pill border-[color:var(--accent-soft)] text-[color:var(--accent)]"
-              >
-                <FileText className="h-3.5 w-3.5" />
-                Blog
-              </Link>
-            </div>
-
-            <div className="flex items-center justify-between px-2 md:hidden">
-              <Link
-                href="/"
-                className="flex items-center gap-3 rounded-2xl px-2 py-1.5 text-sm font-semibold text-[color:var(--foreground)]"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick("#");
-                }}
-              >
-                <span className="status-dot" />
-                <span>Div Agarwal</span>
-              </Link>
-
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="rounded-2xl border border-[color:var(--border)] bg-[var(--code-bg)] p-2.5 transition-colors hover:border-[color:var(--accent)]"
-                aria-label="Toggle menu"
-              >
-                {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-              </button>
-            </div>
-          </div>
-        </div>
-      </motion.nav>
-
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-30 md:hidden"
-          >
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-slate-950/50 backdrop-blur-sm"
-              onClick={() => setIsMobileMenuOpen(false)}
-            />
-
-            <motion.div
-              initial={{ opacity: 0, y: -20, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -20, scale: 0.95 }}
-              transition={{ duration: 0.2 }}
-              className="shell-panel surface-grid absolute left-4 right-4 top-24 rounded-[1.75rem] p-4"
-            >
-              <div className="mb-4 flex items-center justify-between rounded-2xl border border-[color:var(--border)] bg-[var(--code-bg)] px-4 py-3">
-                <div>
-                  <p className="font-mono text-[0.65rem] uppercase tracking-[0.22em] text-[color:var(--muted)]">
-                    Navigation
-                  </p>
-                  <p className="text-sm font-medium text-[color:var(--foreground)]">Homepage sections</p>
-                </div>
-
+                  </li>
+                );
+              })}
+              <li>
                 <Link
                   href="/blog"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="data-pill px-3 py-2 text-[color:var(--accent)]"
+                  onClick={() => setMobileOpen(false)}
+                  className="flex w-full items-center gap-2 rounded px-3 py-2.5 text-sm text-[color:var(--text-secondary)] hover:text-[color:var(--accent)] transition-colors"
                 >
                   <FileText className="h-3.5 w-3.5" />
                   Blog
                 </Link>
-              </div>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      )}
 
-              <div className="space-y-1">
-                {navItems.map((item, index) => {
-                  const isActive =
-                    item.href === "#"
-                      ? activeSection === ""
-                      : activeSection === item.href.replace("#", "");
-
-                  return (
-                    <motion.button
-                      key={item.label}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.05 }}
-                      onClick={() => handleNavClick(item.href)}
-                      className={`flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-left transition-all ${
-                        isActive
-                          ? "border border-[color:var(--accent-soft)] bg-[color:var(--accent-soft)] text-[color:var(--foreground)]"
-                          : "text-[color:var(--muted)] hover:bg-[var(--code-bg)] hover:text-[color:var(--foreground)]"
-                      }`}
-                    >
-                      {item.label === "Home" && <Home className="h-4 w-4" />}
-                      <span className="font-medium">{item.label}</span>
-                      {isActive && (
-                        <motion.div
-                          layoutId="mobileActive"
-                          className="ml-auto h-2.5 w-2.5 rounded-full bg-[color:var(--accent)]"
-                        />
-                      )}
-                    </motion.button>
-                  );
-                })}
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <motion.div className="fixed left-0 right-0 top-0 z-50 h-px bg-transparent">
-        <motion.div
-          className="h-full origin-left bg-gradient-to-r from-[color:var(--accent)] via-[color:var(--accent-alt)] to-[color:var(--accent)]"
-          style={{ scaleX: progressScaleX }}
-        />
-      </motion.div>
-    </>
+      {/* Scroll progress */}
+      <div
+        className="h-px origin-left bg-[color:var(--accent)] transition-transform duration-100"
+        style={{ transform: `scaleX(${scrollProgress})` }}
+        aria-hidden="true"
+      />
+    </header>
   );
 }
