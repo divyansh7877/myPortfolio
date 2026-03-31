@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, User, Mail, Phone, MessageSquare, Check, AlertCircle, Sparkles } from "lucide-react";
+import { Send, User, Mail, Phone, MessageSquare, Check, AlertCircle } from "lucide-react";
 
 const BASIN_FORM_ENDPOINT = "https://usebasin.com/f/142559bbead8";
 
@@ -98,31 +98,20 @@ export default function Contact() {
   `;
 
   return (
-    <section id="contact" className="py-16 md:py-24 relative overflow-hidden px-4 sm:px-6 lg:px-8">
-      {/* Subtle background accent */}
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[var(--accent-soft)] rounded-full blur-3xl" />
-      </div>
-
-      <div className="max-w-2xl mx-auto relative z-10">
+    <section id="contact" className="py-12 relative overflow-hidden px-4 sm:px-6">
+      <div className="max-w-2xl relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="mb-8"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--code-bg)] border border-[color:var(--border)] mb-6">
-            <Sparkles className="w-4 h-4 text-[color:var(--accent)]" />
-            <span className="text-sm text-[color:var(--muted)]">Let&apos;s Connect</span>
-          </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-[color:var(--foreground)] to-[color:var(--muted)] bg-clip-text text-transparent">
-              Have a question or want to work together?
-            </span>
+          <h2 className="text-sm font-semibold uppercase tracking-widest text-[color:var(--accent)] mb-3">
+            Contact
           </h2>
-          <p className="text-[color:var(--muted)] max-w-lg mx-auto">
-            Drop me a message and I&apos;ll get back to you as soon as I can. No pressure, just a friendly conversation.
+          <p className="text-[color:var(--text-secondary)] text-sm leading-relaxed">
+            Drop me a message — I&apos;ll get back to you as soon as I can.
           </p>
         </motion.div>
 

@@ -9,9 +9,7 @@ import { useTheme } from "./ThemeProvider";
 const navItems = [
   { label: "Experience", href: "#experience" },
   { label: "Skills", href: "#skills" },
-  { label: "Education", href: "#education" },
   { label: "Projects", href: "#projects" },
-  { label: "Hackathons", href: "#hackathons" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -163,6 +161,12 @@ export default function Navigation() {
 
         {/* Right actions */}
         <div className="flex items-center gap-2">
+          <Link
+            href="/projects"
+            className="flex items-center gap-1.5 rounded px-3 py-1.5 text-sm text-[color:var(--text-secondary)] transition-colors hover:text-[color:var(--accent)]"
+          >
+            All Projects
+          </Link>
           <Link
             href="/blog"
             className="flex items-center gap-1.5 rounded px-3 py-1.5 text-sm text-[color:var(--text-secondary)] transition-colors hover:text-[color:var(--accent)]"

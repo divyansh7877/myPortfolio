@@ -1,97 +1,15 @@
 import { Suspense } from "react";
 import dynamic from "next/dynamic";
-import BackgroundAnimation from "@/components/BackgroundAnimation";
 import { SITE_URL } from "@/lib/constants";
-import {
-  HeroSkeleton,
-  SectionSkeleton,
-  SkillsSkeleton,
-  ProjectCardSkeleton,
-} from "@/components/Skeleton";
 
-const Hero = dynamic(() => import("@/components/Hero"), {
-  loading: () => <HeroSkeleton />,
-});
-
-const Experience = dynamic(() => import("@/components/Experience"), {
-  loading: () => <SectionSkeleton />,
-});
-
-const Skills = dynamic(() => import("@/components/Skills"), {
-  loading: () => <SkillsSkeleton />,
-});
-
-const Education = dynamic(() => import("@/components/Education"), {
-  loading: () => (
-    <div className="py-20 px-4 bg-[var(--surface)]">
-      <SectionSkeleton />
-    </div>
-  ),
-});
-
-const Projects = dynamic(() => import("@/components/Projects"), {
-  loading: () => (
-    <section className="py-20 px-4">
-      <div className="max-w-6xl mx-auto space-y-8">
-        <div className="h-10 w-40 bg-[var(--code-bg)] rounded-lg animate-pulse" />
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[...Array(6)].map((_, i) => (
-            <ProjectCardSkeleton key={i} />
-          ))}
-        </div>
-      </div>
-    </section>
-  ),
-});
-
-const Hackathons = dynamic(() => import("@/components/Hackathons"), {
-  loading: () => <SectionSkeleton />,
-});
-
-const Personal = dynamic(() => import("@/components/Personal"), {
-  loading: () => (
-    <div className="py-20 px-4 bg-[var(--surface)]">
-      <SectionSkeleton />
-    </div>
-  ),
-});
-
-const Contact = dynamic(() => import("@/components/Contact"), {
-  loading: () => (
-    <section className="py-24 px-4">
-      <div className="max-w-2xl mx-auto space-y-8">
-        <div className="h-32 w-full bg-[var(--code-bg)] rounded-xl animate-pulse" />
-        <div className="space-y-4">
-          <div className="h-12 w-full bg-[var(--code-bg)] rounded-xl animate-pulse" />
-          <div className="grid grid-cols-2 gap-4">
-            <div className="h-12 w-full bg-[var(--code-bg)] rounded-xl animate-pulse" />
-            <div className="h-12 w-full bg-[var(--code-bg)] rounded-xl animate-pulse" />
-          </div>
-          <div className="h-32 w-full bg-[var(--code-bg)] rounded-xl animate-pulse" />
-          <div className="h-12 w-full bg-[var(--code-bg)] rounded-xl animate-pulse" />
-        </div>
-      </div>
-    </section>
-  ),
-});
-
-const Footer = dynamic(() => import("@/components/Footer"), {
-  loading: () => (
-    <footer className="py-12 border-t border-[color:var(--border)] bg-[var(--surface)]">
-      <div className="max-w-4xl mx-auto px-4 flex flex-col items-center gap-6">
-        <div className="h-8 w-48 bg-[var(--code-bg)] rounded animate-pulse" />
-        <div className="flex gap-4">
-          {[...Array(4)].map((_, i) => (
-            <div
-              key={i}
-              className="h-10 w-24 bg-[var(--code-bg)] rounded-full animate-pulse"
-            />
-          ))}
-        </div>
-      </div>
-    </footer>
-  ),
-});
+const Hero = dynamic(() => import("@/components/Hero"));
+const Experience = dynamic(() => import("@/components/Experience"));
+const Education = dynamic(() => import("@/components/Education"));
+const Skills = dynamic(() => import("@/components/Skills"));
+const ProjectsCompact = dynamic(() => import("@/components/ProjectsCompact"));
+const Personal = dynamic(() => import("@/components/Personal"));
+const Contact = dynamic(() => import("@/components/Contact"));
+const Footer = dynamic(() => import("@/components/Footer"));
 
 export default function Home() {
   const jsonLd = {
@@ -111,103 +29,54 @@ export default function Home() {
   };
 
   return (
-    <main className="page-shell min-h-screen bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300">
+    <main className="min-h-screen bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="relative z-10">
-        <Suspense fallback={<HeroSkeleton />}>
+      {/* Narrow reading-column wrapper */}
+      <div className="mx-auto max-w-2xl">
+        <Suspense>
           <Hero />
         </Suspense>
 
-        <Suspense fallback={<SectionSkeleton />}>
+        <hr className="mx-4 border-[color:var(--border)] sm:mx-6" />
+
+        <Suspense>
           <Experience />
         </Suspense>
 
-        <Suspense fallback={<SkillsSkeleton />}>
-          <Skills />
-        </Suspense>
+        <hr className="mx-4 border-[color:var(--border)] sm:mx-6" />
 
-        <Suspense
-          fallback={
-            <div className="py-20 px-4 bg-[var(--surface)]">
-              <SectionSkeleton />
-            </div>
-          }
-        >
+        <Suspense>
           <Education />
         </Suspense>
 
-        <Suspense
-          fallback={
-            <section className="py-20 px-4">
-              <div className="max-w-6xl mx-auto space-y-8">
-                <div className="h-10 w-40 bg-[var(--code-bg)] rounded-lg animate-pulse" />
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {[...Array(6)].map((_, i) => (
-                    <ProjectCardSkeleton key={i} />
-                  ))}
-                </div>
-              </div>
-            </section>
-          }
-        >
-          <Projects />
+        <hr className="mx-4 border-[color:var(--border)] sm:mx-6" />
+
+        <Suspense>
+          <Skills />
         </Suspense>
 
-        <Suspense fallback={<SectionSkeleton />}>
-          <Hackathons />
+        <hr className="mx-4 border-[color:var(--border)] sm:mx-6" />
+
+        <Suspense>
+          <ProjectsCompact />
         </Suspense>
 
-        <Suspense
-          fallback={
-            <div className="py-20 px-4 bg-[var(--surface)]">
-              <SectionSkeleton />
-            </div>
-          }
-        >
+        <hr className="mx-4 border-[color:var(--border)] sm:mx-6" />
+
+        <Suspense>
           <Personal />
         </Suspense>
 
-        <Suspense
-          fallback={
-            <section className="py-24 px-4">
-              <div className="max-w-2xl mx-auto space-y-8">
-                <div className="h-32 w-full bg-[var(--code-bg)] rounded-xl animate-pulse" />
-                <div className="space-y-4">
-                  <div className="h-12 w-full bg-[var(--code-bg)] rounded-xl animate-pulse" />
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="h-12 w-full bg-[var(--code-bg)] rounded-xl animate-pulse" />
-                    <div className="h-12 w-full bg-[var(--code-bg)] rounded-xl animate-pulse" />
-                  </div>
-                  <div className="h-32 w-full bg-[var(--code-bg)] rounded-xl animate-pulse" />
-                  <div className="h-12 w-full bg-[var(--code-bg)] rounded-xl animate-pulse" />
-                </div>
-              </div>
-            </section>
-          }
-        >
+        <hr className="mx-4 border-[color:var(--border)] sm:mx-6" />
+
+        <Suspense>
           <Contact />
         </Suspense>
 
-        <Suspense
-          fallback={
-            <footer className="py-12 border-t border-[color:var(--border)] bg-[var(--surface)]">
-              <div className="max-w-4xl mx-auto px-4 flex flex-col items-center gap-6">
-                <div className="h-8 w-48 bg-[var(--code-bg)] rounded animate-pulse" />
-                <div className="flex gap-4">
-                  {[...Array(4)].map((_, i) => (
-                    <div
-                      key={i}
-                      className="h-10 w-24 bg-[var(--code-bg)] rounded-full animate-pulse"
-                    />
-                  ))}
-                </div>
-              </div>
-            </footer>
-          }
-        >
+        <Suspense>
           <Footer />
         </Suspense>
       </div>
