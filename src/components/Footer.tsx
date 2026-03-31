@@ -11,8 +11,6 @@ interface DocumentLink {
 const documents: DocumentLink[] = [
   { name: "Resume", href: "/myPortfolio/Divyansh_Agarwal_Resume.pdf" },
   { name: "Transcripts", href: "/myPortfolio/Divyansh_Agarwal_Transcript_og.pdf" },
-  { name: "PyMetrics", href: "/myPortfolio/Divyansh_Agarwal_PyMetrics.pdf" },
-  { name: "Diploma", href: "/myPortfolio/Diploma Divyansh.pdf" },
 ];
 
 export default function Footer() {
@@ -82,7 +80,7 @@ export default function Footer() {
         </div>
 
         <p className="text-[color:var(--muted)] text-sm">
-          © {new Date().getFullYear()} Div Agarwal. Built with Next.js & Tailwind CSS.
+          © {new Date().getFullYear()} Div Agarwal.
         </p>
       </div>
     </footer>

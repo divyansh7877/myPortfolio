@@ -9,10 +9,9 @@ import { useTheme } from "./ThemeProvider";
 const navItems = [
   { label: "Experience", href: "#experience" },
   { label: "Skills", href: "#skills" },
-  { label: "Education", href: "#education" },
   { label: "Projects", href: "#projects" },
-  { label: "Hackathons", href: "#hackathons" },
   { label: "Contact", href: "#contact" },
+  { label: "Book a call", href: "#book" },
 ];
 
 function ThemeButton() {
@@ -46,45 +45,13 @@ export default function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const pathname = usePathname();
-  const isBlogPage =
+  const isSubPage =
     pathname?.startsWith("/blog") ||
-    pathname?.startsWith("/myPortfolio/blog");
+    pathname?.startsWith("/myPortfolio/blog") ||
+    pathname?.startsWith("/projects") ||
+    pathname?.startsWith("/myPortfolio/projects");
 
-  useEffect(() => {
-    const onScroll = () => {
-      const scrollTop = window.scrollY;
-      const docHeight =
-        document.documentElement.scrollHeight - window.innerHeight;
-      setScrolled(scrollTop > 40);
-      setScrollProgress(docHeight > 0 ? scrollTop / docHeight : 0);
-
-      const sections = navItems.map((i) => i.href.replace("#", ""));
-      let current = "";
-      for (const id of [...sections].reverse()) {
-        const el = document.getElementById(id);
-        if (el && el.getBoundingClientRect().top <= 120) {
-          current = id;
-          break;
-        }
-      }
-      setActiveSection(current);
-    };
-
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  const scrollTo = (href: string) => {
-    setMobileOpen(false);
-    if (href === "#") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      return;
-    }
-    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  if (isBlogPage) {
+  if (isSubPage) {
     return (
       <header className="fixed inset-x-0 top-0 z-40 border-b border-[color:var(--border)] bg-[color:var(--bg)]/95 backdrop-blur-sm">
         <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
@@ -95,7 +62,7 @@ export default function Navigation() {
             &larr; Portfolio
           </Link>
           <span className="font-mono text-xs uppercase tracking-widest text-[color:var(--text-secondary)]">
-            Journal
+            {pathname?.startsWith("/projects") || pathname?.startsWith("/myPortfolio/projects") ? "Projects" : "Journal"}
           </span>
           <div className="flex items-center gap-3">
             <Link
@@ -164,6 +131,12 @@ export default function Navigation() {
         {/* Right actions */}
         <div className="flex items-center gap-2">
           <Link
+            href="/projects"
+            className="flex items-center gap-1.5 rounded px-3 py-1.5 text-sm text-[color:var(--text-secondary)] transition-colors hover:text-[color:var(--accent)]"
+          >
+            All Projects
+          </Link>
+          <Link
             href="/blog"
             className="flex items-center gap-1.5 rounded px-3 py-1.5 text-sm text-[color:var(--text-secondary)] transition-colors hover:text-[color:var(--accent)]"
           >
@@ -217,6 +190,15 @@ export default function Navigation() {
                   </li>
                 );
               })}
+              <li>
+                <Link
+                  href="/projects"
+                  onClick={() => setMobileOpen(false)}
+                  className="flex w-full items-center gap-2 rounded px-3 py-2.5 text-sm text-[color:var(--text-secondary)] hover:text-[color:var(--accent)] transition-colors"
+                >
+                  All Projects
+                </Link>
+              </li>
               <li>
                 <Link
                   href="/blog"
