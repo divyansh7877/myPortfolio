@@ -86,17 +86,13 @@ export default function Navigation() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-40 border-b transition-colors duration-200 ${
-        scrolled
-          ? "border-[color:var(--border)] bg-[color:var(--bg)]/95 backdrop-blur-sm"
-          : "border-transparent bg-transparent"
-      }`}
+      className={`fixed inset-x-0 top-0 z-40 border-b border-[color:var(--border)] bg-[color:var(--bg)]/95 backdrop-blur-sm transition-colors duration-200`}
     >
       {/* Desktop nav */}
       <div className="mx-auto hidden h-14 max-w-5xl items-center justify-between px-6 md:flex">
         {/* Logo / name */}
         <button
-          onClick={() => scrollTo("#")}
+          onClick={() => window.scrollTo({ top: 0 })}
           className="font-display text-sm font-semibold tracking-tight text-[color:var(--text)] transition-colors hover:text-[color:var(--accent)]"
         >
           Div Agarwal
@@ -110,7 +106,7 @@ export default function Navigation() {
               return (
                 <li key={item.label}>
                   <button
-                    onClick={() => scrollTo(item.href)}
+                    onClick={() => document.getElementById(item.href.replace("#", ""))?.scrollIntoView({ behavior: "smooth" })}
                     className={`rounded px-3 py-1.5 text-sm transition-colors ${
                       isActive
                         ? "text-[color:var(--text)] font-medium"
@@ -150,7 +146,7 @@ export default function Navigation() {
       {/* Mobile nav */}
       <div className="flex h-14 items-center justify-between px-4 md:hidden">
         <button
-          onClick={() => scrollTo("#")}
+          onClick={() => window.scrollTo({ top: 0 })}
           className="font-display text-sm font-semibold text-[color:var(--text)]"
         >
           Div Agarwal
@@ -178,7 +174,7 @@ export default function Navigation() {
                 return (
                   <li key={item.label}>
                     <button
-                      onClick={() => scrollTo(item.href)}
+                      onClick={() => document.getElementById(item.href.replace("#", ""))?.scrollIntoView({ behavior: "smooth" })}
                       className={`w-full rounded px-3 py-2.5 text-left text-sm transition-colors ${
                         isActive
                           ? "bg-[color:var(--surface)] font-medium text-[color:var(--text)]"

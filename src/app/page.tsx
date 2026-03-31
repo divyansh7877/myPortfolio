@@ -36,7 +36,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       {/* Narrow reading-column wrapper */}
-      <div className="mx-auto max-w-2xl">
+      <div className="mx-auto max-w-4xl px-4 sm:px-6">
         <Suspense>
           <Hero />
         </Suspense>
