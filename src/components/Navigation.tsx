@@ -11,6 +11,7 @@ const navItems = [
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
   { label: "Contact", href: "#contact" },
+  { label: "Book a call", href: "#book" },
 ];
 
 function ThemeButton() {

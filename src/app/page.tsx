@@ -9,6 +9,7 @@ const Skills = dynamic(() => import("@/components/Skills"));
 const ProjectsCompact = dynamic(() => import("@/components/ProjectsCompact"));
 const Personal = dynamic(() => import("@/components/Personal"));
 const Contact = dynamic(() => import("@/components/Contact"));
+const CalEmbed = dynamic(() => import("@/components/CalEmbed"));
 const Footer = dynamic(() => import("@/components/Footer"));
 
 export default function Home() {
@@ -74,6 +75,12 @@ export default function Home() {
 
         <Suspense>
           <Contact />
+        </Suspense>
+
+        <hr className="mx-4 border-[color:var(--border)] sm:mx-6" />
+
+        <Suspense>
+          <CalEmbed />
         </Suspense>
 
         <Suspense>
