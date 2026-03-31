@@ -1,38 +1,50 @@
 "use client";
 
-import Cal, { getCalApi } from "@calcom/embed-react";
 import { useEffect } from "react";
+
+const CAL_NAMESPACE = "div-vi-booking";
+const CAL_LINK = "div-vi";
 
 export default function CalEmbed() {
   useEffect(() => {
-    (async () => {
-      const cal = await getCalApi({ namespace: "div-vi" });
+    // Avoid double-loading the script
+    if (document.getElementById("cal-embed-script")) return;
+
+    const script = document.createElement("script");
+    script.id = "cal-embed-script";
+    script.src = "https://app.cal.com/embed/embed.js";
+    script.async = true;
+    script.onload = () => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const cal = (window as any).Cal;
+      if (!cal) return;
+      cal("init", CAL_NAMESPACE, { origin: "https://cal.com" });
+      cal("inline", {
+        elementOrSelector: `#cal-inline-${CAL_NAMESPACE}`,
+        calLink: CAL_LINK,
+        layout: "month_view",
+      });
       cal("ui", {
         hideEventTypeDetails: false,
         layout: "month_view",
       });
-    })();
+    };
+    document.head.appendChild(script);
   }, []);
 
   return (
     <section id="book" className="py-12 px-4 sm:px-6">
       <div className="max-w-2xl">
-        <h2 className="text-sm font-semibold uppercase tracking-widest text-[color:var(--accent)] mb-2">
+        <p className="text-sm font-semibold uppercase tracking-widest text-[color:var(--accent)] mb-2">
           Book a call
-        </h2>
-        <p className="text-[color:var(--text-secondary)] text-sm leading-relaxed mb-6">
-          Pick a time that works — 30 minutes, no agenda required.
         </p>
-      </div>
-      <div
-        className="rounded-xl overflow-hidden border border-[color:var(--border)]"
-        style={{ maxWidth: "900px" }}
-      >
-        <Cal
-          namespace="div-vi"
-          calLink="div-vi"
-          style={{ width: "100%", height: "100%", overflow: "scroll" }}
-          config={{ layout: "month_view" }}
+        <p className="text-sm text-[color:var(--text-secondary)] mb-6 leading-relaxed">
+          Pick a slot and let&apos;s talk.
+        </p>
+        <div
+          id={`cal-inline-${CAL_NAMESPACE}`}
+          className="w-full rounded-xl overflow-hidden border border-[color:var(--border)]"
+          style={{ minHeight: 500 }}
         />
       </div>
     </section>

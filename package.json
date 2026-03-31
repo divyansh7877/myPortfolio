@@ -13,7 +13,6 @@
     "@react-three/fiber": "^9.4.0",
     "@supabase/supabase-js": "^2.84.0",
     "@tailwindcss/typography": "^0.5.19",
-    "@calcom/embed-react": "^1.5.0",
     "framer-motion": "^12.23.24",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.554.0",
