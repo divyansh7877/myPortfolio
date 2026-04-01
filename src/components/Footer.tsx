@@ -9,8 +9,8 @@ interface DocumentLink {
 }
 
 const documents: DocumentLink[] = [
-  { name: "Resume", href: "/myPortfolio/Divyansh_Agarwal_Resume.pdf" },
-  { name: "Transcripts", href: "/myPortfolio/Divyansh_Agarwal_Transcript_og.pdf" },
+  { name: "Resume", href: "/Divyansh_Agarwal_Resume.pdf" },
+  { name: "Transcripts", href: "/Divyansh_Agarwal_Transcript_og.pdf" },
 ];
 
 export default function Footer() {
