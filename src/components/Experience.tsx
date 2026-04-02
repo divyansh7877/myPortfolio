@@ -1,10 +1,10 @@
 export default function Experience() {
   const experiences = [
     {
-      title: "Full Stack Engineer",
+      title: "Software Engineer",
       company: "AdsGency AI",
       companyUrl: "https://adsgency.ai",
-      period: "Feb 2026 – Present",
+      period: "Feb 2026 – March 2026",
       location: "San Francisco, CA",
       bullets: [
         "Built a natural language querying system generating SQL via DuckDB across multiple data sources.",
@@ -33,12 +33,12 @@ export default function Experience() {
       ],
     },
     {
-      title: "Computer Vision Intern",
+      title: "Research Engineer",
       company: "Enord",
       period: "Nov 2022 – Feb 2023",
       location: "New Delhi, India",
       bullets: [
-        "Developed lightweight depth estimation models with stereo cameras and PyTorch/CUDA for drone deployment.",
+        "Worked on state of the art depth estimation models using Deep Learning for Autonomous Drone Navigation with ROS and Nvidia systems.",
       ],
     },
     {

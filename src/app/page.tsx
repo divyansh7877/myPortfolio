@@ -22,7 +22,7 @@ export default function Home() {
       "https://www.linkedin.com/in/div2201/",
       "https://github.com/divyansh7877",
     ],
-    jobTitle: "Full Stack Engineer",
+    jobTitle: "Software Engineer",
     worksFor: {
       "@type": "Organization",
       name: "AdsGency AI",

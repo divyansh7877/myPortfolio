@@ -25,7 +25,7 @@ export default function Hero() {
             I build AI systems that have to survive both research constraints and production reality: retrieval
             pipelines, ML workflows, and full-stack interfaces that move from prototype to shipped product.
             My work spans applied research at NYU&apos;s Neuroinformatics Lab — building event-detection models
-            (0.92 F1) and a browser tool used by neuroscientists — and engineering work at{" "}
+            (0.92 F1) and a browser tool used by neuroscientists — and engineering worked at{" "}
             <a
               href="https://adsgency.ai"
               target="_blank"
@@ -34,7 +34,7 @@ export default function Hero() {
             >
               AdsGency AI
             </a>
-            , where I&apos;m building natural language querying systems over multi-source data.
+            , where I built natural language querying systems over multi-source data.
           </p>
           <p>
             I care about the gap between a model that works in a notebook and a system that holds up when
@@ -45,8 +45,8 @@ export default function Hero() {
 
         {/* Current status */}
         <p className="text-sm text-[color:var(--text-secondary)]">
-          <span className="font-medium text-[color:var(--text)]">Currently:</span>{" "}
-          Full Stack Engineer at AdsGency AI (San Francisco). Previously: Researcher at NYU Neuroinformatics Lab.
+          <span className="font-medium text-[color:var(--text)]">Previously:</span>{" "}
+          Software Engineer at AdsGency AI (San Francisco).  Researcher at NYU Neuroinformatics Lab.
         </p>
 
         {/* Links */}

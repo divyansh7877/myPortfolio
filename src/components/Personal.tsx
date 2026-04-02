@@ -7,10 +7,8 @@ export default function Personal() {
         </h2>
         <p className="text-[color:var(--text-secondary)] leading-relaxed text-sm">
           Outside of work I take long walks, attend orchestral concerts, and cook. I&apos;m drawn to classic
-          fiction and philosophy — currently reading{" "}
-          <span className="italic">Wuthering Heights</span> and{" "}
-          <span className="italic">The Stranger</span>. My music taste runs from Dire Straits and Pink Floyd
-          to Steven Wilson and Pearl Jam.
+          fiction and philosophical books.
+          My music taste runs from Dire Straits and Pink Floyd to Steven Wilson and Pearl Jam.
         </p>
       </div>
     </section>
