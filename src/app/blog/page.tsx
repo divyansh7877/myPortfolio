@@ -2,41 +2,43 @@ import Link from 'next/link';
 import { ArrowLeft, ArrowRight, FileText, Layers3 } from 'lucide-react';
 import { getBlogPosts } from '@/lib/mdx';
 
-// Update SUBSTACK_URL to your Substack publication URL, e.g. "https://divyansh.substack.com"
-const SUBSTACK_URL = "https://divyansh.substack.com";
+const SUBSTACK_URL = "https://diivviii.substack.com";
 
 function SubstackWidget() {
   return (
-    <div className="rounded-2xl border border-[color:var(--border)] bg-[var(--background)] p-6 space-y-4">
-      <div className="space-y-1">
-        <p className="font-mono text-xs uppercase tracking-widest text-[color:var(--accent)]">
-          Substack
-        </p>
-        <h3 className="text-lg font-semibold text-[color:var(--foreground)]">
-          Subscribe to the newsletter
-        </h3>
-        <p className="text-sm text-[color:var(--muted)] leading-relaxed">
-          Get new posts delivered straight to your inbox. No spam, unsubscribe anytime.
-        </p>
+    <div className="shell-panel surface-grid rounded-[1.75rem] p-1">
+      <div className="rounded-[1.45rem] border border-[color:var(--border)] bg-[var(--background)] p-6 md:p-8 space-y-5">
+        <div className="flex items-start justify-between gap-4 flex-wrap">
+          <div className="space-y-1">
+            <p className="section-kicker">Newsletter</p>
+            <h3 className="text-xl font-semibold text-[color:var(--foreground)]">
+              Subscribe on Substack
+            </h3>
+            <p className="text-sm text-[color:var(--muted)] leading-relaxed">
+              Get new posts delivered straight to your inbox. No spam, unsubscribe anytime.
+            </p>
+          </div>
+          <a
+            href={SUBSTACK_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] bg-[var(--code-bg)] px-4 py-2 text-sm font-medium text-[color:var(--accent)] transition-all duration-300 hover:border-[color:var(--accent)] hover:-translate-y-0.5 shrink-0"
+          >
+            Read all posts
+            <ArrowRight className="h-3.5 w-3.5" />
+          </a>
+        </div>
+
+        <iframe
+          src={`${SUBSTACK_URL}/embed`}
+          width="100%"
+          height="320"
+          style={{ border: '1px solid var(--border)', borderRadius: '1rem', background: 'transparent' }}
+          frameBorder="0"
+          scrolling="no"
+          title="Substack newsletter — subscribe to Div Agarwal"
+        />
       </div>
-      <iframe
-        src={`${SUBSTACK_URL}/embed`}
-        width="100%"
-        height="150"
-        style={{ border: '1px solid var(--border)', borderRadius: '0.75rem', background: 'transparent' }}
-        frameBorder="0"
-        scrolling="no"
-        title="Substack newsletter subscription"
-      />
-      <a
-        href={SUBSTACK_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center gap-2 text-sm text-[color:var(--accent)] hover:underline"
-      >
-        Read on Substack
-        <ArrowRight className="h-3.5 w-3.5" />
-      </a>
     </div>
   );
 }
