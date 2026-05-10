@@ -3,6 +3,7 @@ export default function Experience() {
     {
       title: "AI Engineer (Contract)",
       company: "Daylit",
+      companyUrl: "https://www.daylit.com/",
       period: "April 2026 – Present",
       location: "San Francisco, CA",
       bullets: [
@@ -14,6 +15,7 @@ export default function Experience() {
     {
       title: "AI Engineer (Contract)",
       company: "Variant Avatars",
+      companyUrl: "https://variantavatars.com/",
       period: "March 2026 – Present",
       location: "San Francisco, CA",
       bullets: [
