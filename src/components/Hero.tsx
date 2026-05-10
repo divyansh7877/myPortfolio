@@ -24,29 +24,37 @@ export default function Hero() {
           <p>
             I build AI systems that have to survive both research constraints and production reality: retrieval
             pipelines, ML workflows, and full-stack interfaces that move from prototype to shipped product.
-            My work spans applied research at NYU&apos;s Neuroinformatics Lab — building event-detection models
-            (0.92 F1) and a browser tool used by neuroscientists — and engineering worked at{" "}
+            Currently, I&apos;m working on ML-based risk prediction and data pipelines at{" "}
             <a
-              href="https://adsgency.ai"
+              href="https://www.daylit.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[color:var(--accent)] hover:underline"
             >
-              AdsGency AI
+              Daylit
             </a>
-            , where I built natural language querying systems over multi-source data.
+            , and building agentic research systems and LLM-driven agents for financial analysis at{" "}
+            <a
+              href="https://variantavatars.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[color:var(--accent)] hover:underline"
+            >
+              Variant Avatars
+            </a>
+            .
           </p>
           <p>
             I care about the gap between a model that works in a notebook and a system that holds up when
-            real users touch it. Most of my projects live in that gap: local RAG systems with modular retrieval,
-            serverless automation pipelines, and full-stack products with real interfaces on top of AI.
+            real users touch it. Most of my projects live in that gap: multi-agent pipelines for financial reasoning,
+            serverless automation workflows, and full-stack products with real interfaces on top of AI.
           </p>
         </div>
 
         {/* Current status */}
         <p className="text-sm text-[color:var(--text-secondary)]">
           <span className="font-medium text-[color:var(--text)]">Previously:</span>{" "}
-          Software Engineer at AdsGency AI (San Francisco).  Researcher at NYU Neuroinformatics Lab.
+          Software Engineer at AdsGency AI (San Francisco). Researcher at NYU Neuroinformatics Lab.
         </p>
 
         {/* Links */}
