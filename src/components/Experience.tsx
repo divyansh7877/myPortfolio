@@ -1,6 +1,28 @@
 export default function Experience() {
   const experiences = [
     {
+      title: "AI Engineer (Contract)",
+      company: "Daylit",
+      period: "April 2026 – Present",
+      location: "San Francisco, CA",
+      bullets: [
+        "Improved A/R collections signaling using ML-based risk prediction models to prioritize and triage accounts.",
+        "Built data pipelines and feature engineering workflows with real-time ingestion and orchestration via Apache Airflow.",
+        "Enhanced conversation summarization across invoices, call transcripts, and notes to improve collections context and decision-making.",
+      ],
+    },
+    {
+      title: "AI Engineer (Contract)",
+      company: "Variant Avatars",
+      period: "March 2026 – Present",
+      location: "San Francisco, CA",
+      bullets: [
+        "Improved agentic research system for data retrieval and ranking, increasing result relevance by 30%.",
+        "Built LLM-driven agents for portfolio analysis, enabling automated market data interpretation.",
+        "Developed multi-agent pipelines for financial reasoning and multimodal content generation (audio, presentations).",
+      ],
+    },
+    {
       title: "Software Engineer",
       company: "AdsGency AI",
       companyUrl: "https://adsgency.ai",
