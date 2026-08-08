@@ -1,27 +1,16 @@
 "use client";
 
-const CAL_LINK = "div-vi";
+import { useState } from "react";
+import { CalendarDays, ChevronDown } from "lucide-react";
 
 export default function CalEmbed() {
-  const calUrl = `https://cal.com/div-vi?embed=true&hideEventTypeDetails=true&layout=month_view`;
-
+  const [open, setOpen] = useState(false);
   return (
-    <section id="book" className="py-12">
-      <div>
-        <p className="text-sm font-semibold uppercase tracking-widest text-[color:var(--accent)] mb-2">
-          Book a call
-        </p>
-        <p className="text-sm text-[color:var(--text-secondary)] mb-6 leading-relaxed">
-          Pick a slot and let&apos;s talk.
-        </p>
-        <iframe
-          src={calUrl}
-          className="w-full rounded-xl border border-[color:var(--border)]"
-          style={{ minHeight: 600 }}
-          title="Schedule a call"
-          loading="lazy"
-        />
-      </div>
-    </section>
+    <div id="book" className="booking-shell">
+      <button type="button" className="button-secondary" onClick={() => setOpen((value) => !value)} aria-expanded={open} aria-controls="calendar-frame">
+        <CalendarDays size={16} /> {open ? "Close calendar" : "Find a time"} <ChevronDown size={14} aria-hidden className={open ? "rotate-180" : ""} />
+      </button>
+      {open && <iframe id="calendar-frame" src="https://cal.com/div-vi?embed=true&hideEventTypeDetails=true&layout=month_view" className="calendar-frame" title="Schedule a call" loading="lazy" />}
+    </div>
   );
 }

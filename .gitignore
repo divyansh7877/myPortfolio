@@ -42,4 +42,5 @@ next-env.d.ts
 
 # docs for AI
 /src/content/hackathons.txt
+.superdesign/tmp/
 AI.mdx

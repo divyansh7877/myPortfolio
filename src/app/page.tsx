@@ -1,16 +1,12 @@
-import { Suspense } from "react";
-import dynamic from "next/dynamic";
 import { SITE_URL } from "@/lib/constants";
-
-const Hero = dynamic(() => import("@/components/Hero"));
-const Experience = dynamic(() => import("@/components/Experience"));
-const Education = dynamic(() => import("@/components/Education"));
-const Skills = dynamic(() => import("@/components/Skills"));
-const ProjectsCompact = dynamic(() => import("@/components/ProjectsCompact"));
-const Personal = dynamic(() => import("@/components/Personal"));
-const Contact = dynamic(() => import("@/components/Contact"));
-const CalEmbed = dynamic(() => import("@/components/CalEmbed"));
-const Footer = dynamic(() => import("@/components/Footer"));
+import Hero from "@/components/Hero";
+import Experience from "@/components/Experience";
+import ProjectsCompact from "@/components/ProjectsCompact";
+import Skills from "@/components/Skills";
+import Education from "@/components/Education";
+import Personal from "@/components/Personal";
+import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   const jsonLd = {
@@ -18,75 +14,21 @@ export default function Home() {
     "@type": "Person",
     name: "Div Agarwal",
     url: SITE_URL,
-    sameAs: [
-      "https://www.linkedin.com/in/div2201/",
-      "https://github.com/divyansh7877",
-    ],
-    jobTitle: "Software Engineer",
-    worksFor: {
-      "@type": "Organization",
-      name: "AdsGency AI",
-    },
+    sameAs: ["https://www.linkedin.com/in/div2201/", "https://github.com/divyansh7877"],
+    jobTitle: "AI/ML Engineer",
   };
 
   return (
-    <main className="min-h-screen bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      {/* Narrow reading-column wrapper */}
-      <div className="mx-auto max-w-4xl px-4 sm:px-6">
-        <Suspense>
-          <Hero />
-        </Suspense>
-
-        <hr className="mx-4 border-[color:var(--border)] sm:mx-6" />
-
-        <Suspense>
-          <Experience />
-        </Suspense>
-
-        <hr className="mx-4 border-[color:var(--border)] sm:mx-6" />
-
-        <Suspense>
-          <Education />
-        </Suspense>
-
-        <hr className="mx-4 border-[color:var(--border)] sm:mx-6" />
-
-        <Suspense>
-          <Skills />
-        </Suspense>
-
-        <hr className="mx-4 border-[color:var(--border)] sm:mx-6" />
-
-        <Suspense>
-          <ProjectsCompact />
-        </Suspense>
-
-        <hr className="mx-4 border-[color:var(--border)] sm:mx-6" />
-
-        <Suspense>
-          <Personal />
-        </Suspense>
-
-        <hr className="mx-4 border-[color:var(--border)] sm:mx-6" />
-
-        <Suspense>
-          <Contact />
-        </Suspense>
-
-        <hr className="mx-4 border-[color:var(--border)] sm:mx-6" />
-
-        <Suspense>
-          <CalEmbed />
-        </Suspense>
-
-        <Suspense>
-          <Footer />
-        </Suspense>
-      </div>
+    <main className="site-main">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <Hero />
+      <Experience />
+      <ProjectsCompact />
+      <Skills />
+      <Education />
+      <Personal />
+      <Contact />
+      <Footer />
     </main>
   );
 }

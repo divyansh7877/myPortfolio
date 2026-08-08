@@ -152,7 +152,7 @@ export default function ProjectsPage() {
 
         {/* Featured projects */}
         <div className="space-y-12">
-          {projects.map((project, i) => (
+          {projects.map((project) => (
             <article key={project.title} className="border-t border-[color:var(--border)] pt-8 first:border-0 first:pt-0">
               <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
                 <h2 className="text-xl font-semibold text-[color:var(--text)]">

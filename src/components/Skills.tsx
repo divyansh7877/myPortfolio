@@ -1,18 +1,20 @@
+const groups = [
+  { title: "Intelligence", items: ["PyTorch", "Hugging Face", "RAG + LlamaIndex", "LangGraph", "Computer Vision"] },
+  { title: "Systems", items: ["Python", "FastAPI", "SQL + DuckDB", "AWS", "Docker"] },
+  { title: "Interfaces", items: ["TypeScript", "React + Next.js", "Data visualization", "Streamlit", "Git"] },
+];
+
 export default function Skills() {
   return (
-    <section id="skills" className="px-4 py-8 sm:px-6">
-      <div className="max-w-2xl">
-        <h2 className="text-sm font-semibold uppercase tracking-widest text-[color:var(--accent)] mb-3">
-          Skills
-        </h2>
-        <p className="text-[color:var(--text-secondary)] leading-relaxed text-sm">
-          <span className="font-medium text-[color:var(--text)]">Core:</span>{" "}
-          Python, PyTorch, SQL, React / Next.js, AWS, Docker, Git
-        </p>
-        <p className="text-[color:var(--text-secondary)] leading-relaxed text-sm mt-1">
-          <span className="font-medium text-[color:var(--text)]">Also:</span>{" "}
-          HuggingFace, LlamaIndex, RAG, LangGraph, FastAPI, TensorFlow, Pandas, NumPy, Solidity, ROS, MATLAB
-        </p>
+    <section id="skills" className="portfolio-section site-container">
+      <div className="section-heading-row"><p className="section-index">03 / Capabilities</p><p className="section-index">Tools follow problems</p></div>
+      <div className="skills-grid">
+        {groups.map((group) => (
+          <div className="skill-column" key={group.title}>
+            <h3>{group.title}</h3>
+            <ul>{group.items.map((item) => <li key={item}>{item}</li>)}</ul>
+          </div>
+        ))}
       </div>
     </section>
   );

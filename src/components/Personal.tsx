@@ -1,15 +1,10 @@
 export default function Personal() {
   return (
-    <section id="personal" className="px-4 py-8 sm:px-6">
-      <div className="max-w-2xl">
-        <h2 className="text-sm font-semibold uppercase tracking-widest text-[color:var(--accent)] mb-3">
-          Personal
-        </h2>
-        <p className="text-[color:var(--text-secondary)] leading-relaxed text-sm">
-          Outside of work I take long walks, attend orchestral concerts, and cook. I&apos;m drawn to classic
-          fiction and philosophical books.
-          My music taste runs from Dire Straits and Pink Floyd to Steven Wilson and Pearl Jam.
-        </p>
+    <section id="personal" className="portfolio-section site-container">
+      <div className="section-heading-row"><p className="section-index">05 / Elsewhere</p><p className="section-index">Beyond the terminal</p></div>
+      <div className="personal-grid">
+        <p className="personal-statement">Long walks, orchestral concerts, ambitious cooking, classic fiction, and records best heard from beginning to end.</p>
+        <p className="personal-aside">Currently in rotation<br />Dire Straits<br />Pink Floyd<br />Steven Wilson<br />Pearl Jam</p>
       </div>
     </section>
   );

@@ -1,122 +1,43 @@
-export default function Experience() {
-  const experiences = [
-    {
-      title: "AI Engineer (Contract)",
-      company: "Daylit",
-      companyUrl: "https://www.daylit.com/",
-      period: "April 2026 – Present",
-      location: "San Francisco, CA",
-      bullets: [
-        "Improved A/R collections signaling using ML-based risk prediction models to prioritize and triage accounts.",
-        "Built data pipelines and feature engineering workflows with real-time ingestion and orchestration via Apache Airflow.",
-        "Enhanced conversation summarization across invoices, call transcripts, and notes to improve collections context and decision-making.",
-      ],
-    },
-    {
-      title: "AI Engineer (Contract)",
-      company: "Variant Avatars",
-      companyUrl: "https://variantavatars.com/",
-      period: "March 2026 – Present",
-      location: "San Francisco, CA",
-      bullets: [
-        "Improved agentic research system for data retrieval and ranking, increasing result relevance by 30%.",
-        "Built LLM-driven agents for portfolio analysis, enabling automated market data interpretation.",
-        "Developed multi-agent pipelines for financial reasoning and multimodal content generation (audio, presentations).",
-      ],
-    },
-    {
-      title: "Software Engineer",
-      company: "AdsGency AI",
-      companyUrl: "https://adsgency.ai",
-      period: "Feb 2026 – March 2026",
-      location: "San Francisco, CA",
-      bullets: [
-        "Built a natural language querying system generating SQL via DuckDB across multiple data sources.",
-        "Developed a ranking and scoring system optimizing data selection for audio, image, and video ad generation.",
-      ],
-    },
-    {
-      title: "Researcher",
-      company: "NYU Neuroinformatics Lab",
-      companyUrl: "https://github.com/divyansh7877/neuro-window-explorer",
-      period: "Oct 2024 – Feb 2026",
-      location: "New York, NY",
-      bullets: [
-        "Trained ML/DL models for neural event detection — achieving 0.92 F1 on voltage imaging data.",
-        "Built a browser-based tool for interactive exploration of calcium trace data used by the lab team.",
-      ],
-    },
-    {
-      title: "Data Analyst",
-      company: "Adeptmind",
-      period: "Feb 2023 – Jul 2023",
-      location: "Toronto, Canada",
-      bullets: [
-        "Scaled landing pages from 10K to 80K, driving a 20% monthly traffic increase via LLM-generated content and SEO.",
-        "Built a Streamlit dashboard for monitoring performance across 19 clients.",
-      ],
-    },
-    {
-      title: "Research Engineer",
-      company: "Enord",
-      period: "Nov 2022 – Feb 2023",
-      location: "New Delhi, India",
-      bullets: [
-        "Worked on state of the art depth estimation models using Deep Learning for Autonomous Drone Navigation with ROS and Nvidia systems.",
-      ],
-    },
-    {
-      title: "Head of Autonomous Department",
-      company: "Team OJAS (Formula Student)",
-      period: "Sep 2020 – Feb 2022",
-      location: "VIT Vellore, India",
-      bullets: [
-        "Led team to become the first Indian qualifiers for Formula Student Hungary.",
-        "Implemented YOLO-based detection achieving 92% accuracy; managed perception, planning, and control tracks.",
-      ],
-    },
-  ];
+const experiences = [
+  { title: "AI Engineer (Contract)", company: "Daylit", companyUrl: "https://www.daylit.com/", period: "Apr 2026 — Present", location: "San Francisco", signal: "Risk models", summary: "Building ML risk prediction, real-time Airflow pipelines, and conversation intelligence for accounts-receivable collections." },
+  { title: "AI Engineer (Contract)", company: "Variant Avatars", companyUrl: "https://variantavatars.com/", period: "Mar 2026 — Present", location: "San Francisco", signal: "+30% relevance", summary: "Improving agentic retrieval and multi-agent financial research systems across market data, audio, and presentations." },
+  { title: "Software Engineer", company: "AdsGency AI", companyUrl: "https://adsgency.ai", period: "Feb — Mar 2026", location: "San Francisco", signal: "NL → SQL", summary: "Built natural-language analytics over DuckDB and ranking systems for multimodal advertising data." },
+  { title: "Researcher", company: "NYU Neuroinformatics Lab", companyUrl: "https://github.com/divyansh7877/neuro-window-explorer", period: "Oct 2024 — Feb 2026", location: "New York", signal: "0.92 F1", summary: "Trained neural event-detection models and shipped a browser tool for exploring calcium-imaging traces." },
+  { title: "Data Analyst", company: "Adeptmind", period: "Feb — Jul 2023", location: "Toronto", signal: "+20% traffic", summary: "Scaled data-driven landing pages from 10K to 80K and built performance monitoring across 19 clients." },
+  { title: "Research Engineer", company: "Enord", period: "Nov 2022 — Feb 2023", location: "New Delhi", signal: "Depth / ROS", summary: "Developed deep-learning depth estimation for autonomous drone navigation on ROS and NVIDIA systems." },
+  { title: "Head of Autonomous", company: "Team OJAS · Formula Student", period: "Sep 2020 — Feb 2022", location: "Vellore", signal: "92% vision", summary: "Led perception, planning, and control; helped the team become the first Indian qualifiers for Formula Student Hungary." },
+];
 
+function ExperienceContent({ experience }: { experience: (typeof experiences)[number] }) {
   return (
-    <section id="experience" className="px-4 py-8 sm:px-6">
-      <div className="max-w-2xl">
-        <h2 className="text-sm font-semibold uppercase tracking-widest text-[color:var(--accent)] mb-5">
-          Experience
-        </h2>
+    <>
+      <div className="experience-meta">{experience.period}<br />{experience.location}</div>
+      <div className="experience-body">
+        <h3 className="experience-title">{experience.title} · {experience.company}</h3>
+        <p className="experience-copy">{experience.summary}</p>
+      </div>
+      <span className="experience-signal">{experience.signal}</span>
+    </>
+  );
+}
 
-        <div className="space-y-6">
-          {experiences.map((exp, i) => (
-            <div key={i}>
-              <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5 mb-1">
-                <span className="font-medium text-sm text-[color:var(--text)]">{exp.title}</span>
-                <span className="text-[color:var(--text-secondary)] text-sm">&mdash;</span>
-                {exp.companyUrl ? (
-                  <a
-                    href={exp.companyUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-[color:var(--accent)] hover:underline"
-                  >
-                    {exp.company}
-                  </a>
-                ) : (
-                  <span className="text-sm text-[color:var(--text-secondary)]">{exp.company}</span>
-                )}
-                <span className="text-xs text-[color:var(--text-secondary)] opacity-70">
-                  {exp.period} &middot; {exp.location}
-                </span>
-              </div>
-              <ul className="space-y-1">
-                {exp.bullets.map((bullet, j) => (
-                  <li key={j} className="text-sm text-[color:var(--text-secondary)] leading-relaxed flex items-start gap-2">
-                    <span className="text-[color:var(--accent)] mt-1 shrink-0 text-xs">&bull;</span>
-                    {bullet}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
+export default function Experience() {
+  return (
+    <section id="experience" className="portfolio-section site-container">
+      <div className="section-heading-row">
+        <p className="section-index">01 / Experience</p>
+        <p className="section-index">2020 — Now</p>
+      </div>
+      <div>
+        {experiences.map((experience) => experience.companyUrl ? (
+          <a className="experience-row" href={experience.companyUrl} target="_blank" rel="noreferrer" key={experience.company}>
+            <ExperienceContent experience={experience} />
+          </a>
+        ) : (
+          <article className="experience-row" key={experience.company}>
+            <ExperienceContent experience={experience} />
+          </article>
+        ))}
       </div>
     </section>
   );

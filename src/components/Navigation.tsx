@@ -1,161 +1,153 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { Menu, X, FileText, Moon, Sun } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ArrowUpRight, FileText, Menu, Moon, Sun, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "./ThemeProvider";
 
 const navItems = [
-  { label: "Experience", href: "#experience" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
-  { label: "Contact", href: "#contact" },
-  { label: "Book a call", href: "#book" },
+  { index: "01", label: "Experience", id: "experience" },
+  { index: "02", label: "Projects", id: "projects" },
+  { index: "03", label: "Skills", id: "skills" },
+  { index: "04", label: "Contact", id: "contact" },
 ];
 
 function ThemeButton() {
-  const { theme, toggleTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return <div className="h-8 w-8" />;
+  const { toggleTheme } = useTheme();
 
   return (
     <button
+      type="button"
       onClick={toggleTheme}
-      className="flex h-8 w-8 items-center justify-center rounded-md text-[color:var(--text-secondary)] transition-colors hover:text-[color:var(--text)]"
-      aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+      className="theme-button"
+      aria-label="Toggle color theme"
     >
-      {theme === "dark" ? (
-        <Sun className="h-4 w-4" />
-      ) : (
-        <Moon className="h-4 w-4" />
-      )}
+      <Sun className="h-4 w-4 dark:hidden" aria-hidden="true" />
+      <Moon className="hidden h-4 w-4 dark:block" aria-hidden="true" />
+      <span className="hidden sm:inline">
+        <span className="dark:hidden">Light</span>
+        <span className="hidden dark:inline">Dark</span>
+      </span>
     </button>
   );
 }
 
 export default function Navigation() {
-  const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const pathname = usePathname();
-  const isSubPage =
-    pathname?.startsWith("/blog") ||
-    pathname?.startsWith("/myPortfolio/blog") ||
-    pathname?.startsWith("/projects") ||
-    pathname?.startsWith("/myPortfolio/projects");
+  const isSubPage = pathname !== "/";
+
+  useEffect(() => {
+    let frame = 0;
+    const updateProgress = () => {
+      frame = 0;
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      setScrollProgress(scrollable > 0 ? Math.min(window.scrollY / scrollable, 1) : 0);
+    };
+    const onScroll = () => {
+      if (!frame) frame = window.requestAnimationFrame(updateProgress);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    frame = window.requestAnimationFrame(updateProgress);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isSubPage) return;
+
+    const sections = navItems
+      .map(({ id }) => document.getElementById(id))
+      .filter((section): section is HTMLElement => Boolean(section));
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActiveSection(visible.target.id);
+      },
+      { rootMargin: "-20% 0px -65%", threshold: [0.05, 0.2, 0.5] },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, [isSubPage]);
+
+  const scrollToSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    setMobileOpen(false);
+  };
 
   if (isSubPage) {
+    const sectionName = pathname.startsWith("/projects") ? "Projects" : "Journal";
     return (
-      <header className="fixed inset-x-0 top-0 z-40 border-b border-[color:var(--border)] bg-[color:var(--bg)]/95 backdrop-blur-sm">
-        <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
-          <Link
-            href="/"
-            className="text-sm font-medium text-[color:var(--text-secondary)] transition-colors hover:text-[color:var(--text)]"
-          >
-            &larr; Portfolio
+      <header className="site-header">
+        <div className="nav-inner">
+          <Link href="/" className="brand-mark" aria-label="Back to portfolio home">
+            <span className="brand-monogram">DA</span>
+            <span>Div Agarwal</span>
           </Link>
-          <span className="font-mono text-xs uppercase tracking-widest text-[color:var(--text-secondary)]">
-            {pathname?.startsWith("/projects") || pathname?.startsWith("/myPortfolio/projects") ? "Projects" : "Journal"}
-          </span>
-          <div className="flex items-center gap-3">
-            <Link
-              href="/blog"
-              className="flex items-center gap-1.5 text-sm text-[color:var(--accent)] hover:text-[color:var(--accent-hover)] transition-colors"
-            >
-              <FileText className="h-3.5 w-3.5" />
+          <span className="nav-route-label">{sectionName}</span>
+          <div className="flex items-center gap-1">
+            <Link href="/blog" className="nav-utility-link">
+              <FileText className="h-3.5 w-3.5" aria-hidden="true" />
               Blog
             </Link>
             <ThemeButton />
           </div>
         </div>
-        <div
-          className="h-px origin-left bg-[color:var(--accent)] transition-transform duration-100"
-          style={{ transform: `scaleX(${scrollProgress})` }}
-          aria-hidden="true"
-        />
+        <div className="scroll-progress" style={{ transform: `scaleX(${scrollProgress})` }} />
       </header>
     );
   }
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-40 border-b border-[color:var(--border)] bg-[color:var(--bg)]/95 backdrop-blur-sm transition-colors duration-200`}
-    >
-      {/* Desktop nav */}
-      <div className="mx-auto hidden h-14 max-w-5xl items-center justify-between px-6 md:flex">
-        {/* Logo / name */}
-        <button
-          onClick={() => window.scrollTo({ top: 0 })}
-          className="font-display text-sm font-semibold tracking-tight text-[color:var(--text)] transition-colors hover:text-[color:var(--accent)]"
-        >
-          Div Agarwal
+    <header className="site-header">
+      <div className="nav-inner">
+        <button type="button" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="brand-mark">
+          <span className="brand-monogram">DA</span>
+          <span>Div Agarwal</span>
         </button>
 
-        {/* Links */}
-        <nav aria-label="Main navigation">
-          <ul className="flex items-center gap-1">
-            {navItems.map((item) => {
-              const isActive = activeSection === item.href.replace("#", "");
-              return (
-                <li key={item.label}>
-                  <button
-                    onClick={() => document.getElementById(item.href.replace("#", ""))?.scrollIntoView({ behavior: "smooth" })}
-                    className={`rounded px-3 py-1.5 text-sm transition-colors ${
-                      isActive
-                        ? "text-[color:var(--text)] font-medium"
-                        : "text-[color:var(--text-secondary)] hover:text-[color:var(--text)]"
-                    }`}
-                  >
-                    {item.label}
-                    {isActive && (
-                      <span className="sr-only">(current section)</span>
-                    )}
-                  </button>
-                </li>
-              );
-            })}
+        <nav aria-label="Main navigation" className="hidden lg:block">
+          <ul className="flex items-center">
+            {navItems.map((item) => (
+              <li key={item.id}>
+                <button
+                  type="button"
+                  onClick={() => scrollToSection(item.id)}
+                  className={`nav-index-link ${activeSection === item.id ? "is-active" : ""}`}
+                >
+                  {item.index} {item.label}
+                </button>
+              </li>
+            ))}
           </ul>
         </nav>
 
-        {/* Right actions */}
-        <div className="flex items-center gap-2">
-          <Link
-            href="/projects"
-            className="flex items-center gap-1.5 rounded px-3 py-1.5 text-sm text-[color:var(--text-secondary)] transition-colors hover:text-[color:var(--accent)]"
-          >
-            All Projects
+        <div className="hidden items-center gap-1 md:flex">
+          <Link href="/projects" className="nav-utility-link">
+            All projects <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
           </Link>
-          <Link
-            href="/blog"
-            className="flex items-center gap-1.5 rounded px-3 py-1.5 text-sm text-[color:var(--text-secondary)] transition-colors hover:text-[color:var(--accent)]"
-          >
-            <FileText className="h-3.5 w-3.5" />
-            Blog
+          <Link href="/blog" className="nav-utility-link">
+            <FileText className="h-3.5 w-3.5" aria-hidden="true" /> Blog
           </Link>
           <ThemeButton />
         </div>
-      </div>
 
-      {/* Mobile nav */}
-      <div className="flex h-14 items-center justify-between px-4 md:hidden">
-        <button
-          onClick={() => window.scrollTo({ top: 0 })}
-          className="font-display text-sm font-semibold text-[color:var(--text)]"
-        >
-          Div Agarwal
-        </button>
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1 md:hidden">
           <ThemeButton />
           <button
-            onClick={() => setMobileOpen((o) => !o)}
-            className="flex h-8 w-8 items-center justify-center rounded-md text-[color:var(--text-secondary)] transition-colors hover:text-[color:var(--text)]"
+            type="button"
+            onClick={() => setMobileOpen((open) => !open)}
+            className="menu-button"
             aria-label="Toggle navigation menu"
             aria-expanded={mobileOpen}
           >
@@ -164,58 +156,24 @@ export default function Navigation() {
         </div>
       </div>
 
-      {/* Mobile dropdown */}
-      {mobileOpen && (
-        <div className="border-t border-[color:var(--border)] bg-[color:var(--bg)] px-4 pb-4 md:hidden">
-          <nav aria-label="Mobile navigation">
-            <ul className="space-y-1 pt-2">
-              {navItems.map((item) => {
-                const isActive = activeSection === item.href.replace("#", "");
-                return (
-                  <li key={item.label}>
-                    <button
-                      onClick={() => document.getElementById(item.href.replace("#", ""))?.scrollIntoView({ behavior: "smooth" })}
-                      className={`w-full rounded px-3 py-2.5 text-left text-sm transition-colors ${
-                        isActive
-                          ? "bg-[color:var(--surface)] font-medium text-[color:var(--text)]"
-                          : "text-[color:var(--text-secondary)] hover:text-[color:var(--text)]"
-                      }`}
-                    >
-                      {item.label}
-                    </button>
-                  </li>
-                );
-              })}
-              <li>
-                <Link
-                  href="/projects"
-                  onClick={() => setMobileOpen(false)}
-                  className="flex w-full items-center gap-2 rounded px-3 py-2.5 text-sm text-[color:var(--text-secondary)] hover:text-[color:var(--accent)] transition-colors"
-                >
-                  All Projects
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/blog"
-                  onClick={() => setMobileOpen(false)}
-                  className="flex w-full items-center gap-2 rounded px-3 py-2.5 text-sm text-[color:var(--text-secondary)] hover:text-[color:var(--accent)] transition-colors"
-                >
-                  <FileText className="h-3.5 w-3.5" />
-                  Blog
-                </Link>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      )}
+      {mobileOpen ? (
+        <nav aria-label="Mobile navigation" className="mobile-nav">
+          {navItems.map((item) => (
+            <button key={item.id} type="button" onClick={() => scrollToSection(item.id)} className="mobile-nav-link">
+              <span>{item.index}</span>
+              <span>{item.label}</span>
+            </button>
+          ))}
+          <Link href="/projects" onClick={() => setMobileOpen(false)} className="mobile-nav-link">
+            <span>05</span><span>All projects</span>
+          </Link>
+          <Link href="/blog" onClick={() => setMobileOpen(false)} className="mobile-nav-link">
+            <span>06</span><span>Journal</span>
+          </Link>
+        </nav>
+      ) : null}
 
-      {/* Scroll progress */}
-      <div
-        className="h-px origin-left bg-[color:var(--accent)] transition-transform duration-100"
-        style={{ transform: `scaleX(${scrollProgress})` }}
-        aria-hidden="true"
-      />
+      <div className="scroll-progress" style={{ transform: `scaleX(${scrollProgress})` }} />
     </header>
   );
 }
